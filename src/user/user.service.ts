@@ -12,15 +12,15 @@ export class UserService {
     return `This action returns all product`;
   }
 
-  findOne(id: sting) {
+  findOne(id: string) {
     return `This action returns a #${id} product`;
   }
 
-  update(id: sting, updateUserDto: UpdateUserDto) {
+  update(id: string, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} product`;
   }
 
-  remove(id: sting) {
+  remove(id: string) {
     return `This action removes a #${id} product`;
   }
 }
