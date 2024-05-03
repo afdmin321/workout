@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "dsbasko.create-component-helper",
+        "esbenp.prettier-vscode"
+    ]
+}
