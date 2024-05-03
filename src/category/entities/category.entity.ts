@@ -12,6 +12,6 @@ export class Category {
   @Column()
   disabled: false;
 
-  @OneToMany((type) => Product, (product) => product.category)
+  @OneToMany((_) => Product, (product) => product.category)
   products: Product[];
 }

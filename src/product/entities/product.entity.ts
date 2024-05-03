@@ -30,6 +30,6 @@ export class Product {
   @Column()
   popularity: number;
 
-  @ManyToOne((type) => Category, (category) => category.products)
+  @ManyToOne((_) => Category, (category) => category.products)
   category: Category;
 }
