@@ -1,5 +1,13 @@
 import { Category } from 'category/entities/category.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Image } from 'image/entities/image.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'products' })
 export class Product {
@@ -31,5 +39,9 @@ export class Product {
   popularity: number;
 
   @ManyToOne((_) => Category, (category) => category.products)
+  @JoinColumn({ name: 'category_id' })
   category: Category;
+
+  @OneToMany((_) => Image, (image) => image.src)
+  images: Image[];
 }

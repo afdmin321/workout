@@ -1,26 +1,32 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from 'user/dto/create-user.dto';
-import { UpdateUserDto } from 'user/dto/update-user.dto';
+import { User } from './entities/user.entity';
+import { Repository } from 'typeorm';
+// import { hash } from 'argon2';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new product';
+  constructor(
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+  ) {}
+
+  async create(createUserDto: CreateUserDto) {
+    const existUser = await this.userRepository.find({
+      where: { username: createUserDto.username },
+    });
+    if (existUser.length) {
+      throw new BadRequestException('this username already exist!');
+    }
+    // const user = await this.userRepository.save({
+    //   username: createUserDto.username,
+    //   password: await hash(createUserDto.password),
+    // });
+
+    return 'registration is prohibited';
   }
 
-  findAll() {
-    return `This action returns all product`;
-  }
-
-  findOne(id: string) {
-    return `This action returns a #${id} product`;
-  }
-
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} product`;
-  }
-
-  remove(id: string) {
-    return `This action removes a #${id} product`;
+  async findOne(username: string): Promise<User | undefined> {
+    return await this.userRepository.findOne({ where: { username } });
   }
 }

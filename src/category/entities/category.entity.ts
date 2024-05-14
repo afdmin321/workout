@@ -12,6 +12,9 @@ export class Category {
   @Column()
   disabled: false;
 
-  @OneToMany((_) => Product, (product) => product.category)
+  @OneToMany((_) => Product, (product) => product.category, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   products: Product[];
 }

@@ -4,4 +4,13 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column()
+  client_name: string;
+
+  @Column()
+  phone: string;
+
+  @Column()
+  email: string;
 }

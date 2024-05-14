@@ -4,12 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ProductModule } from 'product/product.module';
 import { CategoryModule } from 'category/category.module';
-import { User } from 'user/entities/user.entity';
+import { UserModule } from 'user/user.module';
+import { AuthModule } from 'auth/auth.module';
 
 @Module({
   imports: [
-    ProductModule,
-    CategoryModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -29,7 +28,8 @@ import { User } from 'user/entities/user.entity';
     }),
     CategoryModule,
     ProductModule,
-    User,
+    UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
