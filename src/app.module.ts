@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { ProductModule } from 'product/product.module';
-import { CategoryModule } from 'category/category.module';
+import { ProductsModule } from 'products/products.module';
+import { CategoriesModule } from 'categories/categories.module';
 import { UserModule } from 'user/user.module';
 import { AuthModule } from 'auth/auth.module';
+import { ImagesModule } from 'images/images.module';
 
 @Module({
   imports: [
@@ -26,10 +27,11 @@ import { AuthModule } from 'auth/auth.module';
       },
       inject: [ConfigService],
     }),
-    CategoryModule,
-    ProductModule,
+    CategoriesModule,
+    ProductsModule,
     UserModule,
     AuthModule,
+    ImagesModule,
   ],
   controllers: [],
   providers: [],

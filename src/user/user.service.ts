@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from 'user/dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
-// import { hash } from 'argon2';
+import { hash } from 'argon2';
 
 @Injectable()
 export class UserService {
@@ -18,12 +18,12 @@ export class UserService {
     if (existUser.length) {
       throw new BadRequestException('this username already exist!');
     }
-    // const user = await this.userRepository.save({
-    //   username: createUserDto.username,
-    //   password: await hash(createUserDto.password),
-    // });
+    const user = await this.userRepository.save({
+      username: createUserDto.username,
+      password: await hash(createUserDto.password),
+    });
 
-    return 'registration is prohibited';
+    return user;
   }
 
   async findOne(username: string): Promise<User | undefined> {
