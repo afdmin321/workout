@@ -19,5 +19,5 @@ export class Images {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'product_id' })
-  product: string;
+  product: Products;
 }

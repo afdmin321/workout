@@ -6,18 +6,23 @@ import { Products } from './entities/products.entity';
 import { Repository } from 'typeorm';
 import { Images } from 'images/entities/images.entity';
 import { imageDecode } from 'utils/image_decode';
+import { ImagesService } from 'images/images.service';
 
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectRepository(Products)
     private readonly productRepository: Repository<Products>,
-    @InjectRepository(Images)
-    private readonly imagesRepository: Repository<Images>,
+    private readonly imagesService: ImagesService,
   ) {}
 
   async create(createProductsDto: CreateProductsDto) {
-    console.log(createProductsDto);
+    const isExist = await this.productRepository.findBy({
+      name: createProductsDto.name,
+      category: createProductsDto.category,
+    });
+    if (isExist) throw new BadRequestException('This product already exist');
+
     const newProduct = {
       name: createProductsDto.name,
       description: createProductsDto.description,
@@ -31,12 +36,10 @@ export class ProductsService {
     };
     if (!newProduct) throw new BadRequestException('Somethins went wrong...');
     const product = await this.productRepository.save(newProduct);
-    for (const image of createProductsDto.images) {
-      await this.imagesRepository.save({
-        product: product.id,
-        src: imageDecode(image),
-      });
-    }
+    this.imagesService.create({
+      images: createProductsDto.images,
+      product: product,
+    });
     return product;
   }
 
