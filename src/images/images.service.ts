@@ -14,7 +14,6 @@ export class ImagesService {
   async create(createImagesDto: CreateImagesDto) {
     for (const image of createImagesDto.images) {
       const src = imageDecode(image);
-      console.log(src);
       await this.imagesRepository.save({
         src,
         product: createImagesDto.product,

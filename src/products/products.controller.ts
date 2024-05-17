@@ -9,6 +9,7 @@ import {
   UseGuards,
   UsePipes,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductsDto } from 'products/dto/create-products.dto';
@@ -18,6 +19,20 @@ import { JwtAuthGuard } from 'guards/jwt-auth.guard';
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
+
+  // url/pagination?categoryId=id&page=1&limit=3
+  @Get('pagination')
+  findAllWithPagination(
+    @Query('categoryId') categoryId: string,
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ) {
+    return this.productsService.findAllWithPagination(
+      categoryId,
+      +page,
+      +limit,
+    );
+  }
 
   @Get()
   findAll() {

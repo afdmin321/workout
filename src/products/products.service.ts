@@ -1,11 +1,13 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateProductsDto } from './dto/create-products.dto';
 import { UpdateProductsDto } from './dto/update-products.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Products } from './entities/products.entity';
 import { Repository } from 'typeorm';
-import { Images } from 'images/entities/images.entity';
-import { imageDecode } from 'utils/image_decode';
 import { ImagesService } from 'images/images.service';
 
 @Injectable()
@@ -47,15 +49,61 @@ export class ProductsService {
     return await this.productRepository.find({ relations: { images: true } });
   }
 
+  async findAllWithPagination(categoryId: string, page: number, limit: number) {
+    const products = await this.productRepository.find({
+      relations: {
+        category: true,
+        images: true,
+      },
+      where: {
+        category: { id: categoryId },
+      },
+      take: limit,
+      skip: (page - 1) * limit,
+    });
+    return products;
+  }
   async findOne(id: string) {
-    return `This action returns a #${id} product`;
+    const product = await this.productRepository.findOne({
+      where: { id },
+      relations: { images: true },
+    });
+    if (!product) throw new NotFoundException('product not found');
+
+    return product;
   }
 
   async update(id: string, updateProductsDto: UpdateProductsDto) {
-    return `This action updates a #${id} product`;
+    const product = await this.productRepository.findOne({
+      where: { id },
+      relations: { images: true },
+    });
+
+    if (!product) throw new NotFoundException('product not found');
+
+    const newProduct = await this.productRepository.update(id, {
+      ...updateProductsDto,
+      images: undefined,
+    });
+    if (updateProductsDto?.images?.length) {
+      const newImages = updateProductsDto.images.filter(
+        (image) => !Boolean(product.images.find((e) => e.src === image)),
+      );
+      if (newImages.length) {
+        this.imagesService.create({
+          images: newImages,
+          product: product,
+        });
+      }
+    }
+    return newProduct;
   }
 
   async remove(id: string) {
-    return `This action removes a #${id} product`;
+    const product = await this.productRepository.findOne({
+      where: { id },
+    });
+    if (!product) throw new NotFoundException('product not found');
+    return this.productRepository.delete(id);
   }
 }
