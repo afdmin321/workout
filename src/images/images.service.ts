@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateImagesDto } from 'images/dto/create-images.dto';
 import { Images } from './entities/images.entity';
 import { Repository } from 'typeorm';
-import { imageDecode } from 'utils/image_decode';
+import FileDecode from 'utils/fileDecode';
 
 @Injectable()
 export class ImagesService {
@@ -12,6 +12,7 @@ export class ImagesService {
     private readonly imagesRepository: Repository<Images>,
   ) {}
   async create(createImagesDto: CreateImagesDto) {
+    const { imageDecode } = FileDecode;
     for (const image of createImagesDto.images) {
       const src = imageDecode(image);
       await this.imagesRepository.save({

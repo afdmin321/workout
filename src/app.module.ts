@@ -7,6 +7,7 @@ import { CategoriesModule } from 'categories/categories.module';
 import { UserModule } from 'user/user.module';
 import { AuthModule } from 'auth/auth.module';
 import { ImagesModule } from 'images/images.module';
+import { OrdersModule } from 'order/orders.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ImagesModule } from 'images/images.module';
     UserModule,
     AuthModule,
     ImagesModule,
+    OrdersModule,
   ],
   controllers: [],
   providers: [],

@@ -14,16 +14,18 @@ import { ImagesService } from 'images/images.service';
 export class ProductsService {
   constructor(
     @InjectRepository(Products)
-    private readonly productRepository: Repository<Products>,
+    private readonly productsRepository: Repository<Products>,
     private readonly imagesService: ImagesService,
   ) {}
 
   async create(createProductsDto: CreateProductsDto) {
-    const isExist = await this.productRepository.findBy({
+    const isExist = await this.productsRepository.findBy({
       name: createProductsDto.name,
       category: createProductsDto.category,
     });
-    if (isExist) throw new BadRequestException('This product already exist');
+    console.log(isExist);
+    if (isExist.length)
+      throw new BadRequestException('This product already exist');
 
     const newProduct = {
       name: createProductsDto.name,
@@ -31,13 +33,14 @@ export class ProductsService {
       disabled: createProductsDto.disabled,
       ageGroup: createProductsDto.ageGroup,
       category: createProductsDto.category,
-      popularity: createProductsDto.popularity,
+      articleNumber: createProductsDto.articleNumber,
       size: createProductsDto.size,
       material: createProductsDto.material,
       price: createProductsDto.price,
     };
+    console.log(newProduct);
     if (!newProduct) throw new BadRequestException('Somethins went wrong...');
-    const product = await this.productRepository.save(newProduct);
+    const product = await this.productsRepository.save(newProduct);
     this.imagesService.create({
       images: createProductsDto.images,
       product: product,
@@ -46,11 +49,11 @@ export class ProductsService {
   }
 
   async findAll() {
-    return await this.productRepository.find({ relations: { images: true } });
+    return await this.productsRepository.find({ relations: { images: true } });
   }
 
   async findAllWithPagination(categoryId: string, page: number, limit: number) {
-    const products = await this.productRepository.find({
+    const products = await this.productsRepository.find({
       relations: {
         category: true,
         images: true,
@@ -64,7 +67,7 @@ export class ProductsService {
     return products;
   }
   async findOne(id: string) {
-    const product = await this.productRepository.findOne({
+    const product = await this.productsRepository.findOne({
       where: { id },
       relations: { images: true },
     });
@@ -74,14 +77,14 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductsDto: UpdateProductsDto) {
-    const product = await this.productRepository.findOne({
+    const product = await this.productsRepository.findOne({
       where: { id },
       relations: { images: true },
     });
 
     if (!product) throw new NotFoundException('product not found');
 
-    const newProduct = await this.productRepository.update(id, {
+    const newProduct = await this.productsRepository.update(id, {
       ...updateProductsDto,
       images: undefined,
     });
@@ -100,10 +103,10 @@ export class ProductsService {
   }
 
   async remove(id: string) {
-    const product = await this.productRepository.findOne({
+    const product = await this.productsRepository.findOne({
       where: { id },
     });
     if (!product) throw new NotFoundException('product not found');
-    return this.productRepository.delete(id);
+    return this.productsRepository.delete(id);
   }
 }

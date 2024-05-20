@@ -1,5 +1,5 @@
 import { Categories } from 'categories/entities/categories.entity';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export class CreateProductsDto {
   @IsNotEmpty()
@@ -13,10 +13,9 @@ export class CreateProductsDto {
   @IsNotEmpty()
   category: Categories;
   @IsNotEmpty()
-  @IsNumber()
-  popularity: number;
-  images?: string[]; // encoded in base64
-  size?: string;
-  material?: string;
-  price?: number;
+  articleNumber: string;
+  images?: string[] | null; // encoded in base64
+  size?: string | null;
+  material?: string | null;
+  price?: number | null;
 }

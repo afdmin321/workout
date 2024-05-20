@@ -37,6 +37,19 @@ export class CategoriesService {
 
     return categories;
   }
+  async findAllWithPagination(categoryId: string, page: number, limit: number) {
+    const products = await this.categoriesRepository.find({
+      relations: {
+        products: { images: true },
+      },
+      where: {
+        id: categoryId,
+      },
+      take: limit,
+      skip: (page - 1) * limit,
+    });
+    return products;
+  }
 
   async findOne(id: string) {
     const category = await this.categoriesRepository.findOne({

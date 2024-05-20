@@ -21,22 +21,10 @@ export class Products {
   description: string;
 
   @Column()
-  price: number;
-
-  @Column()
   disabled: boolean;
 
   @Column()
-  ageGroup: string;
-
-  @Column()
-  material: string;
-
-  @Column()
-  size: string;
-
-  @Column()
-  popularity: number;
+  articleNumber: string;
 
   @ManyToOne((_) => Categories, (category) => category.products)
   @JoinColumn({ name: 'category_id' })
@@ -44,4 +32,16 @@ export class Products {
 
   @OneToMany((_) => Images, (image) => image.product)
   images: Images[];
+
+  @Column({ nullable: true })
+  price: number | null;
+
+  @Column({ nullable: true })
+  ageGroup: string | null;
+
+  @Column({ nullable: true })
+  material: string | null;
+
+  @Column({ nullable: true })
+  size: string | null;
 }

@@ -1,6 +1,6 @@
 import { Products } from 'products/entities/products.entity';
 
-export class CreateOrderDto {
+export interface OrderType {
   client_name: string;
   phone: string;
   products: Products[];
