@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateOrderDto } from 'order/dto/create-order.dto';
-import { Orders } from './entities/order.entity';
+import { Orders } from './entities/orders.entity';
 import { Repository } from 'typeorm';
-import { OrderProducts } from './entities/orderProduct.entity';
+import { OrderProducts } from './entities/orderProducts.entity';
 import nodeMailer from 'utils/nodeMailer';
 import htmlTemlate from 'htmlTemlate/htmlTemlate';
+import telegramApi from 'telegramApi/telegramApi';
 @Injectable()
 export class OrderService {
   constructor(
@@ -14,30 +15,21 @@ export class OrderService {
     @InjectRepository(OrderProducts)
     private readonly orderProductsRepository: Repository<OrderProducts>,
   ) {}
-  create(createOrderDto: CreateOrderDto) {
+  async create(createOrderDto: CreateOrderDto) {
     const { sendMessage } = nodeMailer;
     const { getOrderTemplate } = htmlTemlate;
-    const products = createOrderDto.products.map((product) => {
-      return {
-        name: product.name,
-        articleNumber: product.articleNumber,
-        price: product.price,
-      };
-    });
-    const orderPrice = createOrderDto.products.reduce(
-      (acc, product) => acc + product.price,
-      0,
-    );
-    const message = {
-      client_name: createOrderDto.client_name,
-      phone: createOrderDto.phone,
-      email: createOrderDto.email,
-      order: products,
-      orderPrice,
-    };
+
+    const newOrder = await this.ordersRepository.save(createOrderDto);
+    for (const product of createOrderDto.products) {
+      await this.orderProductsRepository.save({
+        product,
+        order: newOrder,
+      });
+    }
     const messageHtml = getOrderTemplate(createOrderDto);
     sendMessage('afdmin321@yandex.ru', messageHtml);
-    return 'This action adds a new product';
+    telegramApi.sendMessage(messageHtml);
+    return newOrder;
   }
 
   findAll() {

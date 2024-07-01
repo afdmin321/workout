@@ -1,0 +1,21 @@
+.PageError {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 0;
+    height: 100vh;
+}
+
+.errorText {
+    font-size: var(--font-size-l);
+    line-height: var(--font-line-l);
+    text-transform: uppercase;
+    border-bottom: 1px solid red;
+}
+
+.buttonReload {
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 20px;
+}

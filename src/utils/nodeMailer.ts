@@ -12,7 +12,7 @@ class NodeMailer {
     });
 
     const result = await transporter.sendMail({
-      from: '"IT department" <afdmin321@mail.ru>',
+      from: '"IT department" <n-moskovchenko@mail.ru>',
       to: email,
       subject: 'New Order Workout',
       text: JSON.stringify(message),

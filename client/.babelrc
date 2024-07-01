@@ -1,0 +1,9 @@
+{
+    "env": {
+        "test": {
+            "plugins": ["@babel/plugin-transform-modules-commonjs"]
+        }
+    },
+    "presets": ["@babel/preset-env", "@babel/preset-typescript", ["@babel/preset-react", { "runtime": "automatic" }]],
+    "plugins": ["@babel/plugin-proposal-class-properties"]
+}

@@ -9,7 +9,6 @@ import { UpdateCategoriesDto } from './dto/update-categories.dto';
 import { Categories } from './entities/categories.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-
 @Injectable()
 export class CategoriesService {
   constructor(
@@ -34,7 +33,6 @@ export class CategoriesService {
 
   async findAll() {
     const categories = await this.categoriesRepository.find();
-
     return categories;
   }
   async findAllWithPagination(categoryId: string, page: number, limit: number) {
