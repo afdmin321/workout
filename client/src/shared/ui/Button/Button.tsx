@@ -1,40 +1,60 @@
-import { ButtonHTMLAttributes, FC, memo } from "react";
-import cls from "./Button.module.scss";
-import { Mods, classNames } from "shared/lib/classNames/classNames";
+import { ButtonHTMLAttributes, FC, memo } from 'react';
+import cls from './Button.module.scss';
+import { Mods, classNames } from 'shared/lib/classNames/classNames';
 
 export enum ThemeButton {
-    CLEAR = "clear",
-    CLEAR_INVERTED = "clearInverted",
-    OUTLINE = "outline",
-    OUTLINE_RED = "outlineRed",
-    BACKGROUND = "background",
-    BACKGROUND_INVERTED = "backgroundInverted",
+  CLEAR = 'clear',
+  CLEAR_INVERTED = 'clearInverted',
+  OUTLINE = 'outline',
+  OUTLINE_RED = 'outlineRed',
+  BACKGROUND = 'background',
+  BACKGROUND_INVERTED = 'backgroundInverted',
 }
 export enum ButtonSize {
-    M = "size_m",
-    L = "size_l",
-    XL = "size_xl",
+  M = 'size_m',
+  L = 'size_l',
+  XL = 'size_xl',
+}
+export enum typeButton {
+  BUTTON = 'button',
+  SUBMITE = 'submit',
+  RESET = 'reset',
 }
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-    className?: string;
-    disabled?: boolean;
-    theme?: ThemeButton;
-    square?: boolean;
-    size?: string;
+  className?: string;
+  disabled?: boolean;
+  theme?: ThemeButton;
+  square?: boolean;
+  size?: string;
+  type?: typeButton;
 }
 
 const ButtonComponent: FC<Props> = (props) => {
-    const { className, theme = ThemeButton.CLEAR, children, square, disabled, size = ButtonSize.M, ...otherProps } = props;
-    const mods: Mods = {
-        [cls[theme]]: true,
-        [cls.square]: square,
-        [cls[size]]: true,
-        [cls.disabled]: disabled,
-    };
-    return (
-        <button type="button" className={classNames(cls.Button, mods, [className, cls[theme]])} disabled={disabled} {...otherProps}>
-            {children}
-        </button>
-    );
+  const {
+    className,
+    theme = ThemeButton.CLEAR,
+    children,
+    square,
+    disabled,
+    size = ButtonSize.M,
+    type = typeButton.BUTTON,
+    ...otherProps
+  } = props;
+  const mods: Mods = {
+    [cls[theme]]: true,
+    [cls.square]: square,
+    [cls[size]]: true,
+    [cls.disabled]: disabled,
+  };
+  return (
+    <button
+      type={type}
+      className={classNames(cls.Button, mods, [className, cls[theme]])}
+      disabled={disabled}
+      {...otherProps}
+    >
+      {children}
+    </button>
+  );
 };
 export const Button = memo(ButtonComponent);

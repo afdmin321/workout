@@ -28,7 +28,7 @@ const TextComponent: FC<Props> = (props: Props) => {
     const { className, title, text, theme = ThemeText.PRIMARY, align = Align.LEFT, size = TextSize.M } = props;
 
     return (
-        <div className={classNames(cls.Text, {}, [className, cls[theme], cls[align], cls[size]])}>
+        <div className={classNames(cls.Text, {}, [cls[theme], cls[align], cls[size], className])}>
             {title && <p className={cls.title}>{title}</p>}
             {text && <p className={cls.text}>{text}</p>}
         </div>

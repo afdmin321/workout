@@ -1,7 +1,7 @@
-import { FC, memo } from 'react';
+import { FC, memo, useRef } from 'react';
 import cls from './AppLink.module.scss';
-import { Link, LinkProps } from 'react-router-dom';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { NavLink, LinkProps } from 'react-router-dom';
+import { Mods, classNames } from 'shared/lib/classNames/classNames';
 
 interface Props extends LinkProps {
   className?: string;
@@ -9,10 +9,21 @@ interface Props extends LinkProps {
 
 const AppLinkComponent: FC<Props> = (props: Props) => {
   const { to, className, children, ...otherProps } = props;
+  // const mods: Mods = {
+  //   [cls.active]: isActi,
+  // };
   return (
-    <Link to={to} className={classNames(cls.AppLink, {}, [])} {...otherProps}>
+    <NavLink
+      to={to}
+      className={({ isActive }: any): string =>
+        isActive
+          ? classNames(cls.AppLink, {}, [className, cls.active])
+          : classNames(cls.AppLink, {}, [className])
+      }
+      {...otherProps}
+    >
       {children}
-    </Link>
+    </NavLink>
   );
 };
 export const AppLink = memo(AppLinkComponent);

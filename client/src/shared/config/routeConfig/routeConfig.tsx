@@ -9,6 +9,11 @@ export enum AppRoutes {
   ABOUT = 'about',
   CATALOG = 'catalog',
   CONTACT = 'contact',
+  BASKET = 'basket',
+  GUARANTEES = 'guarantees',
+  CERTIFICATES = 'certificates',
+  ANSWERS = 'answers',
+  PAYMENT = 'payment',
   // last
   NOT_FOUND = 'not_found',
 }
@@ -18,6 +23,11 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ABOUT]: '/about',
   [AppRoutes.CATALOG]: '/catalog',
   [AppRoutes.CONTACT]: '/contact',
+  [AppRoutes.BASKET]: '/basket',
+  [AppRoutes.GUARANTEES]: '/guarantees',
+  [AppRoutes.CERTIFICATES]: '/certificates',
+  [AppRoutes.ANSWERS]: '/answers',
+  [AppRoutes.PAYMENT]: '/payment',
   [AppRoutes.NOT_FOUND]: '*',
 };
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -35,7 +45,27 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.CONTACT]: {
     path: RoutePath.contact,
-    element: <div>contact</div>
+    element: <div>contact</div>,
+  },
+  [AppRoutes.BASKET]: {
+    path: RoutePath.basket,
+    element: <div>basket</div>,
+  },
+  [AppRoutes.GUARANTEES]: {
+    path: RoutePath.guarantees,
+    element: <div>guarantees</div>,
+  },
+  [AppRoutes.CERTIFICATES]: {
+    path: RoutePath.certificates,
+    element: <div>certificates</div>,
+  },
+  [AppRoutes.ANSWERS]: {
+    path: RoutePath.answers,
+    element: <div>answers</div>,
+  },
+  [AppRoutes.PAYMENT]: {
+    path: RoutePath.payment,
+    element: <div>payment</div>,
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,

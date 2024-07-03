@@ -13,16 +13,16 @@ body,
 .app {
     background: var(--bg-color);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .content-page {
     display: flex;
-}
-
-.page-wrapper {
+    height: 100%;
     flex-grow: 1;
-    padding: 20px 20px 20px 45px;
-    height: calc(100vh - var(--navbar-height));
-    overflow-y: auto;
-    width: 100%;
+}
+.width-wrapper {
+    max-width: 1440px;
+    margin: auto;
 }
