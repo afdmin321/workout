@@ -1,3 +1,6 @@
+import { AboutPage } from 'pages/AboutPage';
+import { ContactPage } from 'pages/ContactPage';
+import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { RouteProps } from 'react-router-dom';
 
@@ -33,11 +36,11 @@ export const RoutePath: Record<AppRoutes, string> = {
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MAIN]: {
     path: RoutePath.main,
-    element: <div>Main</div>,
+    element: <MainPage />,
   },
   [AppRoutes.ABOUT]: {
     path: RoutePath.about,
-    element: <div>About</div>,
+    element: <AboutPage />,
   },
   [AppRoutes.CATALOG]: {
     path: RoutePath.catalog,
@@ -45,7 +48,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.CONTACT]: {
     path: RoutePath.contact,
-    element: <div>contact</div>,
+    element: <ContactPage />,
   },
   [AppRoutes.BASKET]: {
     path: RoutePath.basket,

@@ -9,13 +9,13 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement!);
 
 root.render(
-  <StrictMode>
+
     <BrowserRouter>
       <StoreProvider>
         <ErrorBoundary>
-            <App />
+          <App />
         </ErrorBoundary>
       </StoreProvider>
     </BrowserRouter>
-  </StrictMode>,
+
 );

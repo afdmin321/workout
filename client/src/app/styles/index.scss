@@ -16,13 +16,16 @@ body,
     display: flex;
     flex-direction: column;
 }
-
+.page-wrapper {
+    width: 100%;
+}
 .content-page {
     display: flex;
     height: 100%;
     flex-grow: 1;
 }
 .width-wrapper {
+    width: 100%;
     max-width: 1440px;
     margin: auto;
 }

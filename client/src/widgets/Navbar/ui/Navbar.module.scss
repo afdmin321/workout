@@ -96,8 +96,13 @@
   padding: 10px 0;
 }
 .widthWrapperPrimary {
-  gap: 0 75px;
+  gap: 0 15px;
 }
+}
+@media (min-width: 740px) {
+  .widthWrapperPrimary {
+    gap: 0 75px;
+  }
 }
 @media (min-width: 1460px) {
   .wrapper {

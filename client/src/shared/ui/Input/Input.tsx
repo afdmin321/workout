@@ -8,8 +8,11 @@ type HTMLInputProps = Omit<
 >;
 interface Props extends HTMLInputProps {
   className?: string;
+  classNameLabel?: string;
   value?: string | number;
   onChange?: (value: string) => void;
+  err?: string;
+  text?: string;
   autofocus?: boolean;
   readonly?: boolean;
 }
@@ -17,12 +20,15 @@ interface Props extends HTMLInputProps {
 const InputComponent: FC<Props> = (props) => {
   const {
     className,
+    classNameLabel,
     value,
     onChange,
     type = 'text',
     readonly,
     placeholder,
     autofocus,
+    text,
+    err,
     ...otherProps
   } = props;
 
@@ -34,18 +40,21 @@ const InputComponent: FC<Props> = (props) => {
 
   const mods: Mods = {
     [cls.readonly]: readonly,
-
   };
   return (
-    <input
-      ref={ref}
-      readOnly={readonly}
-      type={type}
-      value={value}
-      onChange={onChangeHandler}
-      {...otherProps}
-      className={classNames(cls.input, mods, [className])}
-    />
+    <label className={classNames(cls.label, mods, [classNameLabel])}>
+      {text && <div className={cls.text}>{text}</div>}
+      <input
+        ref={ref}
+        readOnly={readonly}
+        type={type}
+        value={value}
+        onChange={onChangeHandler}
+        {...otherProps}
+        className={classNames(cls.input, mods, [className])}
+      />
+      {err && <div className={cls.error}>{err}</div>}
+    </label>
   );
 };
 export const Input = memo(InputComponent);
