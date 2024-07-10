@@ -26,7 +26,7 @@ const Search: FC<Props> = (props: Props) => {
         </Button>
       ) : (
         <form className={cls.form}>
-          <Input className={cls.input} autoFocus={true}/>
+          <Input className={cls.input} classNameLabel={cls.label} autoFocus={true}/>
           <Button
             className={cls.buttonSubmite}
             theme={ThemeButton.CLEAR}

@@ -1,0 +1,149 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.link {
+  text-transform: uppercase;
+}
+
+.listSecondary {
+  font-size: 11px;
+}
+
+.listPrimary {
+  font-size: 12px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 0 8px;
+}
+
+.wrapperSecondary {
+  margin-top: 25px;
+  background: var(--bg-secondary);
+  padding: 15px 0 10px;
+}
+
+.widthWrapperSecondary,
+.widthWrapperPrimary {
+  position: relative;
+}
+
+.wrapperPrimary {
+  border-bottom: 1px solid var(--colorDecoration);
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 7px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.search {
+  position: absolute;
+  top: 3px;
+  right: 15px;
+}
+
+.linkBasket {
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+}
+
+.widthWrapperPrimary {
+  padding: 5px 0 10px 0;
+}
+
+@media (min-width: 370px) {
+  .search {
+    right: 25px;
+  }
+  .linkBasket {
+    right: 25px;
+    bottom: 5px;
+  }
+}
+@media (min-width: 650px) {
+  .wrapper {
+    flex-direction: row;
+    padding-left: 25px;
+    gap: 0 20px;
+  }
+  .search {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  .linkBasket {
+    bottom: 12px;
+  }
+  .listSecondary {
+    gap: 0 25px;
+    font-size: 13px;
+  }
+  .listPrimary {
+    gap: 0 25px;
+    font-size: 15px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .wrapperSecondary {
+    padding: 10px 0;
+  }
+  .widthWrapperPrimary {
+    gap: 0 15px;
+  }
+}
+@media (min-width: 740px) {
+  .widthWrapperPrimary {
+    gap: 0 75px;
+  }
+}
+@media (min-width: 1460px) {
+  .wrapper {
+    padding-left: 0;
+    gap: 0 45px;
+  }
+  .linkBasket {
+    bottom: 20px;
+  }
+  .listSecondary {
+    gap: 0 50px;
+    font-size: 14px;
+  }
+  .listPrimary {
+    gap: 0 100px;
+    font-size: 17px;
+    padding: 10px 0;
+  }
+  .title {
+    font-size: 48px;
+  }
+  .wrapperSecondary {
+    padding: 10px 0;
+  }
+  .widthWrapperSecondary {
+    gap: 0 50px;
+  }
+  .widthWrapperPrimary {
+    gap: 0 90px;
+  }
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}/*# sourceMappingURL=Navbar.module.css.map */

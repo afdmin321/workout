@@ -1,31 +1,32 @@
-@import "reset";
-@import "variables/global";
-@import "themes/light";
-@import "themes/dark";
-@import "themes/green";
+@import 'reset';
+@import 'variables/global';
+@import 'themes/light';
+@import 'themes/dark';
+@import 'themes/green';
 
 body,
 .app {
-    font: var(--font-m);
-    color: var(--primary-color);
+  font: var(--font-m);
+  color: var(--primary-color);
 }
 
 .app {
-    background: var(--bg-color);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 .page-wrapper {
-    width: 100%;
+  width: 100%;
 }
 .content-page {
-    display: flex;
-    height: 100%;
-    flex-grow: 1;
+  display: flex;
+  height: 100%;
+  flex: 1 1 auto;
 }
 .width-wrapper {
-    width: 100%;
-    max-width: 1440px;
-    margin: auto;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
 }

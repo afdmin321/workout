@@ -5,7 +5,7 @@
 .buttonSubmite {
   position: absolute;
   right: 25px;
-  bottom: -3px;
+  top: 3px;
 }
 .iconSearch,
 .iconSubmite {
@@ -13,8 +13,20 @@
   height: 15px;
 }
 .form {
-    display: flex;
-    gap: 0 5px;
+  display: flex;
+  gap: 0 5px;
+}
+.buttonExit {
+  align-self: flex-start;
+  color: var(--colorDecoration);
+}
+.label {
+  min-height: auto !important;
+}
+@media (min-width: 650px) {
+  .buttonSearch {
+    margin-top: 5px !important;
+  }
 }
 @media (min-width: 1460px) {
   .iconSearch {

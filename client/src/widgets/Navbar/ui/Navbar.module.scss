@@ -8,7 +8,7 @@
 }
 
 .link {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 .listSecondary {
   font-size: 11px;
@@ -23,13 +23,13 @@
   gap: 0 8px;
 }
 
-
 .wrapperSecondary {
   margin-top: 25px;
   background: var(--bg-secondary);
   padding: 15px 0 10px;
 }
-.widthWrapperSecondary, .widthWrapperPrimary {
+.widthWrapperSecondary,
+.widthWrapperPrimary {
   position: relative;
 }
 .wrapperPrimary {
@@ -71,33 +71,36 @@
   }
 }
 @media (min-width: 650px) {
- .wrapper {
-  flex-direction: row;
-  padding-left: 25px;
-  gap: 0 20px;
- }
+  .wrapper {
+    flex-direction: row;
+    padding-left: 25px;
+    gap: 0 20px;
+  }
+  .search {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  .linkBasket {
+    bottom: 12px;
+  }
 
- .linkBasket {
-  bottom: 12px;
-}
-
- .listSecondary {
-  gap: 0 25px;
-  font-size: 13px;
-}
-.listPrimary {
-  gap: 0 25px;
-  font-size: 15px;
-}
-.title {
-  font-size: 32px;
-}
-.wrapperSecondary {
-  padding: 10px 0;
-}
-.widthWrapperPrimary {
-  gap: 0 15px;
-}
+  .listSecondary {
+    gap: 0 25px;
+    font-size: 13px;
+  }
+  .listPrimary {
+    gap: 0 25px;
+    font-size: 15px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .wrapperSecondary {
+    padding: 10px 0;
+  }
+  .widthWrapperPrimary {
+    gap: 0 15px;
+  }
 }
 @media (min-width: 740px) {
   .widthWrapperPrimary {
@@ -108,12 +111,11 @@
   .wrapper {
     padding-left: 0;
     gap: 0 45px;
- 
-   }
-   .linkBasket {
+  }
+  .linkBasket {
     bottom: 20px;
   }
-   .listSecondary {
+  .listSecondary {
     gap: 0 50px;
     font-size: 14px;
   }
@@ -127,7 +129,6 @@
   }
   .wrapperSecondary {
     padding: 10px 0;
- 
   }
   .widthWrapperSecondary {
     gap: 0 50px;
@@ -139,4 +140,4 @@
     width: 25px;
     height: 25px;
   }
- }
+}

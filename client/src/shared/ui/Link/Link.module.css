@@ -1,0 +1,11 @@
+.Link {
+  display: flex;
+  align-items: center;
+  gap: 0 5px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+}
+.Link:hover {
+  opacity: 0.7;
+}/*# sourceMappingURL=Link.module.css.map */

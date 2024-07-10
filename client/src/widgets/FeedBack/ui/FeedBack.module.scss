@@ -1,0 +1,77 @@
+.FeedBack {
+  width: 100%;
+  position: relative;
+  background: white !important;
+  display: flex;
+  z-index: 3;
+  justify-content: flex-end;
+}
+.form {
+  min-width: 300px;
+  padding: 45px 40px !important;
+  margin: 0 0 0 auto;
+  border-radius: 0 !important;
+}
+
+.text {
+  background: var(--colorDecoration);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 20px;
+}
+.input {
+  padding: 5px 10px;
+}
+label {
+  min-height: 82px !important;
+}
+.submite {
+  width: 100%;
+  margin-top: 14px;
+}
+.buttons {
+  display: flex;
+  align-self: flex-end;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: var(--bg-secondary);
+  max-width: 200px;
+}
+.button {
+  padding: 7px 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttonBack {
+  padding: 5px 14px 9px;
+  color: var(--colorDecoration);
+  &:first-child {
+    border-right: 1px solid var(--colorDecoration);
+  }
+}
+.wrapperCall {
+  background: transparent;
+}
+.buttonCall {
+  border-right: 1px solid var(--colorDecoration);
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 15px;
+  bottom: 0px;
+}
+.icon {
+  width: 17px;
+  height: 17px;
+  font-size: 18px;
+}
+
+@media (min-width: 370px) {
+  .wrapper {
+    right: 25px;
+  }
+}

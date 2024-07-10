@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Navbar } from 'widgets/Navbar';
 import Footer from 'widgets/Footer/ui/Footer';
+import { FeedBack } from 'widgets/FeedBack';
+
 
 const App = () => {
   return (
@@ -14,6 +16,7 @@ const App = () => {
       <div className="content-page width-wrapper">
         <AppRouter />
       </div>
+      <FeedBack />
       <Footer />
     </div>
   );

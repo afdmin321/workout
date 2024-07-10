@@ -1,0 +1,24 @@
+.wrapperQuestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  color: var(--colorDecoration);
+  font-size: 25px;
+  &.active {
+    transform: rotate(180deg);
+  }
+}
+.description {
+  max-height: 0;
+  transition: all 0.2s ease-out;
+  overflow: hidden;
+  &.active {
+    margin-top: 10px;
+    max-height: 100vh;
+    transition: all 0.2s ease-in;
+    max-height: 100%;
+  }
+}

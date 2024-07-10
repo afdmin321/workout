@@ -1,0 +1,20 @@
+.AppLink {
+  color: var(--primary-color);
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.AppLink.active {
+  opacity: 0.5;
+  border-bottom: 1px solid var(--colorDecoration);
+}
+.AppLink:hover {
+  opacity: 0.7;
+}
+
+.primary {
+  color: var(--primary-color);
+}
+
+.secondary {
+  color: var(--inverted-secondary-color);
+}/*# sourceMappingURL=AppLink.module.css.map */

@@ -1,0 +1,134 @@
+.ContactPage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0;
+  padding: 35px 10px;
+  width: 100%;
+}
+
+.wrapperInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px 0;
+}
+
+.wrapperConnect,
+.wrapperMessager {
+  display: flex;
+  align-items: center;
+}
+
+.wrapperConnect {
+  gap: 0 25px;
+}
+
+.wrapperMessager {
+  gap: 0 15px;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.iconMap {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+}
+
+.textMap {
+  max-width: 275px;
+}
+
+.iconMessager {
+  width: 40px;
+  height: 40px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px 0;
+  align-items: center;
+}
+
+.wrapperMap {
+  width: 100%;
+  max-height: 300px;
+}
+
+.form {
+  max-width: 300px;
+  margin: auto;
+}
+
+.label {
+  width: 100%;
+  min-height: 84px;
+}
+
+.input {
+  padding: 6px 10px;
+}
+
+.button {
+  padding: 6px 10px;
+  width: 100%;
+}
+
+@media (min-width: 700px) {
+  .ContactPage {
+    padding: 35px 25px;
+    display: grid;
+    grid-template-areas: "info map" "form map";
+    grid-template-columns: 1fr 0.9fr;
+    gap: 40px 15px;
+  }
+  .wrapper {
+    grid-area: info;
+    align-items: flex-start;
+  }
+  .wrapperMap {
+    grid-area: map;
+    width: 100%;
+  }
+  .form {
+    grid-area: form;
+    max-width: 320px;
+    margin: 0;
+  }
+}
+@media (min-width: 850px) {
+  .wrapperMap {
+    max-height: 350px;
+  }
+  .form {
+    max-width: 400px;
+  }
+}
+@media (min-width: 950px) {
+  .ContactPage {
+    margin: auto;
+    grid-template-columns: 0.8fr 1fr;
+    gap: 40px 55px;
+    padding: 65px 25px;
+  }
+  .wrapper {
+    font-size: 18px;
+  }
+  .textMap {
+    max-width: 300px;
+  }
+  .iconMap {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+  }
+  .icon {
+    margin-right: 5px;
+  }
+}
+@media (min-width: 1030px) {
+  .ContactPage {
+    margin: auto;
+    grid-template-columns: 1fr 1.2fr;
+  }
+}/*# sourceMappingURL=ContactPage.module.css.map */

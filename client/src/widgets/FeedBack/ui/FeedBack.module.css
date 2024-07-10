@@ -1,0 +1,70 @@
+.FeedBack {
+  width: 100%;
+  position: relative;
+  background: white !important;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form {
+  min-width: 300px;
+  margin: 0 0 0 auto;
+}
+
+.iconMail {
+  width: 20px;
+  height: 20px;
+}
+
+.iconMap {
+  width: 30px;
+  height: 30px;
+}
+
+.buttons {
+  display: flex;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: var(--bg-secondary);
+  max-width: 200px;
+}
+
+.button {
+  padding: 7px 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonBack {
+  padding: 5px 14px 9px;
+  color: var(--colorDecoration);
+}
+
+.wrapperCall {
+  background: transparent;
+}
+
+.buttonCall {
+  border-right: 1px solid var(--colorDecoration);
+}
+
+.wrapper {
+  display: flex;
+  position: absolute;
+  right: 15px;
+  max-width: 91px;
+  top: -31px;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+  font-size: 18px;
+}
+
+@media (min-width: 370px) {
+  .buttons {
+    right: 25px;
+  }
+}/*# sourceMappingURL=FeedBack.module.css.map */

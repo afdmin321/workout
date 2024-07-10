@@ -42,26 +42,7 @@
   width: 17px;
   height: 17px;
 }
-.wrapperButtons {
-  position: relative;
-  width: 100%;
-}
-.buttons {
-  position: absolute;
-  right: 15px;
-  top: -31px;
-  display: flex;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
 
-  background: var(--bg-secondary);
-}
-.button {
-  padding: 7px 14px 0;
-}
-.buttonCall {
-    border-right: 1px solid var(--colorDecoration);
-}
 @media (min-width: 650px) {
   .text {
     font-size: 17px;

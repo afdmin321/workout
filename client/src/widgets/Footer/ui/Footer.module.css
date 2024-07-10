@@ -1,0 +1,88 @@
+.Footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-secondary);
+  padding: 0 0 25px;
+  gap: 5px 0;
+}
+
+.wrapper {
+  display: flex;
+  gap: 0 5px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.iconMail {
+  width: 20px;
+  height: 20px;
+}
+
+.iconMap {
+  width: 30px;
+  height: 30px;
+}
+
+.text {
+  font-size: 15px;
+}
+
+.textMap {
+  max-width: 270px;
+}
+
+.list,
+.wrapperNav {
+  gap: 5px 15px;
+  font-size: 14px;
+}
+
+.wrapperLink {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px 15px;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+}
+
+@media (min-width: 650px) {
+  .text {
+    font-size: 17px;
+  }
+  .wrapperLink {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px 25px;
+    padding: 0 20px;
+  }
+  .textMap {
+    font-size: 15px;
+  }
+}
+@media (min-width: 1000px) {
+  .wrapperNav {
+    flex-direction: row;
+  }
+  .list,
+  .wrapperNav {
+    gap: 0 55px;
+  }
+}
+@media (min-width: 1460px) {
+  .iconMail {
+    width: 25px;
+    height: 25px;
+  }
+  .textMail {
+    font-size: 19px;
+  }
+  .wrapperNav {
+    gap: 0 50px;
+  }
+}/*# sourceMappingURL=Footer.module.css.map */

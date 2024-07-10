@@ -25,7 +25,6 @@ const InputComponent: FC<Props> = (props) => {
     onChange,
     type = 'text',
     readonly,
-    placeholder,
     autofocus,
     text,
     err,
