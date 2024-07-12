@@ -16,20 +16,28 @@ const my_array = Array.from(Array(20 + 1).keys()).slice(1);
 const SwiperSecondary: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <div className={classNames(cls.SwiperSecondary, {}, [className])} {...otherProps}>
+    <div
+      className={classNames(cls.SwiperSecondary, {}, [className])}
+      {...otherProps}
+    >
       <Swiper
         spaceBetween={0}
         slidesPerView={3}
         modules={[EffectCoverflow, Autoplay]}
         autoplay
-        effect='coverflow'
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
+        effect="coverflow"
+        grabCursor
+        speed={600}
+        touchEventsTarget="container"
+        watchOverflow
+        wrapperClass={cls.wrapperSwiper}
       >
         {my_array.map((el) => {
           return (
             <SwiperSlide key={el}>
-              <SwiperItem src="test" key={el} />
+              {({ isNext }) => (
+                <SwiperItem src="test" isActive={isNext} key={el} />
+              )}
             </SwiperSlide>
           );
         })}

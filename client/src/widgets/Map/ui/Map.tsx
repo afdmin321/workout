@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import cls from './Map.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { YMaps, Placemark, Map as Ymap } from 'react-yandex-maps';
+import { YMaps, Placemark, Map as Ymap } from '@pbe/react-yandex-maps';
 
 interface Props {
   className?: string;
@@ -12,9 +12,6 @@ const Map: FC<Props> = (props: Props) => {
   const zoom: number = 15;
   return (
     <YMaps
-      width={'100%'}
-      height={'100%'}
-      className={classNames(cls.Map, {}, [className])}
       query={{ apikey: '1a0bad84-f0db-4d00-9405-ab27524963e2' }}
     >
       <Ymap

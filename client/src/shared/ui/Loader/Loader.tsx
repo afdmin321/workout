@@ -8,11 +8,7 @@ interface Props {
 
 export const Loader: FC<Props> = ({ className }: Props) => {
     return (
-        <div className={classNames("lds-ellipsis", {}, [className])}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+        <div className={classNames("loader", {}, [className])}>
         </div>
     );
 };

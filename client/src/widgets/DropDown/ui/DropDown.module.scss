@@ -2,23 +2,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 .button {
   color: var(--colorDecoration);
   font-size: 25px;
+  transition: transform 0.3s linear;
   &.active {
     transform: rotate(180deg);
   }
 }
 .description {
-  max-height: 0;
-  transition: all 0.2s ease-out;
+  margin: 10px;
   overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s linear;
+  cursor: pointer;
   &.active {
-    margin-top: 10px;
-    max-height: 100vh;
-    transition: all 0.2s ease-in;
-    max-height: 100%;
+    transition: max-height 0.5s linear;
+    max-height: 700px;
   }
 }

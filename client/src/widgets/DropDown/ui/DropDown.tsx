@@ -1,7 +1,6 @@
-import { Children, FC, memo, ReactNode, useState } from 'react';
+import { FC, memo, ReactNode, useState } from 'react';
 import cls from './DropDown.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from 'shared/ui/Button/Button';
 
 interface Props {
   className?: string;
@@ -14,16 +13,23 @@ const DropDown: FC<Props> = (props: Props) => {
   const onClickHandler = () => {
     setColapsed((prev) => !prev);
   };
+
   return (
-    <div className={classNames(cls.DropDown, {}, [className])} {...otherProps}>
-      <div className={cls.wrapperQuestion}>
+    <div
+      className={classNames(cls.DropDown, {}, [className])}
+      {...otherProps}
+      onClick={onClickHandler}
+    >
+      <div className={classNames(cls.wrapperQuestion, {}, [])}>
         <div className={cls.question}>{question}</div>
-        <Button className={classNames(cls.button, { [cls.active]: collapsed }, [])} onClick={onClickHandler}>
+        <div
+          className={classNames(cls.button, { [cls.active]: collapsed }, [])}
+        >
           &#9660;
-        </Button>
+        </div>
       </div>
       <p
-        className={classNames(cls.description, { [cls.active]: collapsed }, [])}
+        className={classNames(cls.description, { [cls.active]: collapsed, }, [])}
       >
         {children}
       </p>

@@ -1,0 +1,57 @@
+@import 'swiper/css/bundle';
+
+/* App styling */
+.my-swiper-app {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  padding: 0 24px;
+  z-index: 10;
+}
+
+.my-swiper-list {
+  padding-bottom: 30px;
+  width: 1200px;
+  z-index: 10;
+}
+
+.my-swiper-list .swiper-slide {
+  align-items: center;
+  background-color: var(--colorDecoration);
+  border-radius: 12px;
+  display: flex;
+  flex: 0 0 200px;
+  height: 100px;
+  justify-content: center;
+  z-index: 10;
+}
+
+.my-swiper-list-controls {
+  bottom: 10px;
+  cursor: default;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+
+}
+
+.my-swiper-list-controls-button {
+  background-color: lightgray;
+  border: 1px solid var(--colorDecoration);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  z-index: 10;
+}
+
+.my-swiper-list-controls-button--active {
+  background-color: var(--colorDecoration);
+  cursor: default;
+  z-index: 10;
+}

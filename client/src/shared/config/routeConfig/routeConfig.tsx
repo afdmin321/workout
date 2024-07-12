@@ -4,6 +4,7 @@ import { FAQPage } from 'pages/FAQPage';
 import { GuaranteesPage } from 'pages/GuaranteesPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
+import { СertificatePage } from 'pages/СertificatePage';
 import { RouteProps } from 'react-router-dom';
 
 export type AppRoutesProps = RouteProps & {
@@ -60,7 +61,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.CERTIFICATES]: {
     path: RoutePath.certificates,
-    element: <div>certificates</div>,
+    element: <СertificatePage />,
   },
   [AppRoutes.FAQ]: {
     path: RoutePath.faq,

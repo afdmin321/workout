@@ -52,7 +52,27 @@ label {
   }
 }
 .wrapperCall {
-  background: transparent;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s linear;
+  position: relative;
+  z-index: 4;
+  &.active {
+    max-height: 350px;
+    width: auto;
+    transition: max-height 0.3s linear;
+ 
+  }
+}
+.wrapperChat {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s linear;
+  &.active {
+    max-height: 350px;
+    width: auto;
+    transition: max-height 0.3s linear;
+  }
 }
 .buttonCall {
   border-right: 1px solid var(--colorDecoration);

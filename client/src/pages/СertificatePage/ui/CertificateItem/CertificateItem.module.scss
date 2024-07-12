@@ -1,0 +1,35 @@
+.CertificateItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: 10px 0;
+  &:hover {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: #00000052;
+    }
+  }
+}
+.img {
+  width: 250px;
+}
+
+.text {
+  font-size: 15px;
+  max-width: 250px;
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (min-width: 850px) {
+  .img {
+    width: 400px;
+  }
+}

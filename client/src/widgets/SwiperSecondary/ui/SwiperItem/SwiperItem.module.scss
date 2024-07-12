@@ -1,48 +1,78 @@
 .SwiperItem {
-  width: 130px;
-  height: 110px;
+  width: 90px;
+  height: 1000px;
+  max-height: 80px;
   border-radius: 20px;
   background: var(--bg-secondary);
+  transition: max-height .3s linear;
 }
 .img {
   width: 100%;
-  height: 100%;
+  max-height: 100%;
+}
+.active {
+  width: 140px;
+  max-height: 120px;
 }
 
 @media (min-width: 470px) {
   .SwiperItem {
-    width: 180px;
-    height: 130px;
+    width: 140px;
+    max-height: 120px;
+  }
+  .active {
+    width: 190px;
+    max-height: 150px;
   }
 }
 
 @media (min-width: 650px) {
   .SwiperItem {
+    width: 220px;
+    max-height: 160px;
+  }
+  .active {
     width: 250px;
-    height: 200px;
+    max-height: 200px;
   }
 }
 @media (min-width: 850px) {
   .SwiperItem {
-    width: 300px;
-    height: 220px;
+    width: 250px;
+    max-height: 200px;
+  }
+  .active {
+    width: 320px;
+    max-height: 240px;
   }
 }
 @media (min-width: 980px) {
   .SwiperItem {
-    width: 340px;
-    height: 220px;
+    width: 320px;
+    max-height: 220px;
+  }
+  .active {
+    width: 360px;
+    max-height: 250px;
   }
 }
 @media (min-width: 1200px) {
   .SwiperItem {
-    width: 390px;
-    height: 250px;
+    width: 360px;
+    max-height: 230px;
+  }
+  .active {
+    width: 400px;
+    max-height: 270px;
   }
 }
 @media (min-width: 1320px) {
   .SwiperItem {
-    width: 470px;
-    height: 300px;
+    width: 400px;
+    max-height: 270px;
+  }
+  .active {
+    width: 490px;
+    max-height: 330px;
   }
 }

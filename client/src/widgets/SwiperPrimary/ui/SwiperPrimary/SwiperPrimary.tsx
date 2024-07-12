@@ -6,6 +6,7 @@ import { EffectCube, Autoplay } from 'swiper/modules';
 import 'swiper/scss';
 import 'swiper/scss/effect-cube';
 import SwiperItem from '../SwiperItem/SwiperItem';
+import { SwiperListControls } from '../SwiperListControls/SwiperListControls';
 
 interface Props {
   className?: string;
@@ -16,11 +17,19 @@ const my_array = Array.from(Array(2 + 1).keys()).slice(1);
 const SwiperPrimary: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <div className={classNames(cls.SwiperPrimary, {}, [className])} {...otherProps}>
+    <div
+      className={classNames(cls.SwiperPrimary, {}, [className])}
+      {...otherProps}
+    >
       <Swiper
         modules={[EffectCube, Autoplay]}
         autoplay
-        effect='cube'
+        grabCursor
+        slidesPerView="auto"
+        speed={400}
+        touchEventsTarget="container"
+        watchOverflow
+        effect="cube"
       >
         {my_array.map((el) => {
           return (
@@ -29,6 +38,7 @@ const SwiperPrimary: FC<Props> = (props: Props) => {
             </SwiperSlide>
           );
         })}
+        <SwiperListControls />
       </Swiper>
     </div>
   );

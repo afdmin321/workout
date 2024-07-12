@@ -1,6 +1,12 @@
 .input {
   position: relative;
   padding-right: 30px !important;
+  max-width: 0;
+  transition: max-width .3s linear;
+  &.in.visible {
+    max-width: 100%;
+    transition: max-width .3s linear;
+  }
 }
 .buttonSubmite {
   position: absolute;

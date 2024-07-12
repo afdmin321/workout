@@ -27,11 +27,13 @@ const FormCall: FC<Props> = (props: Props) => {
         className={classNames(cls.input, {}, [classNameInput])}
         classNameLabel={classNameLabel}
         text="Имя*"
+        placeholder="Лев"
       />
       <Input
         className={classNames(cls.input, {}, [classNameInput])}
         classNameLabel={classNameLabel}
         text="Телефон*"
+        placeholder="+79000123321"
       />
       <Button
         className={classNameButton}
