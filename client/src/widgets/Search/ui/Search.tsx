@@ -13,7 +13,7 @@ const Search: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   const [search, setSeacrch] = useState(false);
 
-  const hasTransitionedIn = useMountTransition(search, 1000);
+  const hasTransitionedIn = useMountTransition(search, 100);
 
   const onToggleSearch = () => {
     setSeacrch((prev) => !prev);

@@ -8,12 +8,11 @@ export const getNavbarBasket = {
 export const getNavbarPrimaryItems: NavbarItemsType[] = [
   { path: RoutePath.main, text: 'ГЛАВНАЯ' },
   { path: RoutePath.about, text: 'О НАС' },
-  { path: RoutePath.catalog, text: 'КАТАЛОГ' },
+  { path: RoutePath.products, text: 'КАТАЛОГ' },
   { path: RoutePath.contact, text: 'КОНТАКТЫ' },
 ];
 export const getNavbarSecondaryItems: NavbarItemsType[] = [
   { path: RoutePath.guarantees, text: 'ГАРАНТИИ' },
   { path: RoutePath.certificates, text: 'СЕРТИФИКАТЫ' },
   { path: RoutePath.faq, text: 'FAQ' },
-  // { path: RoutePath.payment, text: 'Оплата и доставка' },
 ];

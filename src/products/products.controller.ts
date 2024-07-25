@@ -21,26 +21,22 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   // url/pagination?categoryId=id&page=1&limit=3
-  @Get('pagination')
+  @Get()
   findAllWithPagination(
     @Query('categoryId') categoryId: string,
     @Query('page') page: number,
     @Query('limit') limit: number,
   ) {
     return this.productsService.findAllWithPagination(
-      categoryId,
-      +page,
-      +limit,
+      categoryId || null,
+      +page || null,
+      +limit || null,
     );
-  }
-
-  @Get()
-  findAll() {
-    return this.productsService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    console.log(id);
     return this.productsService.findOne(id);
   }
 

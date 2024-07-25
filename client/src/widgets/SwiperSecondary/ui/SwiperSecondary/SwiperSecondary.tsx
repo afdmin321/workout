@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import cls from './SwiperSecondary.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Autoplay } from 'swiper/modules';
+import { EffectCoverflow, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/scss';
 import 'swiper/scss/effect-coverflow';
 import SwiperItem from '../SwiperItem/SwiperItem';
@@ -23,8 +23,11 @@ const SwiperSecondary: FC<Props> = (props: Props) => {
       <Swiper
         spaceBetween={0}
         slidesPerView={3}
-        modules={[EffectCoverflow, Autoplay]}
-        autoplay
+        modules={[EffectCoverflow, Autoplay, Navigation, Pagination]}
+        autoplay={{
+          delay: 3500
+        }}
+        navigation
         effect="coverflow"
         grabCursor
         speed={600}

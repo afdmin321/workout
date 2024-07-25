@@ -1,7 +1,9 @@
 import { FC, memo } from 'react';
 import cls from './FAQPage.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { DropDown } from 'widgets/DropDown';
+import { DropDown } from 'shared/ui/DropDown';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 interface Props {
   className?: string;
@@ -10,53 +12,74 @@ const FAQPage: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
     <div className={classNames(cls.FAQPage, {}, [className])} {...otherProps}>
-      <DropDown question="asdjff fadjf adsjf ?">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab rem fugit
-        dolores magni rerum cumque accusantium ducimus illum, possimus, autem,
-        laudantium velit alias hic aut porro. Itaque unde molestiae eum nesciunt
-        tempore veniam nobis ut officia, deserunt exercitationem odio, libero
-        neque necessitatibus cupiditate autem assumenda harum labore ipsa! Harum
-        debitis molestiae, porro tempora accusantium, eveniet voluptatibus eius
-        fugiat ipsa, vitae commodi eum facere iste nostrum. Accusantium in natus
-        mollitia magni enim saepe itaque maxime facere autem laudantium voluptas
-        doloremque ipsum ea ex molestiae, at dolorem perspiciatis assumenda?
-        Itaque, odit! Accusantium, fuga! Eos soluta reiciendis nemo a quia
-        exercitationem odio, repellendus, ullam itaque sit at amet temporibus
-        quae, cum molestiae? Rerum maxime provident, et recusandae, porro
-        molestiae consequatur vitae, officiis voluptas at tempore quo?
-        Consequatur aliquid vero optio voluptatem nostrum et qui iusto? Odio
-        eaque, laudantium doloremque nesciunt aperiam omnis autem est at harum
-        perspiciatis nobis facere molestias deserunt velit odit ipsum alias
-        voluptate ducimus soluta tempora tenetur iste a. Commodi, voluptatum rem
-        obcaecati minima earum tenetur natus perspiciatis voluptas. Sunt ipsa
-        adipisci quae tempora corrupti dolorum ipsam nemo. Aperiam iure dicta
-        aspernatur laborum nihil exercitationem explicabo consequatur nulla
-        earum omnis praesentium nisi suscipit tenetur, quo incidunt, deleniti
-        repellat doloribus quaerat.
+      <DropDown question="Сертифицирована ли Ваша продукция, где можно посмотреть сертификаты?">
+        <div>
+          Да, вся наша продукция сертифицирована. Сертификаты можно посмотреть
+          на странице{' '}
+          <AppLink
+            to={RoutePath.certificates}
+    
+          >
+            «СЕРТИФИКАТЫ»
+          </AppLink>
+        </div>
       </DropDown>
-      <DropDown question="asdjff fadjf adsjf ?">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab rem fugit
-        dolores magni rerum cumque accusantium ducimus illum, possimus, autem,
-        laudantium velit alias hic aut porro. Itaque unde molestiae eum nesciunt
-        tempore veniam nobis ut officia, deserunt exercitationem odio, libero
-        neque necessitatibus cupiditate autem assumenda harum labore ipsa! Harum
-        debitis molestiae, porro tempora accusantium, eveniet voluptatibus eius
-        fugiat ipsa, vitae commodi eum facere iste nostrum. Accusantium in natus
-        mollitia magni enim saepe itaque maxime facere autem laudantium voluptas
-        doloremque ipsum ea ex molestiae, at dolorem perspiciatis assumenda?
-        Itaque, odit! Accusantium, fuga! Eos soluta reiciendis nemo a quia
-        exercitationem odio, repellendus, ullam itaque sit at amet temporibus
-        quae, cum molestiae? Rerum maxime provident, et recusandae, porro
-        molestiae consequatur vitae, officiis voluptas at tempore quo?
-        Consequatur aliquid vero optio voluptatem nostrum et qui iusto? Odio
-        eaque, laudantium doloremque nesciunt aperiam omnis autem est at harum
-        perspiciatis nobis facere molestias deserunt velit odit ipsum alias
-        voluptate ducimus soluta tempora tenetur iste a. Commodi, voluptatum rem
-        obcaecati minima earum tenetur natus perspiciatis voluptas. Sunt ipsa
-        adipisci quae tempora corrupti dolorum ipsam nemo. Aperiam iure dicta
-        aspernatur laborum nihil exercitationem explicabo consequatur nulla
-        earum omnis praesentium nisi suscipit tenetur, quo incidunt, deleniti
-        repellat doloribus quaerat.
+      <DropDown question="Сколько, примерно, процентов от стоимости товара составляет установка и доставка?">
+        Доставка рассчитывается индивидуально с менеджером. Стоимость монтажа в
+        среднем по РФ варьируется от 20 до 35% в зависимости от сезона,
+        удалённости от города и поверхности установки. Мы предоставляем паспорта
+        на оборудование с подробными схемами сборки, что позволяет легко
+        произвести монтаж оборудования.
+      </DropDown>
+      <DropDown question="Сколько стоит доставка до меня и какие сроки?">
+        Доставка зависит от города и габаритов оборудования (объем, вес). Сроки
+        зависят от удаленности города и от режима работы транспортной компании.
+        По Вашему запросу наши менеджеры предоставят всю необходимую информацию
+        для расчета транспортных расходов любой удобной для Вас транспортной
+        компанией или запросит стоимость доставки у наших партнеров.
+      </DropDown>
+      <DropDown question="Осуществляете ли Вы доставку в другие регионы?">
+        Мы предоставляем всю необходимую информацию для расчета транспортных
+        расходов или по Вашему запросу можем организовать забор груза с нашего
+        склада посредством наших партнеров.
+      </DropDown>
+      <DropDown question="Есть ли оборудование в наличии?">
+        Да. Для уточнения по наличию и количеству необходимо связаться с
+        менеджером. Если оборудования из Вашего запроса нет в наличии, то мы
+        готовы произвести его в короткие сроки. Актуальные сроки уточняйте у
+        менеджеров.
+      </DropDown>
+      <DropDown question="Могу ли я получить скидку и какую?">
+        Да, у нас действует гибкая система скидок. В целом она зависит от
+        региона клиента и суммы заказа. Кроме этого, для оптовых клиентов есть
+        своя шкала скидок.
+      </DropDown>
+      <DropDown question="Входит ли в цену оборудования доставка и монтаж?">
+        Нет, доставка и монтаж рассчитываются отдельно.
+      </DropDown>
+      <DropDown question="Актуальные ли на сайте цены?">
+        Да, на сайте все цены актуальны и соответствуют прайс листу.
+      </DropDown>
+      <DropDown question="Хотелось бы получить коммерческое предложение на оборудование. Что для этого нужно сделать?">
+        <div>
+          Если у Вас есть список желаемого оборудования, то отсылаете его нам.
+          Кроме этого, нам нужно узнать:
+        </div>
+        <ul>
+          <li>Ваш город.</li>
+          <li>Допустимы ли аналоги.</li>
+          <li>Какое покрытие используется для площадки.</li>
+          <li>Покупка оборудования напрямую или через тендер.</li>
+        </ul>
+        <div>
+          Если списка оборудования нет, то необходима еще дополнительно
+          следующая информация:
+        </div>
+        <ul>
+          <li>Размер площадки.</li>
+          <li>Бюджет площадки.</li>
+          <li>Возраст детей, для которых предназначена площадка.</li>
+        </ul>
       </DropDown>
     </div>
   );

@@ -2,11 +2,13 @@ import { FC, memo } from 'react';
 import cls from './SwiperPrimary.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCube, Autoplay } from 'swiper/modules';
+import { EffectCube, Autoplay,  Navigation, Pagination } from 'swiper/modules';
 import 'swiper/scss';
 import 'swiper/scss/effect-cube';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
+import 'swiper/scss/scrollbar';
 import SwiperItem from '../SwiperItem/SwiperItem';
-import { SwiperListControls } from '../SwiperListControls/SwiperListControls';
 
 interface Props {
   className?: string;
@@ -22,9 +24,12 @@ const SwiperPrimary: FC<Props> = (props: Props) => {
       {...otherProps}
     >
       <Swiper
-        modules={[EffectCube, Autoplay]}
-        autoplay
+        modules={[EffectCube, Autoplay, Pagination]}
+        autoplay={{
+          delay: 4500
+        }}
         grabCursor
+        pagination={{ clickable: true }}
         slidesPerView="auto"
         speed={400}
         touchEventsTarget="container"
@@ -38,7 +43,7 @@ const SwiperPrimary: FC<Props> = (props: Props) => {
             </SwiperSlide>
           );
         })}
-        <SwiperListControls />
+  
       </Swiper>
     </div>
   );

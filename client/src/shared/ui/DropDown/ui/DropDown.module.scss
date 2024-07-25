@@ -1,0 +1,36 @@
+.wrapperQuestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.question {
+  font-weight: 900;
+  max-width: 90%;
+}
+.button {
+  color: var(--colorDecoration);
+  font-size: 25px;
+  transition: transform 0.3s linear;
+  &.active {
+    transform: rotate(180deg);
+  }
+}
+.description {
+  margin: 10px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s linear;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+  max-width: 80%;
+  &.active {
+    transition: max-height 0.5s linear;
+    max-height: 700px;
+  }
+  ul {
+    list-style: inside;
+  }
+}

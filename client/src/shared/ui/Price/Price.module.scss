@@ -1,0 +1,36 @@
+.price {
+  display: flex;
+  gap: 0 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+.oldPrice {
+  font-size: 12px;
+  position: relative;
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.8;
+  &::before {
+    content: '';
+    height: 1px;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background-color: var(--red-dark);
+    transform: rotate(15deg) translate(0, 50%);
+  }
+}
+@media (min-width: 800px) {
+  .price {
+    font-size: 17px;
+  }
+}
+@media (min-width: 1000px) {
+  .price {
+    font-size: 18px;
+  }
+  .oldPrice {
+    font-size: 15px;
+  }
+}

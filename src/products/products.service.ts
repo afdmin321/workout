@@ -23,7 +23,6 @@ export class ProductsService {
       name: createProductsDto.name,
       category: createProductsDto.category,
     });
-    console.log(isExist);
     if (isExist.length)
       throw new BadRequestException('This product already exist');
 
@@ -62,7 +61,7 @@ export class ProductsService {
         category: { id: categoryId },
       },
       take: limit,
-      skip: (page - 1) * limit,
+      skip: page && limit ? (page - 1) * limit : null,
     });
     return products;
   }
@@ -81,7 +80,7 @@ export class ProductsService {
       where: { id },
       relations: { images: true },
     });
-
+    console.log(product);
     if (!product) throw new NotFoundException('product not found');
 
     const newProduct = await this.productsRepository.update(id, {
