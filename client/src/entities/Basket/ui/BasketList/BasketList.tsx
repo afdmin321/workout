@@ -10,7 +10,6 @@ interface Props {
 }
 const BasketList: FC<Props> = (props: Props) => {
   const { className, data: products, ...otherProps } = props;
-  console.log(products)
   return (
     <div
       className={classNames(cls.BasketList, {}, [className])}

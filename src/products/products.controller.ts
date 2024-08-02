@@ -23,20 +23,25 @@ export class ProductsController {
   // url/pagination?categoryId=id&page=1&limit=3
   @Get()
   findAllWithPagination(
-    @Query('categoryId') categoryId: string,
+    @Query('filter') filter: string,
     @Query('page') page: number,
     @Query('limit') limit: number,
+    @Query('sort') sort: string,
+    @Query('order') order: string,
+    @Query('search') search: string,
   ) {
     return this.productsService.findAllWithPagination(
-      categoryId || null,
       +page || null,
       +limit || null,
+      filter,
+      sort,
+      order,
+      search,
     );
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    console.log(id);
     return this.productsService.findOne(id);
   }
 

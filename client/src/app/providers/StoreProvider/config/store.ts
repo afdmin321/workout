@@ -5,6 +5,8 @@ import { rtkApi } from 'shared/api/rtkApi';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 import { basketListReducer } from 'entities/Basket/model/slice/BasketListSlice';
+import { ScrollWatchesReducer } from 'widgets/ScrollWatches';
+import { SearchProductReducer } from 'features/SearchProduct/model/slice/SearchProductSice';
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -12,6 +14,8 @@ export function createReduxStore(
 ) {
   const rootReducers: ReducersMapObject<StateSchema> = {
     basketList: basketListReducer,
+    scrollWatches: ScrollWatchesReducer,
+    searchProduct: SearchProductReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
     ...asyncReducers,
   };

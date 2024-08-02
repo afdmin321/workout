@@ -1,7 +1,7 @@
 import { FC, memo, useCallback } from 'react';
 import cls from './Quantity.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { basketListActions } from 'entities/Basket/model/slice/BasketListSlice';
 import { Product } from 'entities/Product';
@@ -51,6 +51,7 @@ const Quantity: FC<Props> = (props: Props) => {
       <Button
         className={classNames(cls.button, {}, [cls.subtract])}
         onClick={onHandlerDownQuantity}
+        theme={ThemeButton.OUTLINE}
       >
         -
       </Button>
@@ -58,6 +59,7 @@ const Quantity: FC<Props> = (props: Props) => {
       <Button
         className={classNames(cls.button, {}, [cls.add])}
         onClick={onHandlerAddQuantity}
+        theme={ThemeButton.OUTLINE}
       >
         +
       </Button>

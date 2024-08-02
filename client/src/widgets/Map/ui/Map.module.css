@@ -1,1 +1,9 @@
-/*# sourceMappingURL=Map.module.css.map */
+.map {
+  height: 300px;
+}
+
+@media (min-width: 850px) {
+  .map {
+    height: 350px;
+  }
+}/*# sourceMappingURL=Map.module.css.map */

@@ -47,7 +47,7 @@ const InputComponent: FC<Props> = (props) => {
         ref={ref}
         readOnly={readonly}
         type={type}
-        value={value}
+        value={value || ''}
         onChange={onChangeHandler}
         {...otherProps}
         className={classNames(cls.input, mods, [className])}

@@ -1,0 +1,22 @@
+.IncreasingBasket {
+  display: flex;
+  align-items: center;
+}
+
+.toBasket {
+  border-left: none;
+}
+
+.link {
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1000px) {
+  .link {
+    height: 38px;
+  }
+}/*# sourceMappingURL=IncreasingBasket.module.css.map */

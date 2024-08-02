@@ -12,7 +12,6 @@ import {
   getProductDetailsError,
   getProductDetailsIsLoading,
 } from 'entities/Product/model/selectors/getProductDetails';
-import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchProductById } from 'entities/Product/model/services/ProductDetailsServices';
@@ -26,6 +25,7 @@ import { basketListActions } from 'entities/Basket/model/slice/BasketListSlice';
 import Quantity from 'widgets/Quantity/Quantity';
 import { getBasketData } from 'entities/Basket/model/selectors/getBasket';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
+import IncreasingBasket from 'widgets/IncreasingBasket/IncreasingBasket';
 interface Props {
   id: string;
   className?: string;
@@ -39,16 +39,11 @@ const ProductDetails: FC<Props> = (props: Props) => {
   const product = useSelector(getProductDetailsData);
   const error = useSelector(getProductDetailsError);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const basketProducts = useSelector(getBasketData);
   const targetBasketProduct = basketProducts.find(
     (basketProduct) => basketProduct.id === id,
   );
-  console.log(basketProducts);
   const quantity = targetBasketProduct?.quantity || 1;
-  const onBackToList = useCallback(() => {
-    navigate(RoutePath.products);
-  }, [navigate]);
 
   useEffect(() => {
     dispatch(fetchProductById(id));
@@ -91,18 +86,7 @@ const ProductDetails: FC<Props> = (props: Props) => {
           ) : (
             ''
           )}
-          <div className={cls.wrapperButton}>
-            <Quantity quantity={quantity} product={product} />
-            {!targetBasketProduct ? (
-              <Button className={cls.addToBasket} onClick={addProductToBasket}>
-                добавить в корзину
-              </Button>
-            ) : (
-              <Button className={cls.addToBasket}>
-                <AppLink to={RoutePath.basket}>в корзину</AppLink>
-              </Button>
-            )}
-          </div>
+          <IncreasingBasket product={product} />
         </div>
       </>
     );

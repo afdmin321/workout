@@ -1,0 +1,23 @@
+.DropDownList {
+  position: relative;
+}
+
+.list {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  padding: 10px;
+  background: var(--bg-secondary);
+  list-style: none;
+  z-index: 10;
+}
+
+.item {
+  border-bottom: 1px solid var(--colorDecoration);
+  padding: 10px 0 0;
+  cursor: pointer;
+}
+
+.active {
+  opacity: 0.3;
+}/*# sourceMappingURL=DropDownList.module.css.map */

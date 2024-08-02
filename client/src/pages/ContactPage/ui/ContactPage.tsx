@@ -7,7 +7,7 @@ import LinkMap from 'shared/ui/LinkMap/LinkMap';
 import LinkWh from 'shared/ui/LinkWh/LinkWh';
 import LinkTg from 'shared/ui/LinkTg/LinkTg';
 import { Map } from 'widgets/Map';
-import FormCall from 'features/FormCall/ui/FormCall';
+import FormCall, { ThemeForm } from 'features/FormCall/ui/FormCall';
 
 interface Props {
   className?: string;
@@ -48,13 +48,9 @@ const ContactPage: FC<Props> = (props: Props) => {
       <div className={cls.wrapperMap}>
         <Map />
       </div>
-      <FormCall
-        className={cls.form}
-        classNameInput={cls.input}
-        classNameLabel={cls.label}
-        classNameButton={cls.button}
-        title="Мы перезвоним в буднии дни с 8-17"
-      />
+      <FormCall className={cls.form} theme={ThemeForm.CONTACT}>
+        <h2 className={cls.formTitle}>Мы перезвоним в буднии дни с 8-17</h2>
+      </FormCall>
     </div>
   );
 };

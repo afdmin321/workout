@@ -3,26 +3,41 @@
   position: relative;
   background: white !important;
   display: flex;
+  z-index: 3;
   justify-content: flex-end;
 }
 
 .form {
   min-width: 300px;
+  padding: 45px 40px !important;
   margin: 0 0 0 auto;
+  border-radius: 0 !important;
 }
 
-.iconMail {
-  width: 20px;
-  height: 20px;
+.text {
+  background: var(--colorDecoration);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 20px;
 }
 
-.iconMap {
-  width: 30px;
-  height: 30px;
+.input {
+  padding: 5px 10px;
+}
+
+label {
+  min-height: 82px !important;
+}
+
+.submite {
+  width: 100%;
+  margin-top: 14px;
 }
 
 .buttons {
   display: flex;
+  align-self: flex-end;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background: var(--bg-secondary);
@@ -40,9 +55,32 @@
   padding: 5px 14px 9px;
   color: var(--colorDecoration);
 }
+.buttonBack:first-child {
+  border-right: 1px solid var(--colorDecoration);
+}
 
 .wrapperCall {
-  background: transparent;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s linear;
+  position: relative;
+  z-index: 4;
+}
+.wrapperCall.active {
+  max-height: 350px;
+  width: auto;
+  transition: max-height 0.3s linear;
+}
+
+.wrapperChat {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s linear;
+}
+.wrapperChat.active {
+  max-height: 350px;
+  width: auto;
+  transition: max-height 0.3s linear;
 }
 
 .buttonCall {
@@ -51,10 +89,10 @@
 
 .wrapper {
   display: flex;
+  flex-direction: column;
   position: absolute;
   right: 15px;
-  max-width: 91px;
-  top: -31px;
+  bottom: 0px;
 }
 
 .icon {
@@ -64,7 +102,7 @@
 }
 
 @media (min-width: 370px) {
-  .buttons {
+  .wrapper {
     right: 25px;
   }
 }/*# sourceMappingURL=FeedBack.module.css.map */

@@ -1,15 +1,90 @@
 .BasketItem {
-
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 10px 0;
+  max-width: 420px;
+}
+.imgWrapper {
+  min-width: 170px;
+  max-width: 100%;
+  background-color: aqua;
+  aspect-ratio: 16/10;
 }
 .img {
-
+  width: 300px;
 }
 .name {
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 410px;
 }
 .articlNumber {
+}
+.quantityWrapper {
+  display: flex;
 
 }
-.size {
-    
+.wrapperText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button {
+  border-left: none !important;
+}
+
+.priceWrapper {
+  display: flex;
+  gap: 0 5px;
+}
+.wrapperInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+@media (min-width: 950px) {
+  .BasketItem {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0 10px;
+    max-width: 100%;
+  }
+  .name {
+    max-width: 340px;
+  }
+}
+@media (min-width: 1000px) {
+  .imgWrapper {
+    min-width: 200px;
+  }
+  .name {
+    max-width: 340px;
+  }
+}
+@media (min-width: 1100px) {
+  .imgWrapper {
+    min-width: 250px;
+  }
+  .name {
+    max-width: 420px;
+  }
+}
+@media (min-width: 1240px) {
+  .imgWrapper {
+    min-width: 300px;
+  }
+  .name {
+    max-width: 500px;
+  }
+}
+@media (min-width: 1440px) {
+  .imgWrapper {
+    min-width: 300px;
+  }
+  .name {
+    max-width: 650px;
+  }
 }

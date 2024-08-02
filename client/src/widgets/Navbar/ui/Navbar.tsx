@@ -9,7 +9,7 @@ import {
 } from '../model/selectors/getNavbarItems';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Icon } from 'shared/ui/Icon/Icon';
-import Search from 'widgets/Search/ui/Search';
+import SearchProduct from 'features/SearchProduct/ui/SearchProduct';
 import SecondaryItems from './SecondaryItems/SecondaryItems';
 import PrimaryItems from './PrimaryItems/PrimaryItems';
 
@@ -23,7 +23,7 @@ const Navbar = () => {
             'width-wrapper',
           ])}
         >
-          <Search className={cls.search} />
+          <SearchProduct className={cls.search} />
           <Connect />
           <SecondaryItems className={classNames(cls.list, {},[cls.listSecondary])}/>
         </div>

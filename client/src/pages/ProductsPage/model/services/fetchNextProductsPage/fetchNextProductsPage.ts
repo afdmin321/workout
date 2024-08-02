@@ -17,12 +17,8 @@ export const fetchNextProductsPage = createAsyncThunk<
   const hasMore = getProductsPageHasMore(getState());
   const page = getProductsPage(getState());
   const isLoading = getProductsPageIsLoading(getState());
-    if (hasMore && !isLoading) {
-  dispatch(ProductsPageAction.setPage(page + 1));
-  dispatch(
-    fetchProducts({
-      page: page + 1,
-    }),
-  );
+  if (hasMore && !isLoading) {
+    dispatch(ProductsPageAction.setPage(page + 1));
+    dispatch(fetchProducts({}));
   }
 });

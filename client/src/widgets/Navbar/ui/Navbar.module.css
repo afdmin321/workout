@@ -62,6 +62,7 @@
   position: absolute;
   bottom: 5px;
   right: 15px;
+  border-bottom: none !important;
 }
 
 .widthWrapperPrimary {

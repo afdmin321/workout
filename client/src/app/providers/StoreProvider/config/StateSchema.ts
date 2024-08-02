@@ -10,14 +10,18 @@ import { rtkApi } from 'shared/api/rtkApi';
 import { ProductDetailsSchema } from 'entities/Product';
 import { BasketListSchema } from 'entities/Basket/model/types/BasketListSchema';
 import { ProductsPageSchema } from 'pages/ProductsPage/model/types/ProductsPageSchema';
+import { ScrollWatchesSchema } from 'widgets/ScrollWatches';
+import { SearchProductSchema } from 'features/SearchProduct/model/types/SearchProductSchema';
 
 export interface StateSchema {
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
   user?: any;
   basketList: BasketListSchema;
+  scrollWatches: ScrollWatchesSchema;
+  searchProduct: SearchProductSchema;
   // Асинхронные редюсеры
   productDetails?: ProductDetailsSchema;
-  productsPage?: ProductsPageSchema
+  productsPage?: ProductsPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

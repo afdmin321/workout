@@ -1,0 +1,8 @@
+@charset "UTF-8";
+.СertificatePage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}/*# sourceMappingURL=СertificatePage.module.css.map */

@@ -1,0 +1,32 @@
+.Quantity {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+}
+
+.quantity {
+  border: 1px solid var(--colorDecoration);
+  background: var(--bg-secondary);
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100px;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.button {
+  padding: 0 10px !important;
+  font-size: 24px;
+}
+
+@media (min-width: 1000px) {
+  .quantity {
+    min-height: 40px;
+    font-size: 18px;
+  }
+  .button {
+    font-size: 27px;
+  }
+}/*# sourceMappingURL=Quantity.module.css.map */

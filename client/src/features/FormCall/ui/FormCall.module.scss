@@ -1,16 +1,73 @@
-.FormCall {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 40px;
-    background: var(--bg-secondary);
-    border-radius: 10px;
-
+.Form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+.formOferta {
+  display: flex;
+  align-items: center;
+  gap: 0 5px;
+  font-size: 12px;
+  padding-bottom: 10px;
+  line-height: 1.1;
+  span {
+    color: var(--red-dark);
   }
-  .title {
-    max-width: 200px;
-    font-size: 20px;
-    margin-bottom: 30px;
-    text-align: center;
+}
+.title {
+  max-width: 200px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.Form.order {
+  max-width: 420px;
+}
+.Form.contact {
+  // width: 100%;
+  max-width: 300px;
+  margin: auto;
+}
+.contact,
+.order {
+  .button {
+    padding: 6px 10px;
+    width: 100%;
+  }
+  .label {
+    width: 100%;
+    min-height: 84px;
+  }
+  .input {
+    padding: 6px 10px;
+  }
+}
+
+@media (min-width: 700px) {
+  .Form.contact {
+    grid-area: form;
+    max-width: 320px;
+    margin: 0;
+  }
+}
+@media (min-width: 850px) {
+  .Form.contact {
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 950px) {
+  .Form.order {
+    max-width: 340px;
+  }
+}
+
+@media (min-width: 1050px) {
+  .Form.order {
+    max-width: 380px;
+  }
 }

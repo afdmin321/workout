@@ -31,8 +31,12 @@ select {
   --red-light: #f00;
   --red-dark: #ce0505;
   --colorDecoration: #474444;
+  --swiper-navigation-color: #47444496;
+  --swiper-theme-color: --colorDecoration !important;
+  --swiper-pagination-color: #474444;
   --white: #fff;
   --modal-z-index: 10;
+  --swiper-pagination-bullet-size: 17px;
 }
 
 .app_light_theme {
@@ -85,6 +89,7 @@ body,
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .page-wrapper {

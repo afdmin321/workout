@@ -7,7 +7,7 @@ import { CreateProductsDto } from './dto/create-products.dto';
 import { UpdateProductsDto } from './dto/update-products.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Products } from './entities/products.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { ImagesService } from 'images/images.service';
 
 @Injectable()
@@ -37,7 +37,6 @@ export class ProductsService {
       material: createProductsDto.material,
       price: createProductsDto.price,
     };
-    console.log(newProduct);
     if (!newProduct) throw new BadRequestException('Somethins went wrong...');
     const product = await this.productsRepository.save(newProduct);
     this.imagesService.create({
@@ -51,20 +50,58 @@ export class ProductsService {
     return await this.productsRepository.find({ relations: { images: true } });
   }
 
-  async findAllWithPagination(categoryId: string, page: number, limit: number) {
+  async search(search, sort, order, filter) {
     const products = await this.productsRepository.find({
       relations: {
         category: true,
         images: true,
       },
-      where: {
-        category: { id: categoryId },
+      order: {
+        [sort]: order,
       },
+      where: {
+        category: { id: filter },
+      },
+    });
+    return products.filter(
+      (item) =>
+        item.articleNumber.includes(search) ||
+        item.name.includes(search) ||
+        item.description.includes(search),
+    );
+  }
+
+  async findAllWithPagination(
+    page: number,
+    limit: number,
+    filter: string,
+    sort: string,
+    order: string,
+    search: string,
+  ) {
+    const products = await this.productsRepository.find({
+      relations: {
+        category: true,
+        images: true,
+      },
+      order: {
+        [sort]: order,
+      },
+      where: search
+        ? [
+            { articleNumber: Like(`%${search}%`), category: { id: filter } },
+            { name: Like(`%${search}%`), category: { id: filter } },
+            { description: Like(`%${search}%`), category: { id: filter } },
+          ]
+        : { category: { id: filter } },
+
       take: limit,
       skip: page && limit ? (page - 1) * limit : null,
     });
+
     return products;
   }
+
   async findOne(id: string) {
     const product = await this.productsRepository.findOne({
       where: { id },
@@ -80,7 +117,6 @@ export class ProductsService {
       where: { id },
       relations: { images: true },
     });
-    console.log(product);
     if (!product) throw new NotFoundException('product not found');
 
     const newProduct = await this.productsRepository.update(id, {

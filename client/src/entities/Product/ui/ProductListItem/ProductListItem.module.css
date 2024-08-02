@@ -1,0 +1,30 @@
+.ProductListItem {
+  max-width: 310px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.img {
+  width: 100%;
+  height: 292px;
+  background-color: aqua;
+}
+
+.name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  margin-top: auto;
+}
+
+@media (min-width: 390px) {
+  .ProductListItem {
+    max-width: 345px;
+  }
+}/*# sourceMappingURL=ProductListItem.module.css.map */

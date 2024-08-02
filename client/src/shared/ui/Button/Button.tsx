@@ -1,10 +1,10 @@
-import { ButtonHTMLAttributes, FC, memo } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC, memo } from 'react';
 import cls from './Button.module.scss';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 
 export enum ThemeButton {
   CLEAR = 'clear',
-  CLEAR_INVERTED = 'clearInverted',
+  ROUNDED = 'rounded',
   OUTLINE = 'outline',
   OUTLINE_RED = 'outlineRed',
   BACKGROUND = 'background',
@@ -20,7 +20,11 @@ export enum typeButton {
   SUBMITE = 'submit',
   RESET = 'reset',
 }
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   className?: string;
   disabled?: boolean;
   theme?: ThemeButton;

@@ -1,0 +1,9 @@
+
+.map {
+    height: 300px;
+}
+@media (min-width: 850px) {
+    .map {
+        height: 350px;
+    }
+}

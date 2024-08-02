@@ -1,4 +1,4 @@
-.FormCall {
+.Form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,9 +8,68 @@
   border-radius: 10px;
 }
 
+.formOferta {
+  display: flex;
+  align-items: center;
+  gap: 0 5px;
+  font-size: 12px;
+  padding-bottom: 10px;
+  line-height: 1.1;
+}
+.formOferta span {
+  color: var(--red-dark);
+}
+
 .title {
   max-width: 200px;
   font-size: 20px;
   margin-bottom: 30px;
   text-align: center;
+}
+
+.Form.order {
+  max-width: 420px;
+}
+
+.Form.contact {
+  max-width: 300px;
+  margin: auto;
+}
+
+.contact .button,
+.order .button {
+  padding: 6px 10px;
+  width: 100%;
+}
+.contact .label,
+.order .label {
+  width: 100%;
+  min-height: 84px;
+}
+.contact .input,
+.order .input {
+  padding: 6px 10px;
+}
+
+@media (min-width: 700px) {
+  .Form.contact {
+    grid-area: form;
+    max-width: 320px;
+    margin: 0;
+  }
+}
+@media (min-width: 850px) {
+  .Form.contact {
+    max-width: 400px;
+  }
+}
+@media (min-width: 950px) {
+  .Form.order {
+    max-width: 340px;
+  }
+}
+@media (min-width: 1050px) {
+  .Form.order {
+    max-width: 380px;
+  }
 }/*# sourceMappingURL=FormCall.module.css.map */

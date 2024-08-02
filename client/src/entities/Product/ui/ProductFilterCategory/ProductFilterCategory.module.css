@@ -1,0 +1,20 @@
+.ProductFilterCategory {
+  display: flex;
+  gap: 0 10px;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+}
+
+.button {
+  padding: 10px 0;
+  width: 50%;
+  background: var(--bg-secondary);
+}
+
+.active {
+  box-sizing: border-box;
+  border: 1px solid var(--colorDecoration);
+}/*# sourceMappingURL=ProductFilterCategory.module.css.map */

@@ -1,0 +1,13 @@
+.BasketList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (min-width: 750px) {
+  .BasketList {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+}/*# sourceMappingURL=BasketList.module.css.map */

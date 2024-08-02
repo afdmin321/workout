@@ -34,26 +34,7 @@
 }
 .ageGroup {
 }
-.wrapperButton {
-  display: flex;
-  align-items: center;
-  min-height: 30px;
-}
-
-.addToBasket {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--colorDecoration);
-  border-left: none;
-  background: var(--bg-secondary) !important;
-}
-
-.addToBasket {
-  width: 100%;
- 
-}
-@media (min-width: 650px) {
+@media (min-width: 750px) {
   .ProductDetails {
     padding-top: 25px;
     flex-direction: row;
@@ -86,7 +67,6 @@
   }
 }
 @media (min-width: 1000px) {
-
   .ProductDetails {
     font-size: 17px;
     padding: 25px 30px 50px;
@@ -103,13 +83,5 @@
   .wrapperInfo {
     padding: 30px 0 0;
     max-width: 550px;
-  }
-  .wrapperButton {
-    font-size: 18px;
-  }
-  .button,
-  .addToBasket {
-    font-size: inherit;
-    height: 100%;
   }
 }

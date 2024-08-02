@@ -5,9 +5,8 @@ import { Button } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
 import IconChat from 'shared/assets/icons/message.svg';
 import IconCall from 'shared/assets/icons/phone.svg';
-import FormCall from 'features/FormCall/ui/FormCall';
+import FormCall, { ThemeForm } from 'features/FormCall/ui/FormCall';
 import { Chat } from 'widgets/Chat';
-
 
 interface Props {
   className?: string;
@@ -15,7 +14,6 @@ interface Props {
 const FeedBack: FC<Props> = (props: Props) => {
   const [call, setCall] = useState(false);
   const [chat, setChat] = useState(false);
-
 
   const onHandlerCall = () => {
     setCall((prev) => !prev);
@@ -73,11 +71,7 @@ const FeedBack: FC<Props> = (props: Props) => {
           className={classNames(cls.wrapperCall, { [cls.active]: call }, [])}
         >
           <div className={cls.text}>Мы перезвоним в буднии дни с 8-17</div>
-          <FormCall
-            className={cls.form}
-            classNameInput={cls.input}
-            classNameButton={classNames(cls.button, {}, [cls.submite])}
-          />
+          <FormCall className={cls.form} theme={ThemeForm.CALL} />
         </div>
 
         <div
@@ -91,4 +85,3 @@ const FeedBack: FC<Props> = (props: Props) => {
 };
 
 export default memo(FeedBack);
-
