@@ -74,6 +74,7 @@
     "react-router-dom": "^6.21.3",
     "react-window": "^1.8.10",
     "react-youtube": "^10.1.0",
-    "swiper": "^11.1.4"
+    "swiper": "^11.1.4",
+    "webpack-retry-chunk-load-plugin": "^3.1.1"
   }
 }

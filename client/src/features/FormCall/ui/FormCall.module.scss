@@ -33,20 +33,25 @@
   margin: auto;
 }
 .contact,
-.order {
+.order,
+.call {
   .button {
     padding: 6px 10px;
     width: 100%;
   }
   .label {
     width: 100%;
-    min-height: 84px;
+    min-height: 86px;
   }
   .input {
     padding: 6px 10px;
   }
 }
-
+.call {
+  .label {
+    max-width: 220px;
+  }
+}
 @media (min-width: 700px) {
   .Form.contact {
     grid-area: form;

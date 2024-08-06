@@ -1,6 +1,12 @@
 import { OrderType } from 'types/OrderType';
 
 class HtmlTemlate {
+  getOrderTgTemplate(data: OrderType) {
+    const products = data.products.map((product, index) => {
+      return `${index}. https://localhost:7000/products/${product.id}`;
+    });
+    return `Имя: ${data.client_name}; Телефон: ${data.phone}; ${products}`;
+  }
   getOrderTemplate(data: OrderType) {
     const products = data.products
       .map((product) => {

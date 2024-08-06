@@ -17,18 +17,24 @@ export class OrderService {
   ) {}
   async create(createOrderDto: CreateOrderDto) {
     const { sendMessage } = nodeMailer;
-    const { getOrderTemplate } = htmlTemlate;
+    const { getOrderTemplate, getOrderTgTemplate } = htmlTemlate;
+    console.log(createOrderDto);
 
-    const newOrder = await this.ordersRepository.save(createOrderDto);
-    for (const product of createOrderDto.products) {
-      await this.orderProductsRepository.save({
-        product,
-        order: newOrder,
-      });
-    }
+    const newOrder = await this.ordersRepository.save({
+      client_name: createOrderDto.client_name,
+      phone: createOrderDto.phone,
+      products: createOrderDto.products,
+    });
+    // for (const product of createOrderDto.products) {
+    //   await this.orderProductsRepository.save({
+    //     product,
+    //     order: newOrder,
+    //   });
+    // }
     const messageHtml = getOrderTemplate(createOrderDto);
-    sendMessage('afdmin321@yandex.ru', messageHtml);
-    telegramApi.sendMessage(messageHtml);
+
+    // sendMessage('afdmin321@yandex.ru', messageHtml);
+    telegramApi.sendMessage(getOrderTgTemplate(createOrderDto));
     return newOrder;
   }
 

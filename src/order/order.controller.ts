@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  ValidationPipe,
+  UsePipes,
+} from '@nestjs/common';
 import { OrderService } from 'order/order.service';
 import { CreateOrderDto } from 'order/dto/create-order.dto';
 
@@ -7,6 +15,7 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Post()
+  @UsePipes(new ValidationPipe())
   create(@Body() createOrderDto: CreateOrderDto) {
     return this.orderService.create(createOrderDto);
   }

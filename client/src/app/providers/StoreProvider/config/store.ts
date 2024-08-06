@@ -7,6 +7,7 @@ import { createReducerManager } from './reducerManager';
 import { basketListReducer } from 'entities/Basket/model/slice/BasketListSlice';
 import { ScrollWatchesReducer } from 'widgets/ScrollWatches';
 import { SearchProductReducer } from 'features/SearchProduct/model/slice/SearchProductSice';
+import { FormCallReducer } from 'features/FormCall';
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -16,6 +17,7 @@ export function createReduxStore(
     basketList: basketListReducer,
     scrollWatches: ScrollWatchesReducer,
     searchProduct: SearchProductReducer,
+    formCall: FormCallReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
     ...asyncReducers,
   };

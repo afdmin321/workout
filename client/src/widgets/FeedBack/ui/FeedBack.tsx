@@ -7,6 +7,8 @@ import IconChat from 'shared/assets/icons/message.svg';
 import IconCall from 'shared/assets/icons/phone.svg';
 import FormCall, { ThemeForm } from 'features/FormCall/ui/FormCall';
 import { Chat } from 'widgets/Chat';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { FormCallAction } from 'features/FormCall/model/slice/FormCallSlice';
 
 interface Props {
   className?: string;
@@ -14,20 +16,28 @@ interface Props {
 const FeedBack: FC<Props> = (props: Props) => {
   const [call, setCall] = useState(false);
   const [chat, setChat] = useState(false);
-
-  const onHandlerCall = () => {
-    setCall((prev) => !prev);
-
+  const dispatch = useAppDispatch();
+  const openCallWindow = () => {
+    setCall(true);
     if (chat) {
-      onHandlerChat();
+      closedChatWindow()
     }
   };
-  const onHandlerChat = () => {
-    setChat((prev) => !prev);
+  const openChatWindow = () => {
+    setChat(true);
     if (call) {
-      onHandlerCall();
+      closedCallWindow()
     }
   };
+  const closedCallWindow = () => {
+    setCall(false);
+    dispatch(FormCallAction.resetState());
+  };
+  const closedChatWindow = () => {
+    setChat(false);
+    dispatch(FormCallAction.resetState());
+  };
+
   const { className, ...otherProps } = props;
   return (
     <div
@@ -39,14 +49,14 @@ const FeedBack: FC<Props> = (props: Props) => {
           {!call ? (
             <Button
               className={classNames(cls.button, {}, [cls.buttonCall])}
-              onClick={onHandlerCall}
+              onClick={openCallWindow}
             >
               <Icon Src={IconCall} className={cls.icon} />
             </Button>
           ) : (
             <Button
               className={classNames(cls.button, {}, [cls.buttonBack])}
-              onClick={onHandlerCall}
+              onClick={closedCallWindow}
             >
               <span className={cls.icon}>&#10006;</span>
             </Button>
@@ -54,14 +64,14 @@ const FeedBack: FC<Props> = (props: Props) => {
           {!chat ? (
             <Button
               className={classNames(cls.button, {}, [cls.buttonChat])}
-              onClick={onHandlerChat}
+              onClick={openChatWindow}
             >
               <Icon Src={IconChat} className={cls.icon} />
             </Button>
           ) : (
             <Button
               className={classNames(cls.button, {}, [cls.buttonBack])}
-              onClick={onHandlerChat}
+              onClick={closedChatWindow}
             >
               <span className={cls.icon}>&#10006;</span>
             </Button>

@@ -1,8 +1,8 @@
-import { StateSchema } from 'app/providers/StoreProvider';
 import { SearchProductSchema } from '../types/SearchProductSchema';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: SearchProductSchema = {};
+const initialState: SearchProductSchema = {
+};
 const searchProductSice = createSlice({
   name: 'search',
   initialState,

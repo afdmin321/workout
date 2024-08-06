@@ -4,6 +4,7 @@ import { BuildOptions } from "./types/config";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+
 export const buildPlugins = (options: BuildOptions): WebpackPluginInstance[] => {
     const { paths, isDev, apiUrl, project } = options;
     const plugins = [
@@ -30,5 +31,6 @@ export const buildPlugins = (options: BuildOptions): WebpackPluginInstance[] => 
             })
         );
     }
+    
     return plugins;
 };

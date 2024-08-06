@@ -12,6 +12,7 @@ import { BasketListSchema } from 'entities/Basket/model/types/BasketListSchema';
 import { ProductsPageSchema } from 'pages/ProductsPage/model/types/ProductsPageSchema';
 import { ScrollWatchesSchema } from 'widgets/ScrollWatches';
 import { SearchProductSchema } from 'features/SearchProduct/model/types/SearchProductSchema';
+import { FormCallSchema } from 'features/FormCall/model/types/FormCallSchema';
 
 export interface StateSchema {
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
@@ -19,6 +20,7 @@ export interface StateSchema {
   basketList: BasketListSchema;
   scrollWatches: ScrollWatchesSchema;
   searchProduct: SearchProductSchema;
+  formCall: FormCallSchema;
   // Асинхронные редюсеры
   productDetails?: ProductDetailsSchema;
   productsPage?: ProductsPageSchema;

@@ -6,7 +6,7 @@ import IconSearch from 'shared/assets/icons/search.svg';
 import { Button, ThemeButton, typeButton } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import useMountTransition from 'shared/lib/hooks/useMountTransition/useMountTransition';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 
@@ -43,7 +43,6 @@ const SearchProduct: FC<Props> = (props: Props) => {
 
   const onChangeInput = useCallback(
     (value: string) => {
-      console.log(value);
       dispatch(SearchProductAction.setSearch(value));
     },
     [dispatch, search],
