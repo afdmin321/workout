@@ -11,7 +11,11 @@ interface Props {
 const LinkTg: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <Link href="https://t.me/Stroygorod1988" {...otherProps}>
+    <Link
+      href="https://t.me/Stroygorod1988"
+      className={cls.link}
+      {...otherProps}
+    >
       <Icon Src={TgIcon} className={classNames(cls.icon, {}, [className])} />
     </Link>
   );

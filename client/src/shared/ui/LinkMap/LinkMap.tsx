@@ -8,17 +8,21 @@ import IconMap from 'shared/assets/icons/map.svg';
 interface Props {
   className?: string;
   classNameText?: string;
+  classNameIcon?: string;
 }
 const LinkMap: FC<Props> = (props: Props) => {
-  const { className, classNameText, ...otherProps } = props;
+  const { className, classNameIcon, classNameText, ...otherProps } = props;
   return (
     <Link
       href="https://yandex.ru/maps/971/taganrog/house/kotlostroitelnaya_ulitsa_37_19/Z0EYfg5hS0QEQFptfX50cXxjbA==/?ll=38.892132%2C47.250101&utm_source=ntp_chrome&z=16.8"
-      className={cls.linkMap}
+      className={classNames(cls.className, {}, [cls.linkMap])}
       target="_blank"
       {...otherProps}
     >
-      <Icon Src={IconMap} className={classNames(cls.icon, {}, [className])} />
+      <Icon
+        Src={IconMap}
+        className={classNames(cls.icon, {}, [classNameIcon])}
+      />
       <div className={classNames(cls.text, {}, [classNameText])}>
         Россия,&nbsp;Ростовская&nbsp;обл.&nbsp;г.&nbsp;Таганрог
         Ул.&nbsp;Котлостроительная&nbsp;37&nbsp;-&nbsp;19.

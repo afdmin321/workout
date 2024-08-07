@@ -62,10 +62,13 @@
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.2.5",
     "@reduxjs/toolkit": "^1.9.7",
+    "@types/circular-dependency-plugin": "^5.0.8",
     "@types/react": "^18.3.3",
     "@types/react-transition-group": "^4.4.10",
     "axios": "^1.6.8",
     "base-64": "^1.0.0",
+    "circular-dependency-plugin": "^5.2.2",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
     "nanoid": "^5.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.2.0",

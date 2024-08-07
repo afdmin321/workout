@@ -5,6 +5,7 @@ import { FAQPage } from 'pages/FAQPage';
 import { GuaranteesPage } from 'pages/GuaranteesPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
+import { OfertaPage } from 'pages/OfertaPage';
 import { ProductDetailsPage } from 'pages/ProductDetailsPage';
 import { ProductsPage } from 'pages/ProductsPage';
 import { СertificatePage } from 'pages/СertificatePage';
@@ -23,6 +24,7 @@ export enum AppRoutes {
   GUARANTEES = 'guarantees',
   CERTIFICATES = 'certificates',
   FAQ = 'faq',
+  OFERTA = 'oferta',
   // last
   NOT_FOUND = 'not_found',
 }
@@ -37,6 +39,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.CERTIFICATES]: '/certificates',
   [AppRoutes.PRODUCT_DETAILS]: '/products/', // +:id
   [AppRoutes.FAQ]: '/faq',
+  [AppRoutes.OFERTA]: '/oferta',
   [AppRoutes.NOT_FOUND]: '*',
 };
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -75,6 +78,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.FAQ]: {
     path: RoutePath.faq,
     element: <FAQPage />,
+  },
+  [AppRoutes.OFERTA]: {
+    path: RoutePath.oferta,
+    element: <OfertaPage />,
   },
 
   [AppRoutes.NOT_FOUND]: {

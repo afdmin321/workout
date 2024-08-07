@@ -14,6 +14,8 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { FormCallAction } from '../model/slice/FormCallSlice';
 import { fetchOrder } from '../model/services/fetchOrder';
+import { AppLink, ThemeLink } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 interface Props {
   theme: ThemeForm;
@@ -84,7 +86,13 @@ const FormCall: FC<Props> = (props: Props) => {
       />
       {theme === ThemeForm.ORDER && (
         <div className={cls.formOferta}>
-          <span>*</span>Оформляя заказ Вы соглашаетесь с условиями оферты
+          <span>*</span>
+          <div>
+            Оформляя заказ Вы соглашаетесь с условиями&ensp;
+            <AppLink to={RoutePath.oferta} theme={ThemeLink.BLUE}>
+              оферты
+            </AppLink>
+          </div>
         </div>
       )}
       <Button

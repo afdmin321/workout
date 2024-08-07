@@ -1,0 +1,49 @@
+.text {
+  font-size: 14px;
+}
+.OfertaPage {
+  gap: 10px;
+  padding: 20px 10px 50px;
+}
+.textWrapper,
+.OfertaPage,
+.title {
+  display: flex;
+  flex-direction: column;
+}
+
+.textBold {
+  font-weight: bold;
+}
+.textUnderline {
+  text-decoration: underline;
+}
+.title {
+  text-align: center;
+  font-size: 16px;
+  span {
+    font-weight: normal;
+  }
+}
+
+@media (min-width: 650px) {
+  .text {
+    font-size: 16px;
+  }
+  .title {
+    text-align: center;
+    font-size: 18px;
+  }
+  .OfertaPage {
+    gap: 15px;
+    padding: 30px 20px 50px;
+  }
+}
+
+@media (min-width: 650px) {
+    .OfertaPage {
+    
+      padding: 30px 40px 50px;
+    }
+  }
+  

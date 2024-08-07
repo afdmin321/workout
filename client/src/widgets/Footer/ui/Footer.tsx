@@ -21,8 +21,8 @@ const Footer: FC<Props> = (props: Props) => {
       </div>
       <div className={classNames(cls.wrapper, {}, [cls.wrapperLink])}>
         <Connect />
-        <LinkMail className={cls.iconMail} classNameText={cls.textMail} />
-        <LinkMap className={cls.iconMap} classNameText={cls.textMap} />
+        <LinkMail classNameIcon={cls.iconMail} classNameText={cls.textMail} />
+        <LinkMap classNameIcon={cls.iconMap} classNameText={cls.textMap} />
       </div>
     </footer>
   );

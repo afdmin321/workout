@@ -1,2 +1,2 @@
-import BasketPage from './ui/BasketPage';
-export { BasketPage};
+import { BasketPageAsync as BasketPage } from './ui/BasketPage.async';
+export { BasketPage };

@@ -50,12 +50,14 @@ const SearchProduct: FC<Props> = (props: Props) => {
   const onHandlerSubmite = useCallback(
     (evt: MouseEvent<HTMLButtonElement>) => {
       evt.preventDefault();
-      dispatch(ProductsPageAction.setFilter(null));
-      if (location.pathname !== RoutePath.products) {
-        navigate(RoutePath.products);
-      }
-      if (search && search?.length >= 2 && inited) {
-        dispatch(fetchProducts({ replace: true }));
+      if (search) {
+        dispatch(ProductsPageAction.setFilter(null));
+        if (location.pathname !== RoutePath.products) {
+          navigate(RoutePath.products);
+        }
+        if (inited) {
+          dispatch(fetchProducts({ replace: true }));
+        }
       }
     },
     [navigate, search],

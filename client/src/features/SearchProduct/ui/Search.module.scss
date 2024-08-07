@@ -1,11 +1,15 @@
+.Search {
+  display: flex;
+  align-items: center;
+}
 .input {
   position: relative;
   padding-right: 30px !important;
   max-width: 0;
-  transition: max-width .1s linear;
+  transition: max-width 0.1s linear;
   &.in.visible {
     max-width: 100%;
-    transition: max-width .1s linear;
+    transition: max-width 0.1s linear;
   }
 }
 .buttonSubmite {
@@ -29,11 +33,8 @@
 .label {
   min-height: auto !important;
 }
-@media (min-width: 650px) {
-  .buttonSearch {
-    margin-top: 5px !important;
-  }
-}
+
+
 @media (min-width: 1460px) {
   .iconSearch {
     width: 20px;
