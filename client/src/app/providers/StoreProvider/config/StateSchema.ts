@@ -13,6 +13,7 @@ import { ProductsPageSchema } from 'pages/ProductsPage/model/types/ProductsPageS
 import { ScrollWatchesSchema } from 'widgets/ScrollWatches';
 import { SearchProductSchema } from 'features/SearchProduct/model/types/SearchProductSchema';
 import { FormCallSchema } from 'features/FormCall/model/types/FormCallSchema';
+import { ChatType } from 'widgets/Chat/model/types/ChatType';
 
 export interface StateSchema {
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
@@ -21,6 +22,7 @@ export interface StateSchema {
   scrollWatches: ScrollWatchesSchema;
   searchProduct: SearchProductSchema;
   formCall: FormCallSchema;
+  chat: ChatType
   // Асинхронные редюсеры
   productDetails?: ProductDetailsSchema;
   productsPage?: ProductsPageSchema;

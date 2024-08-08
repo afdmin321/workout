@@ -39,7 +39,10 @@ export class ProductsController {
       search,
     );
   }
-
+  @Get('random')
+  findRandom(@Query('limit') limit: number) {
+    return this.productsService.findRandom(limit);
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);

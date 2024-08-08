@@ -1,14 +1,21 @@
-import { FC } from "react";
-import "./Loader.scss";
-import { classNames } from "shared/lib/classNames/classNames";
+import { FC } from 'react';
+import cls from './Loader.module.scss';
+import { classNames } from 'shared/lib/classNames/classNames';
 
-interface Props {
-    className?: string;
+export enum ThemeLoader {
+  BIG = 'big',
+  MINI = 'mini',
 }
 
-export const Loader: FC<Props> = ({ className }: Props) => {
-    return (
-        <div className={classNames("loader", {}, [className])}>
-        </div>
-    );
+interface Props {
+  className?: string;
+  theme?: ThemeLoader;
+}
+
+export const Loader: FC<Props> = ({ className, theme = ThemeLoader.BIG }: Props) => {
+  return (
+    <div className={classNames(cls.loader, {[cls[theme]]: theme})}>
+      <div className="loader"></div>
+    </div>
+  );
 };

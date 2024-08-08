@@ -4,14 +4,13 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Product } from 'entities/Product/model/types/Product';
 import ProductListItem from '../ProductListItem/ProductListItem';
 
-
 interface Props {
   className?: string;
   products: Product[];
 }
 const ProductList: FC<Props> = (props: Props) => {
   const { className, products, ...otherProps } = props;
-
+  console.log(products);
   return (
     <div
       className={classNames(cls.ProductList, {}, [className])}

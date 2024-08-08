@@ -15,13 +15,17 @@ export enum ProductSort {
   LOWER_SIZE = 'size&ASC',
   GREAT_SIZE = 'size&DESC',
 }
+export interface ProductImeges {
+  id: string;
+  src: string;
+}
 export interface Product {
   id: string;
   name: string;
   description: string;
   articleNumber: string;
   category: ProductCategory;
-  images: string[];
+  images: ProductImeges[];
   price: number | null;
   ageGroup: string | null;
   material: string | null;

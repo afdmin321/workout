@@ -8,6 +8,7 @@ import { basketListReducer } from 'entities/Basket/model/slice/BasketListSlice';
 import { ScrollWatchesReducer } from 'widgets/ScrollWatches';
 import { SearchProductReducer } from 'features/SearchProduct/model/slice/SearchProductSice';
 import { FormCallReducer } from 'features/FormCall';
+import { chatSliceReducer } from 'widgets/Chat/model/slice/ChatSlice';
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -18,6 +19,7 @@ export function createReduxStore(
     scrollWatches: ScrollWatchesReducer,
     searchProduct: SearchProductReducer,
     formCall: FormCallReducer,
+    chat: chatSliceReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
     ...asyncReducers,
   };

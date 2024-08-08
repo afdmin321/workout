@@ -28,9 +28,17 @@
   max-width: 420px;
 }
 .Form.contact {
-  // width: 100%;
   max-width: 300px;
   margin: auto;
+}
+.Form.chat {
+  padding: 0;
+}
+.chat {
+  .label {
+    max-width: 215px;
+    min-height: 70px;
+  }
 }
 .contact,
 .order,

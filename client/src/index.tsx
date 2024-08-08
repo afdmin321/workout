@@ -9,7 +9,7 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement!);
 
 root.render(
-
+  <StrictMode>
     <BrowserRouter>
       <StoreProvider>
         <ErrorBoundary>
@@ -17,5 +17,5 @@ root.render(
         </ErrorBoundary>
       </StoreProvider>
     </BrowserRouter>
-
+  </StrictMode>,
 );

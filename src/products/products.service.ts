@@ -50,27 +50,15 @@ export class ProductsService {
     return await this.productsRepository.find({ relations: { images: true } });
   }
 
-  async search(search, sort, order, filter) {
-    const products = await this.productsRepository.find({
-      relations: {
-        category: true,
-        images: true,
-      },
-      order: {
-        [sort]: order,
-      },
-      where: {
-        category: { id: filter },
-      },
-    });
-    return products.filter(
-      (item) =>
-        item.articleNumber.includes(search) ||
-        item.name.includes(search) ||
-        item.description.includes(search),
-    );
-  }
+  async findRandom(limit: number) {
+    const products = await this.productsRepository
+      .createQueryBuilder()
+      .orderBy('RANDOM()')
+      .limit(limit)
+      .getMany();
 
+    return products;
+  }
   async findAllWithPagination(
     page: number,
     limit: number,

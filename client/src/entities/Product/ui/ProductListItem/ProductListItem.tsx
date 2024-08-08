@@ -19,6 +19,7 @@ const ProductListItem: FC<Props> = (props: Props) => {
   const onOpenArticle = useCallback(() => {
     navigate(RoutePath.product_details + product.id);
   }, [navigate, product.id]);
+  const productImages = !product.images.length ? product.images[0].src : 'null';
   return (
     <div
       className={classNames(cls.ProductListItem, {}, [className])}
@@ -27,7 +28,7 @@ const ProductListItem: FC<Props> = (props: Props) => {
       onClick={onOpenArticle}
     >
       <div className={cls.img}>
-        <img src={product.images[0]} alt={product.name} className={cls.img} />
+        <img src={productImages} alt={product.name} className={cls.img} />
       </div>
 
       <h2 className={cls.name} title={product.name}>

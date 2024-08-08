@@ -3,6 +3,7 @@ import cls from './ProductDetailsPage.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ProductDetails } from 'entities/Product';
 import { useParams } from 'react-router-dom';
+import ProductRecommendationsList from 'features/ProductRecommendationsList/ui/ProductRecommendationsList';
 
 interface Props {
   className?: string;
@@ -20,6 +21,7 @@ const ProductDetailsPage: FC<Props> = (props: Props) => {
       {...otherProps}
     >
       <ProductDetails id={id} />
+      <ProductRecommendationsList />
     </div>
   );
 };

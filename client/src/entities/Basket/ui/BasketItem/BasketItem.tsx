@@ -26,7 +26,7 @@ const BasketItem: FC<Props> = (props: Props) => {
       {...otherProps}
     >
       <div className={cls.imgWrapper}>
-        <img src={product.images[0]} alt={product.name} className={cls.img} />
+        <img src={product.images[0].src} alt={product.name} className={cls.img} />
       </div>
 
       <div className={cls.wrapperInfo}>

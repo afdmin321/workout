@@ -12,19 +12,16 @@ import {
   getProductDetailsError,
   getProductDetailsIsLoading,
 } from 'entities/Product/model/selectors/getProductDetails';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchProductById } from 'entities/Product/model/services/ProductDetailsServices';
-import image from '../../../../11.jpg';
-import { Button } from 'shared/ui/Button/Button';
+
 import { PageLoader } from 'widgets/PageLoader';
 
 import Price from 'shared/ui/Price/Price';
 import { basketListActions } from 'entities/Basket/model/slice/BasketListSlice';
 
-import Quantity from 'widgets/Quantity/Quantity';
 import { getBasketData } from 'entities/Basket/model/selectors/getBasket';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
+
 import IncreasingBasket from 'widgets/IncreasingBasket/IncreasingBasket';
 interface Props {
   id: string;
@@ -65,7 +62,11 @@ const ProductDetails: FC<Props> = (props: Props) => {
   if (product) {
     content = (
       <>
-        <img className={cls.img} src={image} alt={product?.name} />
+        <img
+          className={cls.img}
+          src={product?.images[0].src}
+          alt={product?.name}
+        />
         <div className={cls.wrapperInfo}>
           <h3 className={cls.name}>{product?.name}</h3>
           <Price price={product?.price} />

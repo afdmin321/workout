@@ -68,6 +68,7 @@
     "axios": "^1.6.8",
     "base-64": "^1.0.0",
     "circular-dependency-plugin": "^5.2.2",
+    "dayjs": "^1.11.12",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "nanoid": "^5.0.6",
     "react": "^18.3.1",

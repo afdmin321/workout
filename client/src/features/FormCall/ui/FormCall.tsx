@@ -27,6 +27,7 @@ export enum ThemeForm {
   CONTACT = 'contact',
   CALL = 'call',
   ORDER = 'order',
+  CHAT = 'chat'
 }
 const FormCall: FC<Props> = (props: Props) => {
   const { className, children, textSubmite, theme, ...otherProps } = props;
