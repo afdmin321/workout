@@ -9,6 +9,7 @@ import { ScrollWatchesReducer } from 'widgets/ScrollWatches';
 import { SearchProductReducer } from 'features/SearchProduct/model/slice/SearchProductSice';
 import { FormCallReducer } from 'features/FormCall';
 import { chatSliceReducer } from 'widgets/Chat/model/slice/ChatSlice';
+import { SuccessApplicationReducer } from 'widgets/SuccessApplication/model/slice/SuccessApplication';
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -20,6 +21,7 @@ export function createReduxStore(
     searchProduct: SearchProductReducer,
     formCall: FormCallReducer,
     chat: chatSliceReducer,
+    successApplication: SuccessApplicationReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
     ...asyncReducers,
   };

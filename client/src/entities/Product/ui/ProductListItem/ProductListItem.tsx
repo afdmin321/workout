@@ -5,8 +5,7 @@ import { Product } from 'entities/Product/model/types/Product';
 import Price from 'shared/ui/Price/Price';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import Quantity from 'widgets/Quantity/Quantity';
-import { Button } from 'shared/ui/Button/Button';
+
 import IncreasingBasket from 'widgets/IncreasingBasket/IncreasingBasket';
 
 interface Props {

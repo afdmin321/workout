@@ -5,6 +5,16 @@
   gap: 10px 0;
   padding: 20px 7px 50px;
 }
+.basketNull {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.title {
+  max-width: 500px;
+}
 .formPriceWrapper {
   width: 100%;
   display: flex;
@@ -29,9 +39,8 @@
   }
 }
 @media (min-width: 1100px) {
-    .BasketPage {
-        padding: 20px 20px 50px;
-        gap: 0 30px;
-    }
-    
+  .BasketPage {
+    padding: 20px 20px 50px;
+    gap: 0 30px;
   }
+}

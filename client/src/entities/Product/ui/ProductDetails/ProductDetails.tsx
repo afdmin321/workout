@@ -68,7 +68,7 @@ const ProductDetails: FC<Props> = (props: Props) => {
           alt={product?.name}
         />
         <div className={cls.wrapperInfo}>
-          <h3 className={cls.name}>{product?.name}</h3>
+          <h2 className={cls.name}>{product?.name}</h2>
           <Price price={product?.price} />
           <div className={cls.articleNumber}>
             Артикул: {product?.articleNumber}

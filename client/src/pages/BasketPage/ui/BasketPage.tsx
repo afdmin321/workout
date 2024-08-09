@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import { getBasketData } from 'entities/Basket/model/selectors/getBasket';
 import FormCall, { ThemeForm } from 'features/FormCall/ui/FormCall';
 import { useSpacePrice } from 'shared/lib/hooks/useSpacePrice/useSpacePrice';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { AppLink, ThemeLink } from 'shared/ui/AppLink/AppLink';
 
 interface Props {
   className?: string;
@@ -29,23 +31,38 @@ const BasketPage: FC<Props> = (props: Props) => {
       className={classNames(cls.BasketPage, {}, [className])}
       {...otherProps}
     >
-      <FormCall theme={ThemeForm.ORDER} textSubmite="Оформить заказ">
-        <div className={cls.formPriceWrapper}>
-          <div className={cls.formPrice}>
-            <span>ИТОГО</span>
-            <span>{price}&#8381;</span>
-          </div>
-          <div className={cls.formPrice}>
-            <span>СКИДКА</span>
-            <span>{useSpacePrice(AllPrice * 0.6)}&#8381;</span>
-          </div>
-          <div className={cls.formDescription}>
-            Оплата товара и расчёт стоимости доставки производится через
-            менеджера.
-          </div>
+      {products.length ? (
+        <>
+          <FormCall theme={ThemeForm.ORDER} textSubmite="Оформить заказ">
+            <div className={cls.formPriceWrapper}>
+              <div className={cls.formPrice}>
+                <span>ИТОГО</span>
+                <span>{price}&#8381;</span>
+              </div>
+              <div className={cls.formPrice}>
+                <span>СКИДКА</span>
+                <span>{useSpacePrice(AllPrice * 0.6)}&#8381;</span>
+              </div>
+              <div className={cls.formDescription}>
+                Оплата товара и расчёт стоимости доставки производится через
+                менеджера.
+              </div>
+            </div>
+          </FormCall>
+          <BasketList data={products} />
+        </>
+      ) : (
+        <div className={cls.basketNull}>
+          <h2 className={cls.title}>
+            <div>В корзине не чего нет(</div>
+            перейдите в{' '}
+            <AppLink to={RoutePath.products} theme={ThemeLink.BLUE}>
+              каталог
+            </AppLink>{' '}
+            каталог чтобы добавить товары
+          </h2>
         </div>
-      </FormCall>
-      <BasketList data={products} />
+      )}
     </div>
   );
 };

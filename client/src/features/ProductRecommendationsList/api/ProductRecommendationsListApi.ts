@@ -1,18 +1,20 @@
 import { Product } from 'entities/Product';
 import { rtkApi } from 'shared/api/rtkApi';
 
-const recommendationsApi = rtkApi.injectEndpoints({
+export const recommendationsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getArticleRecommendationsList: build.query<Product[], void>({
-      query: () => ({
+    getProductRecommendationsList: build.query<Product[], string>({
+      query: (id) => ({
         url: '/products/random',
         params: {
           limit: 5,
+          id
         },
       }),
+      keepUnusedDataFor: 1,
     }),
   }),
 });
 
-export const useArticleRecommendationsList =
-  recommendationsApi.useGetArticleRecommendationsListQuery;
+export const useProductRecommendationsList =
+  recommendationsApi.useGetProductRecommendationsListQuery;

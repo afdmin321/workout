@@ -27,7 +27,7 @@ export enum ThemeForm {
   CONTACT = 'contact',
   CALL = 'call',
   ORDER = 'order',
-  CHAT = 'chat'
+  CHAT = 'chat',
 }
 const FormCall: FC<Props> = (props: Props) => {
   const { className, children, textSubmite, theme, ...otherProps } = props;
@@ -62,6 +62,7 @@ const FormCall: FC<Props> = (props: Props) => {
       onSubmit={(evt) => {
         evt.preventDefault();
         dispatch(fetchOrder());
+        dispatch(FormCallAction.resetState());
       }}
       className={classNames(cls.Form, {}, [className, cls[theme]])}
       {...otherProps}

@@ -52,9 +52,10 @@ export class ProductsService {
 
   async findRandom(limit: number) {
     const products = await this.productsRepository
-      .createQueryBuilder()
+      .createQueryBuilder('products')
       .orderBy('RANDOM()')
       .limit(limit)
+      .leftJoinAndSelect('products.images', 'images')
       .getMany();
 
     return products;

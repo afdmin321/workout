@@ -3,6 +3,8 @@ import cls from './BasketList.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import BasketItem from '../BasketItem/BasketItem';
 import { Basket } from 'entities/Basket/model/types/Basket';
+import { AppLink, ThemeLink } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 interface Props {
   className?: string;
@@ -19,9 +21,7 @@ const BasketList: FC<Props> = (props: Props) => {
         products.map((product) => {
           return <BasketItem data={product} key={product.id} />;
         })
-      ) : (
-        <div>Корзина пуста</div>
-      )}
+      ) : null}
     </div>
   );
 };

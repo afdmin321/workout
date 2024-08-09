@@ -21,7 +21,7 @@ const ProductDetailsPage: FC<Props> = (props: Props) => {
       {...otherProps}
     >
       <ProductDetails id={id} />
-      <ProductRecommendationsList />
+      <ProductRecommendationsList idProductStop={id} />
     </div>
   );
 };
