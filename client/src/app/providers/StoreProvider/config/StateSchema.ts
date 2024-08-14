@@ -15,19 +15,24 @@ import { SearchProductSchema } from 'features/SearchProduct/model/types/SearchPr
 import { FormCallSchema } from 'features/FormCall/model/types/FormCallSchema';
 import { ChatType } from 'widgets/Chat/model/types/ChatType';
 import { SuccessApplicationSchema } from 'widgets/SuccessApplication/model/types/SuccessApplicationSchema';
+import { PopupImageSchema } from 'widgets/PopupImage';
+import { AuthByUsernameSchema } from 'features/AuthByUsername';
+import { UserSchema } from 'entities/User/model/types/User';
 
 export interface StateSchema {
-  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
-  user?: any;
+  user: UserSchema;
   basketList: BasketListSchema;
   scrollWatches: ScrollWatchesSchema;
   searchProduct: SearchProductSchema;
   formCall: FormCallSchema;
   chat: ChatType;
   successApplication: SuccessApplicationSchema;
+  popupImage: PopupImageSchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
   // Асинхронные редюсеры
   productDetails?: ProductDetailsSchema;
   productsPage?: ProductsPageSchema;
+  authByUsername?: AuthByUsernameSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

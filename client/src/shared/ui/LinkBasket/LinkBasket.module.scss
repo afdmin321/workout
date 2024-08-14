@@ -1,0 +1,40 @@
+.linkBasket {
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  border-bottom: none !important;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+.quantityProducts {
+  position: absolute;
+  top: -13px;
+  right: -3px;
+  font-size: 12px;
+  color: var(--red-dark)
+
+ 
+}
+@media (min-width: 370px) {
+  .linkBasket {
+    right: 25px;
+    bottom: 5px;
+  }
+}
+@media (min-width: 650px) {
+  .linkBasket {
+    bottom: 12px;
+  }
+}
+@media (min-width: 1460px) {
+  .linkBasket {
+    bottom: 20px;
+  }
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}

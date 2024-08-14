@@ -12,6 +12,7 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import SearchProduct from 'features/SearchProduct/ui/SearchProduct';
 import SecondaryItems from './SecondaryItems/SecondaryItems';
 import PrimaryItems from './PrimaryItems/PrimaryItems';
+import LinkBasket from 'shared/ui/LinkBasket/LinkBasket';
 
 const Navbar = () => {
   return (
@@ -25,7 +26,9 @@ const Navbar = () => {
         >
           <SearchProduct className={cls.search} />
           <Connect />
-          <SecondaryItems className={classNames(cls.list, {},[cls.listSecondary])}/>
+          <SecondaryItems
+            className={classNames(cls.list, {}, [cls.listSecondary])}
+          />
         </div>
       </div>
       <div className={cls.wrapperPrimary}>
@@ -36,10 +39,8 @@ const Navbar = () => {
           ])}
         >
           <h1 className={cls.title}>workout</h1>
-          <PrimaryItems className={classNames(cls.list, {},[cls.listPrimary])}>
-            <AppLink to={getNavbarBasket.path} className={cls.linkBasket}>
-              {<Icon className={cls.icon} Src={getNavbarBasket.icon} />}
-            </AppLink>
+          <PrimaryItems className={classNames(cls.list, {}, [cls.listPrimary])}>
+            <LinkBasket />
           </PrimaryItems>
         </div>
       </div>

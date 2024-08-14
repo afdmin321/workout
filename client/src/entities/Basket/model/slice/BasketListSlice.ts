@@ -25,6 +25,9 @@ const basketListSlice = createSlice({
     deleteItem: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter((item) => item.id !== action.payload);
     },
+    clearState: () => {
+      return initialState;
+    },
   },
 });
 

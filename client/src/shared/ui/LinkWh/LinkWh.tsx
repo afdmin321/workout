@@ -11,7 +11,7 @@ interface Props {
 const LinkWh: FC<Props> = (props: Props) => {
  const { className, ...otherProps } = props;
   return (
-    <Link href="https://wa.me/qr/RJQCYFR4OGWHI1"  className={cls.link} {...otherProps}>
+    <Link href="https://wa.me/79094124640"  className={cls.link} {...otherProps}>
         <Icon Src={WhIcon} className={classNames(cls.icon, {}, [className])} />
       </Link>
   )

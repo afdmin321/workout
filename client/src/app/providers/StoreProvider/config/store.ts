@@ -10,17 +10,21 @@ import { SearchProductReducer } from 'features/SearchProduct/model/slice/SearchP
 import { FormCallReducer } from 'features/FormCall';
 import { chatSliceReducer } from 'widgets/Chat/model/slice/ChatSlice';
 import { SuccessApplicationReducer } from 'widgets/SuccessApplication/model/slice/SuccessApplication';
+import { PopupImageReducer } from 'widgets/PopupImage';
+import { UserReducer } from 'entities/User/model/slice/UserSlice';
 
 export function createReduxStore(
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
 ) {
   const rootReducers: ReducersMapObject<StateSchema> = {
+    user: UserReducer,
     basketList: basketListReducer,
     scrollWatches: ScrollWatchesReducer,
     searchProduct: SearchProductReducer,
     formCall: FormCallReducer,
     chat: chatSliceReducer,
+    popupImage: PopupImageReducer,
     successApplication: SuccessApplicationReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
     ...asyncReducers,

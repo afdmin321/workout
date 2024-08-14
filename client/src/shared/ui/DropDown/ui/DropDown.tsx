@@ -28,11 +28,11 @@ const DropDown: FC<Props> = (props: Props) => {
           &#9660;
         </div>
       </div>
-      <p
+      <div
         className={classNames(cls.description, { [cls.active]: collapsed, }, [])}
       >
         {children}
-      </p>
+      </div>
     </div>
   );
 };

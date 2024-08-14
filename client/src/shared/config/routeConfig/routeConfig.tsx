@@ -3,6 +3,7 @@ import { BasketPage } from 'pages/BasketPage';
 import { ContactPage } from 'pages/ContactPage';
 import { FAQPage } from 'pages/FAQPage';
 import { GuaranteesPage } from 'pages/GuaranteesPage';
+import { LoginPage } from 'pages/LoginPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { OfertaPage } from 'pages/OfertaPage';
@@ -25,6 +26,7 @@ export enum AppRoutes {
   CERTIFICATES = 'certificates',
   FAQ = 'faq',
   OFERTA = 'oferta',
+  AUTH = 'auth',
   // last
   NOT_FOUND = 'not_found',
 }
@@ -40,6 +42,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.PRODUCT_DETAILS]: '/products/', // +:id
   [AppRoutes.FAQ]: '/faq',
   [AppRoutes.OFERTA]: '/oferta',
+  [AppRoutes.AUTH]: '/auth',
   [AppRoutes.NOT_FOUND]: '*',
 };
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -83,7 +86,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: RoutePath.oferta,
     element: <OfertaPage />,
   },
-
+  [AppRoutes.AUTH]: {
+    path: RoutePath.auth,
+    element: <LoginPage />,
+  },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,
     element: <NotFoundPage />,

@@ -10,7 +10,7 @@ import {
 import cls from './DropDownList.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from '../Button/Button';
-import { ProductSort } from 'entities/Product/model/types/Product';
+
 
 export interface DropDownListOption<T extends string> {
   id: T;

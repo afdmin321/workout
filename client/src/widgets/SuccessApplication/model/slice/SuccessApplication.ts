@@ -8,6 +8,9 @@ const successApplicationSlice = createSlice({
   name: 'successApplication',
   initialState,
   reducers: {
+    setInvisible: (state) => {
+      state.visible = false;
+    },
     setVisible: (state, action: PayloadAction<boolean>) => {
       state.visible = action.payload;
     },

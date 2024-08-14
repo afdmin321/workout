@@ -61,7 +61,7 @@ const FormCall: FC<Props> = (props: Props) => {
     <form
       onSubmit={(evt) => {
         evt.preventDefault();
-        dispatch(fetchOrder());
+        dispatch(fetchOrder(theme));
         dispatch(FormCallAction.resetState());
       }}
       className={classNames(cls.Form, {}, [className, cls[theme]])}

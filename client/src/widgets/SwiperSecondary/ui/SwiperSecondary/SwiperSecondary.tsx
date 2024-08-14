@@ -1,20 +1,44 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import cls from './SwiperSecondary.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Autoplay, Navigation, Pagination } from 'swiper/modules';
+import {
+  EffectCoverflow,
+  Autoplay,
+  Navigation,
+  Pagination,
+} from 'swiper/modules';
 import 'swiper/scss';
 import 'swiper/scss/effect-coverflow';
 import SwiperItem from '../SwiperItem/SwiperItem';
-
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { PopupImage, PopupImageAction } from 'widgets/PopupImage';
+import Image1 from '11.jpg';
+import Image2 from '12.jpg';
+import Image3 from '13.jpg';
 interface Props {
   className?: string;
   spaceBetween?: number;
   slidesPerView?: number;
 }
-const my_array = Array.from(Array(20 + 1).keys()).slice(1);
+
+const images = [
+  { src: Image1, id: '1' },
+  { src: Image2, id: '2' },
+  { src: Image3, id: '3' },
+
+];
 const SwiperSecondary: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
+  const dispatch = useAppDispatch();
+  const onHandlerClickItem = useCallback(
+    (currentImageSrc: string) => {
+      dispatch(PopupImageAction.setCurrentImgSrc(currentImageSrc));
+      dispatch(PopupImageAction.setImages(images as []));
+      dispatch(PopupImageAction.setPopupImageVisible(true));
+    },
+    [dispatch, images],
+  );
   return (
     <div
       className={classNames(cls.SwiperSecondary, {}, [className])}
@@ -25,7 +49,7 @@ const SwiperSecondary: FC<Props> = (props: Props) => {
         slidesPerView={3}
         modules={[EffectCoverflow, Autoplay, Navigation, Pagination]}
         autoplay={{
-          delay: 3500
+          delay: 3500,
         }}
         navigation
         effect="coverflow"
@@ -35,11 +59,15 @@ const SwiperSecondary: FC<Props> = (props: Props) => {
         watchOverflow
         wrapperClass={cls.wrapperSwiper}
       >
-        {my_array.map((el) => {
+        {images.map((el) => {
           return (
-            <SwiperSlide key={el}>
+            <SwiperSlide key={el.id}>
               {({ isNext }) => (
-                <SwiperItem src="test" isActive={isNext} key={el} />
+                <SwiperItem
+                  src={el.src}
+                  onHandler={onHandlerClickItem}
+                  isActive={isNext}
+                />
               )}
             </SwiperSlide>
           );
