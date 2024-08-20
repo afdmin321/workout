@@ -1,14 +1,15 @@
 import { FC, memo, useState } from 'react';
 import cls from './AboutPage.module.scss';
 import YouTube from 'react-youtube';
-import imgAkim from 'shared/assets/1.jpg';
 import { Icon } from 'shared/ui/Icon/Icon';
 import IconDuotone from 'shared/assets/icons/duotone.svg';
 import IconTick from 'shared/assets/icons/tick.svg';
 import IconCertificate from 'shared/assets/icons/certificate.svg';
 import IconDelivery from 'shared/assets/icons/delivery.svg';
-import { Loader, ThemeLoader } from 'shared/ui/Loader/Loader';
+import { Loader } from 'shared/ui/Loader/Loader';
 import { classNames } from 'shared/lib/classNames/classNames';
+import OneImg from 'shared/assets/about/gerb2.jpg';
+import TwoImg from 'shared/assets/about/iskra.jpg';
 const AboutPage: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const stopLoading = () => {
@@ -21,7 +22,7 @@ const AboutPage: FC = () => {
           <div className={cls.loadingWrapper}>
             <h2>Видео загружается...</h2>
             <div className={cls.loaderWrapper}>
-              <Loader/>
+              <Loader />
             </div>
           </div>
         )}
@@ -33,8 +34,18 @@ const AboutPage: FC = () => {
         />
       </div>
       <div className={cls.wrapperImg}>
-        <img src={imgAkim} alt="" className={cls.img} />
-        <img src={imgAkim} alt="" className={cls.img} />
+        <img
+          src={OneImg}
+          alt="Процесс производства
+        "
+          className={cls.img}
+        />
+        <img
+          src={TwoImg}
+          alt="Процесс производства
+        "
+          className={cls.img}
+        />
       </div>
       <ul className={cls.list}>
         <li className={cls.item}>

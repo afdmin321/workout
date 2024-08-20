@@ -1,4 +1,4 @@
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 import { NavbarItemsType } from '../types/navbar';
 import IconBasket from 'shared/assets/icons/cart.svg';
 export const getNavbarBasket = {

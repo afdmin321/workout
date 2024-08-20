@@ -1,6 +1,5 @@
 import { FC, memo } from 'react';
 import cls from './Map.module.scss';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { YMaps, Placemark, Map as Ymap } from '@pbe/react-yandex-maps';
 
 interface Props {
@@ -17,6 +16,7 @@ const Map: FC<Props> = (props: Props) => {
           className={cls.map}
           width={'100%'}
           defaultState={{ center: coordinates, zoom }}
+
         >
           <Placemark geometry={coordinates} />
         </Ymap>

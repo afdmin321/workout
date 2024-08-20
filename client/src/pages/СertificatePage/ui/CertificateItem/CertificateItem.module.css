@@ -1,10 +1,12 @@
 .CertificateItem {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   gap: 10px 0;
+  min-width: 250px;
+  cursor: pointer;
 }
 .CertificateItem:hover::before {
   content: "";
@@ -14,10 +16,11 @@
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.3215686275);
+  border-radius: 15px;
 }
 
 .img {
-  width: 250px;
+  width: 200px;
 }
 
 .text {
@@ -29,6 +32,9 @@
 
 @media (min-width: 850px) {
   .img {
-    width: 400px;
+    width: 300px;
+  }
+  .CertificateItem {
+    min-width: 320px;
   }
 }/*# sourceMappingURL=CertificateItem.module.css.map */

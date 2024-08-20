@@ -19,7 +19,7 @@ export const productDetails = createSlice({
       .addCase(
         fetchProductById.fulfilled,
         (state, action: PayloadAction<Product>) => {
-          state.isLoading = true;
+          state.isLoading = false;
           state.data = action.payload;
         },
       )

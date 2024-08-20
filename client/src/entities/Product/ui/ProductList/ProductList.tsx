@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo } from 'react';
 import cls from './ProductList.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Product } from 'entities/Product/model/types/Product';
@@ -16,13 +16,9 @@ const ProductList: FC<Props> = (props: Props) => {
       className={classNames(cls.ProductList, {}, [className])}
       {...otherProps}
     >
-      {products.length > 0 ? (
-        products.map((product) => (
-          <ProductListItem product={product} key={product.id} />
-        ))
-      ) : (
-        <div>Product list emty</div>
-      )}
+      {products.map((product) => (
+        <ProductListItem product={product} key={product.id} />
+      ))}
     </div>
   );
 };

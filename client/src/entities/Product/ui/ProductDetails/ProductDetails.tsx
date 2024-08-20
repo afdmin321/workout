@@ -18,11 +18,9 @@ import { fetchProductById } from 'entities/Product/model/services/ProductDetails
 import { PageLoader } from 'widgets/PageLoader';
 
 import Price from 'shared/ui/Price/Price';
-import { basketListActions } from 'entities/Basket/model/slice/BasketListSlice';
-
-import { getBasketData } from 'entities/Basket/model/selectors/getBasket';
 
 import IncreasingBasket from 'widgets/IncreasingBasket/IncreasingBasket';
+import { PopupImageAction } from 'widgets/PopupImage';
 interface Props {
   id: string;
   className?: string;
@@ -36,35 +34,38 @@ const ProductDetails: FC<Props> = (props: Props) => {
   const product = useSelector(getProductDetailsData);
   const error = useSelector(getProductDetailsError);
   const dispatch = useAppDispatch();
-  const basketProducts = useSelector(getBasketData);
-  const targetBasketProduct = basketProducts.find(
-    (basketProduct) => basketProduct.id === id,
-  );
-  const quantity = targetBasketProduct?.quantity || 1;
 
   useEffect(() => {
     dispatch(fetchProductById(id));
   }, [dispatch, id]);
 
-  const addProductToBasket = useCallback(() => {
-    if (product) {
-      dispatch(basketListActions.addBasketItem({ ...product, quantity }));
-    }
-  }, [dispatch, product, quantity]);
-
+  const onHandlerClickImage = useCallback(
+    (currentImageSrc: string) => {
+      dispatch(PopupImageAction.setCurrentImgSrc(currentImageSrc));
+      dispatch(PopupImageAction.setImages(product?.images as []));
+      dispatch(PopupImageAction.setPopupImageVisible(true));
+    },
+    [dispatch, product?.images],
+  );
   let content;
   if (isLoading) {
     content = <PageLoader />;
   }
   if (error) {
-    content = <div>error...</div>;
+    content = (
+      <div>
+        Произошла ошибка при загрузке товара {':('} Попробуйте перезагрузить
+        страницу
+      </div>
+    );
   }
   if (product) {
     content = (
       <>
         <img
+          onClick={() => onHandlerClickImage(product?.images[0]?.src)}
           className={cls.img}
-          src={product?.images[0].src}
+          src={product?.images[0]?.src}
           alt={product?.name}
         />
         <div className={cls.wrapperInfo}>

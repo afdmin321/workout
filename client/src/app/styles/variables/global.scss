@@ -25,7 +25,9 @@
   --swiper-navigation-color: #47444496;
   --swiper-theme-color: --colorDecoration !important;
   --swiper-pagination-color: #474444;
-  --white: #fff; // z - Индексы
+  --white: #fff;
+  --skeleton-color: var(--bg-secondary);
+  --skeleton-shadow: var(--colorDecoration);
   --modal-z-index: 10;
   --swiper-pagination-bullet-size: 17px;
 }

@@ -30,7 +30,8 @@ import { Page } from 'widgets/Page/Page';
 import { ProductSort } from 'entities/Product/model/types/Product';
 import ProductsPageFilter from '../ProductsPageFilter/ProductsPageFilter';
 import { useSearchParams } from 'react-router-dom';
-
+import ProductSkeleton from 'entities/Product/ui/ProductSkeleton/ProductSkeleton';
+import { error } from 'console';
 
 interface Props {
   className?: string;
@@ -42,7 +43,7 @@ const ProductsPage: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   const dispatch = useAppDispatch();
   const products = useSelector(getProducts.selectAll);
-  const page = useSelector(getProductsPage);
+  const error = useSelector(getProductsPageError);
   const isLoading = useSelector(getProductsPageIsLoading);
   const hasMore = useSelector(getProductsPageHasMore);
   const sort = useSelector(getProductsPageSort);
@@ -53,9 +54,45 @@ const ProductsPage: FC<Props> = (props: Props) => {
   }, [dispatch, sort]);
 
   useEffect(() => {
-
     dispatch(initProductsPage(searchParams));
   }, [dispatch]);
+
+  let content;
+
+  if (isLoading) {
+    content = (
+      <>
+        <div className={cls.skeletonWrapper}>
+          {Array(10)
+            .fill(5)
+            .map(() => {
+              return <ProductSkeleton />;
+            })}
+        </div>
+      </>
+    );
+    console.log(content);
+  }
+  if (error) {
+    content = (
+      <h2 style={{ textAlign: 'center', paddingTop: '30px' }}>
+        Произошла ошибка на сервере{':('} Попробуйте обновить страницу
+      </h2>
+    );
+  }
+  if (!isLoading && !error) {
+    content = (
+      <>
+        <ProductList products={products} />
+        {hasMore && (
+          <Button theme={ThemeButton.OUTLINE} onClick={onLoadNextPart}>
+            Показать ешё
+          </Button>
+        )}
+      </>
+    );
+  }
+
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <Page
@@ -63,13 +100,7 @@ const ProductsPage: FC<Props> = (props: Props) => {
         {...otherProps}
       >
         <ProductsPageFilter />
-
-        <ProductList products={products} />
-        {hasMore && (
-          <Button theme={ThemeButton.OUTLINE} onClick={onLoadNextPart}>
-            Показать ешё
-          </Button>
-        )}
+        {content}
       </Page>
     </DynamicModuleLoader>
   );

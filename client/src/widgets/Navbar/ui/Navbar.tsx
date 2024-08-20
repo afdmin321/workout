@@ -2,13 +2,6 @@ import { memo, useState } from 'react';
 import cls from './Navbar.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Connect } from 'widgets/Connect';
-import {
-  getNavbarSecondaryItems,
-  getNavbarPrimaryItems,
-  getNavbarBasket,
-} from '../model/selectors/getNavbarItems';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { Icon } from 'shared/ui/Icon/Icon';
 import SearchProduct from 'features/SearchProduct/ui/SearchProduct';
 import SecondaryItems from './SecondaryItems/SecondaryItems';
 import PrimaryItems from './PrimaryItems/PrimaryItems';

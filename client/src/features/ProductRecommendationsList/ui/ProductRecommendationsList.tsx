@@ -3,7 +3,7 @@ import cls from './ProductRecommendationsList.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useProductRecommendationsList } from '../api/ProductRecommendationsListApi';
 import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 
 interface Props {
   className?: string;
@@ -34,7 +34,7 @@ const ProductRecommendationsList: FC<Props> = (props: Props) => {
           <img
             onClick={() => onOpenArticle(product.id)}
             className={cls.img}
-            src={product.images[0].src}
+            src={product.images[0]?.src}
             alt={product.name}
           />
         </div>

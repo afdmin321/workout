@@ -3,7 +3,7 @@ import cls from './FAQPage.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DropDown } from 'shared/ui/DropDown';
 import { AppLink, ThemeLink } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 
 interface Props {
   className?: string;
@@ -16,10 +16,7 @@ const FAQPage: FC<Props> = (props: Props) => {
         <div>
           Да, вся наша продукция сертифицирована. Сертификаты можно посмотреть
           на странице{' '}
-          <AppLink
-            to={RoutePath.certificates}
-            theme={ThemeLink.BLUE}
-          >
+          <AppLink to={RoutePath.certificates} theme={ThemeLink.BLUE}>
             «СЕРТИФИКАТЫ»
           </AppLink>
         </div>

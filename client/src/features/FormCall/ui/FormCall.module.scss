@@ -18,6 +18,10 @@
     color: var(--red-dark);
   }
 }
+.button:disabled {
+  opacity: .2;
+  cursor: no-drop;
+}
 .title {
   max-width: 200px;
   font-size: 20px;
@@ -32,12 +36,12 @@
   margin: auto;
 }
 .Form.chat {
-  padding: 0;
+  padding: 10px;
 }
 .chat {
   .label {
     max-width: 215px;
-    min-height: 70px;
+    min-height: 67px;
   }
 }
 .contact,

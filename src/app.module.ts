@@ -10,6 +10,7 @@ import { ImagesModule } from 'images/images.module';
 import { OrdersModule } from 'order/orders.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { GalleryModule } from 'gallery/gallery.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { join } from 'path';
     AuthModule,
     ImagesModule,
     OrdersModule,
+    GalleryModule,
   ],
   controllers: [],
   providers: [],

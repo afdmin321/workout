@@ -1,4 +1,10 @@
 .icon {
   width: 20px;
   height: 20px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0 5px;
 }/*# sourceMappingURL=LinkMail.module.css.map */

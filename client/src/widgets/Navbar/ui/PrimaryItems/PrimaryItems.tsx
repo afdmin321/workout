@@ -2,7 +2,7 @@ import { FC, ReactNode, memo } from 'react';
 import cls from './PrimaryItems.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { Icon } from 'shared/ui/Icon/Icon';
+
 import {
   getNavbarPrimaryItems,
   getNavbarBasket,

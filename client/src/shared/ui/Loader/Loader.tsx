@@ -15,7 +15,6 @@ interface Props {
 export const Loader: FC<Props> = ({ className, theme = ThemeLoader.BIG }: Props) => {
   return (
     <div className={classNames(cls.loader, {[cls[theme]]: theme})}>
-      <div className="loader"></div>
     </div>
   );
 };

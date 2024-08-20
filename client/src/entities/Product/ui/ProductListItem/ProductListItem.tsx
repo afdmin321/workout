@@ -4,7 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Product } from 'entities/Product/model/types/Product';
 import Price from 'shared/ui/Price/Price';
 import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 
 import IncreasingBasket from 'widgets/IncreasingBasket/IncreasingBasket';
 
@@ -18,7 +18,7 @@ const ProductListItem: FC<Props> = (props: Props) => {
   const onOpenArticle = useCallback(() => {
     navigate(RoutePath.product_details + product.id);
   }, [navigate, product.id]);
-  const productImages = !product.images.length ? product.images[0].src : 'null';
+  const productImages = product.images.length ? product.images[0]?.src : '';
   return (
     <div
       className={classNames(cls.ProductListItem, {}, [className])}

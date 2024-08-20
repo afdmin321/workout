@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import {
   getFormCallErrorName,
   getFormCallErrorPhone,
+  getFormCallIsLoading,
   getFormCallName,
   getFormCallPhone,
   getFormCallSubmiteDisabled,
@@ -15,7 +16,8 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { FormCallAction } from '../model/slice/FormCallSlice';
 import { fetchOrder } from '../model/services/fetchOrder';
 import { AppLink, ThemeLink } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
+import LoaderSmall from 'shared/ui/LoaderSmall/LoaderSmall';
 
 interface Props {
   theme: ThemeForm;
@@ -36,6 +38,7 @@ const FormCall: FC<Props> = (props: Props) => {
   const errorName = useSelector(getFormCallErrorName);
   const errorPhone = useSelector(getFormCallErrorPhone);
   const submiteDisabled = useSelector(getFormCallSubmiteDisabled);
+  const isLoading = useSelector(getFormCallIsLoading);
   const phonePattern = /^[+0-9]*$/;
   const dispatch = useAppDispatch();
 
@@ -97,14 +100,18 @@ const FormCall: FC<Props> = (props: Props) => {
           </div>
         </div>
       )}
-      <Button
-        className={cls.button}
-        type={typeButton.SUBMITE}
-        theme={ThemeButton.ROUNDED}
-        disabled={submiteDisabled}
-      >
-        {textSubmite ? textSubmite : 'Заказать звонок'}
-      </Button>
+      {isLoading ? (
+        <LoaderSmall />
+      ) : (
+        <Button
+          className={cls.button}
+          type={typeButton.SUBMITE}
+          theme={ThemeButton.ROUNDED}
+          disabled={submiteDisabled}
+        >
+          {textSubmite ? textSubmite : 'Заказать звонок'}
+        </Button>
+      )}
     </form>
   );
 };

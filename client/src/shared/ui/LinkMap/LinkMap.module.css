@@ -1,4 +1,10 @@
 .icon {
   width: 20px;
   height: 20px;
+}
+
+.linkMap {
+  display: flex;
+  gap: 0 5px;
+  align-items: center;
 }/*# sourceMappingURL=LinkMap.module.css.map */

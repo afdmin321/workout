@@ -36,19 +36,35 @@
   margin: auto;
 }
 
+.Form.chat {
+  padding: 0;
+}
+
+.chat .label {
+  max-width: 215px;
+  min-height: 70px;
+}
+
 .contact .button,
-.order .button {
+.order .button,
+.call .button {
   padding: 6px 10px;
   width: 100%;
 }
 .contact .label,
-.order .label {
+.order .label,
+.call .label {
   width: 100%;
-  min-height: 84px;
+  min-height: 86px;
 }
 .contact .input,
-.order .input {
+.order .input,
+.call .input {
   padding: 6px 10px;
+}
+
+.call .label {
+  max-width: 220px;
 }
 
 @media (min-width: 700px) {

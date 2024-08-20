@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FormCallSchema } from '../types/FormCallSchema';
+import { fetchOrder } from '../services/fetchOrder';
 
 const initialState: FormCallSchema = {
-  submiteDisabled: true,
+  data: { submiteDisabled: true },
+  isLoading: false,
 };
 
 const formCallSlice = createSlice({
@@ -11,46 +13,60 @@ const formCallSlice = createSlice({
   reducers: {
     formValid: (state) => {
       const phonePatt = /^\+?[78][-\(]?\d{3}\)?-?\d{3}-?\d{2}-?\d{2}$/;
-      if (state.name && state.name.length < 2) {
-        state.errorName = 'Имя не может содержать меньше 2-ух символов';
+      if (state.data.name && state.data.name.length < 2) {
+        state.data.errorName = 'Имя не может содержать меньше 2-ух символов';
       } else {
-        state.errorName = '';
+        state.data.errorName = '';
       }
-      if (state.phone && !phonePatt.test(state.phone)) {
-        state.errorPhone =
+      if (state.data.phone && !phonePatt.test(state.data.phone)) {
+        state.data.errorPhone =
           'Введите корректный номер телефона (+7 или 8)9977700777';
       } else {
-        state.errorPhone = '';
+        state.data.errorPhone = '';
       }
       if (
-        state.phone &&
-        phonePatt.test(state.phone) &&
-        state.name &&
-        state.name.length >= 2
+        state.data.phone &&
+        phonePatt.test(state.data.phone) &&
+        state.data.name &&
+        state.data.name.length >= 2
       ) {
-        state.submiteDisabled = false;
+        state.data.submiteDisabled = false;
       } else {
-        state.submiteDisabled = true;
+        state.data.submiteDisabled = true;
       }
     },
     setName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
+      state.data.name = action.payload;
     },
     setPhone: (state, action: PayloadAction<string>) => {
-      state.phone = action.payload;
+      state.data.phone = action.payload;
     },
     setErrorName: (state, action: PayloadAction<string>) => {
-      state.errorName = action.payload;
+      state.data.errorName = action.payload;
     },
     setErrorPhone: (state, action: PayloadAction<string>) => {
-      state.errorPhone = action.payload;
+      state.data.errorPhone = action.payload;
     },
     setSubmiteDisabled: (state, action: PayloadAction<boolean>) => {
-      state.submiteDisabled = action.payload;
+      state.data.submiteDisabled = action.payload;
     },
     resetState: () => {
       return initialState;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchOrder.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(fetchOrder.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(fetchOrder.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 

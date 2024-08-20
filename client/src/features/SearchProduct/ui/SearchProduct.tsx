@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 import { ProductsPageAction } from 'pages/ProductsPage/model/slice/ProductsPageSlice';
 
 import { fetchProducts } from 'pages/ProductsPage/model/services/fetchProducts/fetchProducts';

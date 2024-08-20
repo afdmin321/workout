@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import './LoaderSmall.scss';
-import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './LoaderSmall.module.scss';
+
 
 interface Props {
   className?: string;
@@ -8,8 +8,8 @@ interface Props {
 const LoaderSmall: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <div className='asdf'>
-      <div className="loader"></div>
+    <div className={cls.LoaderSmall}>
+      <div className={cls.loader}></div>
     </div>
   );
 };

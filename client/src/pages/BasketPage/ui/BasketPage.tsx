@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { getBasketData } from 'entities/Basket/model/selectors/getBasket';
 import FormCall, { ThemeForm } from 'features/FormCall/ui/FormCall';
 import { useSpacePrice } from 'shared/lib/hooks/useSpacePrice/useSpacePrice';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 import { AppLink, ThemeLink } from 'shared/ui/AppLink/AppLink';
 
 interface Props {

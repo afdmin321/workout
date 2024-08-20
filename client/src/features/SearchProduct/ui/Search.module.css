@@ -1,3 +1,8 @@
+.Search {
+  display: flex;
+  align-items: center;
+}
+
 .input {
   position: relative;
   padding-right: 30px !important;
@@ -35,11 +40,6 @@
   min-height: auto !important;
 }
 
-@media (min-width: 650px) {
-  .buttonSearch {
-    margin-top: 5px !important;
-  }
-}
 @media (min-width: 1460px) {
   .iconSearch {
     width: 20px;

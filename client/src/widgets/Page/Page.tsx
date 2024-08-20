@@ -6,7 +6,6 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ScrollWatchesActions, getScrollWatchesByPath } from 'widgets/ScrollWatches';
 import { useLocation } from 'react-router-dom';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
 

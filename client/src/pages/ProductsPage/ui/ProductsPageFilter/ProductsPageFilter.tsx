@@ -28,6 +28,7 @@ const ProductsPageFilter: FC<Props> = (props: Props) => {
 
   const onHandlerSort = useCallback(
     (value: string) => {
+      if (value === sort) return;
       dispatch(ProductsPageAction.setSort(value as ProductSort));
       dispatch(ProductsPageAction.setPage(1));
       fetchData();
@@ -36,16 +37,20 @@ const ProductsPageFilter: FC<Props> = (props: Props) => {
   );
   const onHandlerFilter = useCallback(
     (value: ProductFilter) => {
+      if (value === filter) return;
       dispatch(ProductsPageAction.setFilter(value as ProductFilter));
       dispatch(ProductsPageAction.setPage(1));
       fetchData();
     },
-    [dispatch, fetchData],
+    [dispatch, fetchData, filter],
   );
   return (
     <>
       <ProductSortSelector sort={sort} onHandlerSort={onHandlerSort} />
-      <ProductFilterCategory filter={filter} onHandlerFilter={onHandlerFilter} />
+      <ProductFilterCategory
+        filter={filter}
+        onHandlerFilter={onHandlerFilter}
+      />
     </>
   );
 };

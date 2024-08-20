@@ -9,7 +9,7 @@ import { basketListActions } from 'entities/Basket/model/slice/BasketListSlice';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import Quantity from 'widgets/Quantity/Quantity';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 
 interface Props {
   product: Product;

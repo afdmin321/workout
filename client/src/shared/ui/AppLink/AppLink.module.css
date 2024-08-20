@@ -11,10 +11,6 @@
   opacity: 0.7;
 }
 
-.primary {
-  color: var(--primary-color);
-}
-
-.secondary {
-  color: var(--inverted-secondary-color);
+.AppLink.blue {
+  color: var(--color-link-allot);
 }/*# sourceMappingURL=AppLink.module.css.map */

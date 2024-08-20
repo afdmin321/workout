@@ -6,6 +6,19 @@
   padding: 20px 7px 50px;
 }
 
+.basketNull {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.title {
+  max-width: 500px;
+}
+
 .formPriceWrapper {
   width: 100%;
   display: flex;

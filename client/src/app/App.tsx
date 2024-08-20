@@ -10,17 +10,26 @@ import { useSelector } from 'react-redux';
 import { getSuccessApplicationVisible } from 'widgets/SuccessApplication/model/selectors/SuccessApplicationSelectors';
 import PopupImage from 'widgets/PopupImage/ui/PopupImage';
 import { getPopupImagesVisible } from 'widgets/PopupImage/model/selectors/PopupSelectors';
+import { getUserInited } from 'entities/User/model/selectors/UserSelector';
+import { useEffect } from 'react';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { UserActions } from 'entities/User/model/slice/UserSlice';
 
 const App = () => {
+  const dispatch = useAppDispatch();
   const popupSuccessApplicationVisible = useSelector(
     getSuccessApplicationVisible,
   );
   const popupImageVisible = useSelector(getPopupImagesVisible);
+  const inited = useSelector(getUserInited);
+  useEffect(() => {
+    dispatch(UserActions.initAuthData());
+  }, [dispatch]);
   return (
     <div className={classNames('app')}>
       <Navbar />
       <div className="content-page width-wrapper">
-        <AppRouter />
+        {inited && <AppRouter />}
       </div>
       {popupSuccessApplicationVisible && <SuccessApplication />}
       <FeedBack />
