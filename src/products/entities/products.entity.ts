@@ -43,5 +43,11 @@ export class Products {
   material: string | null;
 
   @Column({ nullable: true })
-  size: string | null;
+  length: number | null;
+
+  @Column({ nullable: true })
+  width: number | null;
+
+  @Column({ nullable: true })
+  height: number | null;
 }

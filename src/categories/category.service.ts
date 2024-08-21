@@ -32,47 +32,53 @@ export class CategoriesService {
   }
 
   async findAll() {
-    const categories = await this.categoriesRepository.find();
-    return categories;
+    return this.categoriesRepository
+      .find({ relations: { products: true } })
+      .then((res) => res);
   }
   async findAllWithPagination(categoryId: string, page: number, limit: number) {
-    const products = await this.categoriesRepository.find({
-      relations: {
-        products: { images: true },
-      },
-      where: {
-        id: categoryId,
-      },
-      take: limit,
-      skip: (page - 1) * limit,
-    });
-    return products;
+    return this.categoriesRepository
+      .find({
+        relations: {
+          products: { images: true },
+        },
+        where: {
+          id: categoryId,
+        },
+        take: limit,
+        skip: (page - 1) * limit,
+      })
+      .then((res) => res);
   }
 
   async findOne(id: string) {
-    const category = await this.categoriesRepository.findOne({
-      where: { id },
-      relations: { products: { images: true } },
-    });
-    if (!category) throw new NotFoundException('Category not found!');
-    return category;
+    try {
+      return this.categoriesRepository
+        .findOne({
+          where: { id },
+          relations: { products: { images: true } },
+        })
+        .then((res) => res);
+    } catch (err) {
+      throw new NotFoundException('Category not found!');
+    }
   }
 
   async update(id: string, updateCategoriesDto: UpdateCategoriesDto) {
-    const category = await this.categoriesRepository.findOne({
-      where: { id },
-    });
-
-    if (!category) throw new NotFoundException('Category not found!');
-
-    return await this.categoriesRepository.update(id, updateCategoriesDto);
+    try {
+      return this.categoriesRepository
+        .update(id, updateCategoriesDto)
+        .then((res) => res);
+    } catch (err) {
+      throw new NotFoundException('Category not found!');
+    }
   }
 
   async remove(id: string) {
-    const category = await this.categoriesRepository.findOne({
-      where: { id },
-    });
-    if (!category) throw new NotFoundException('Category not found!');
-    return await this.categoriesRepository.delete(id);
+    try {
+      return this.categoriesRepository.delete(id).then((res) => res);
+    } catch (err) {
+      throw new NotFoundException('Category not found!');
+    }
   }
 }

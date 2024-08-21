@@ -25,12 +25,21 @@ export class OrderService {
       phone: createOrderDto.phone,
       products: createOrderDto.products,
     });
-    // for (const product of createOrderDto.products) {
-    //   await this.orderProductsRepository.save({
-    //     product,
-    //     order: newOrder,
-    //   });
-    // }
+    if (createOrderDto.products) {
+      const products = createOrderDto.products.map((product) => {
+        return {
+          order: newOrder,
+          name: product.name,
+          price: product.price,
+          articleNumber: product.articleNumber,
+          link: `https://воркаут.рф/products/${product.id}`,
+        };
+      });
+      this.orderProductsRepository
+        .insert(products)
+        .then((res) => console.log(res));
+    }
+
     const messageHtml = getOrderTemplate(createOrderDto);
 
     // sendMessage('afdmin321@yandex.ru', messageHtml);
@@ -38,8 +47,14 @@ export class OrderService {
     return newOrder;
   }
 
-  findAll() {
-    return `This action returns all product`;
+  async findAll() {
+    return this.ordersRepository.find({
+      relations: {
+        products: true,
+      },
+    });
+
+    return this.orderProductsRepository.find({ relations: { order: true } });
   }
 
   findOne(id: string) {

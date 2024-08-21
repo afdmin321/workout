@@ -19,6 +19,7 @@ export class ProductsService {
   ) {}
 
   async create(createProductsDto: CreateProductsDto) {
+    console.log(createProductsDto);
     const isExist = await this.productsRepository.findBy({
       name: createProductsDto.name,
       category: createProductsDto.category,
@@ -33,7 +34,9 @@ export class ProductsService {
       ageGroup: createProductsDto.ageGroup,
       category: createProductsDto.category,
       articleNumber: createProductsDto.articleNumber,
-      size: createProductsDto.size,
+      length: createProductsDto.length,
+      width: createProductsDto.width,
+      height: createProductsDto.height,
       material: createProductsDto.material,
       price: createProductsDto.price,
     };
@@ -47,19 +50,21 @@ export class ProductsService {
   }
 
   async findAll() {
-    return await this.productsRepository.find({ relations: { images: true } });
+    return this.productsRepository
+      .find({ relations: { images: true } })
+      .then((res) => res);
   }
 
   async findRandom(limit: number) {
-    const products = await this.productsRepository
+    return this.productsRepository
       .createQueryBuilder('products')
       .orderBy('RANDOM()')
       .limit(limit)
       .leftJoinAndSelect('products.images', 'images')
-      .getMany();
-
-    return products;
+      .getMany()
+      .then((res) => res);
   }
+
   async findAllWithPagination(
     page: number,
     limit: number,
@@ -68,37 +73,40 @@ export class ProductsService {
     order: string,
     search: string,
   ) {
-    const products = await this.productsRepository.find({
-      relations: {
-        category: true,
-        images: true,
-      },
-      order: {
-        [sort]: order,
-      },
-      where: search
-        ? [
-            { articleNumber: Like(`%${search}%`), category: { id: filter } },
-            { name: Like(`%${search}%`), category: { id: filter } },
-            { description: Like(`%${search}%`), category: { id: filter } },
-          ]
-        : { category: { id: filter } },
+    return this.productsRepository
+      .find({
+        relations: {
+          category: true,
+          images: true,
+        },
+        order: {
+          [sort]: order,
+        },
+        where: search
+          ? [
+              { articleNumber: Like(`%${search}%`), category: { id: filter } },
+              { name: Like(`%${search}%`), category: { id: filter } },
+              { description: Like(`%${search}%`), category: { id: filter } },
+            ]
+          : { category: { id: filter } },
 
-      take: limit,
-      skip: page && limit ? (page - 1) * limit : null,
-    });
-
-    return products;
+        take: limit,
+        skip: page && limit ? (page - 1) * limit : null,
+      })
+      .then((res) => res);
   }
 
   async findOne(id: string) {
-    const product = await this.productsRepository.findOne({
-      where: { id },
-      relations: { images: true },
-    });
-    if (!product) throw new NotFoundException('product not found');
-
-    return product;
+    try {
+      return this.productsRepository
+        .findOne({
+          where: { id },
+          relations: { images: true },
+        })
+        .then((res) => res);
+    } catch (err) {
+      throw new NotFoundException('product not found');
+    }
   }
 
   async update(id: string, updateProductsDto: UpdateProductsDto) {
@@ -127,10 +135,10 @@ export class ProductsService {
   }
 
   async remove(id: string) {
-    const product = await this.productsRepository.findOne({
-      where: { id },
-    });
-    if (!product) throw new NotFoundException('product not found');
-    return this.productsRepository.delete(id);
+    try {
+      return this.productsRepository.delete(id).then((res) => res);
+    } catch (err) {
+      throw new NotFoundException('product not found');
+    }
   }
 }

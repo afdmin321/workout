@@ -9,5 +9,5 @@ export class Gallery {
   index: number;
 
   @Column()
-  src: string;
+  src: string; // image base64
 }

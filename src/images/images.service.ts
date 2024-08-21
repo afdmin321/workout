@@ -13,25 +13,22 @@ export class ImagesService {
   ) {}
   async create(createImagesDto: CreateImagesDto) {
     const { imageDecode } = FileDecode;
-    for (const image of createImagesDto.images) {
-      const src = imageDecode(image);
-      await this.imagesRepository.save({
-        src,
-        product: createImagesDto.product,
-      });
-    }
-    return 'This action adds a new product';
+    const data = createImagesDto.images.map((image) => {
+      return { product: createImagesDto.product, src: imageDecode(image) };
+    });
+
+    return this.imagesRepository.insert(data).then((res) => res);
   }
 
   async findAll() {
-    return await this.imagesRepository.find();
+    return this.imagesRepository.find().then((res) => res);
   }
 
   async findOne(id: string) {
-    return await this.imagesRepository.findOne({ where: { id } });
+    return this.imagesRepository.findOne({ where: { id } }).then((res) => res);
   }
 
   async remove(id: string) {
-    return await this.imagesRepository.delete(id);
+    return this.imagesRepository.delete(id).then((res) => res);
   }
 }

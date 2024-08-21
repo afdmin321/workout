@@ -7,5 +7,4 @@ export class CreateOrderDto {
   @IsNotEmpty()
   phone: string;
   products?: Products[];
-  email?: string | null;
 }

@@ -12,7 +12,7 @@ export class GalleryService {
     @InjectRepository(Gallery)
     private readonly galleryRepository: Repository<Gallery>,
   ) {}
-  create(createGalleryDto: CreateGalleryDto) {
+  async create(createGalleryDto: CreateGalleryDto) {
     const { imageDecode } = fileDecode;
     const data = createGalleryDto.data.map((el) => {
       return { ...el, src: imageDecode(el.src) };
@@ -20,11 +20,13 @@ export class GalleryService {
     return this.galleryRepository.insert(data).then((res) => res);
   }
 
-  findAll() {
+  async findAll() {
     return this.galleryRepository.find().then((res) => res);
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} product`;
+  async remove(id: string) {
+    try {
+      return this.galleryRepository.delete(id).then((res) => res);
+    } catch (err) {}
   }
 }

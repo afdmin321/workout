@@ -13,9 +13,6 @@ export class Orders {
   @Column()
   phone: string;
 
-  @Column({ nullable: true })
-  email: string | null;
-
-  @OneToMany((_) => OrderProducts, (orderProduct) => orderProduct)
-  product: Products[];
+  @OneToMany((_) => OrderProducts, (orderProduct) => orderProduct.order)
+  products: Products[];
 }
