@@ -17,6 +17,7 @@ import { fetchProducts } from 'pages/ProductsPage/model/services/fetchProducts/f
 import { getProductsPageInited } from 'pages/ProductsPage/model/selectors/ProductsPageSelectors';
 import { getSearchProduct } from '../model/selector/getSearchProductSelectors';
 import { SearchProductAction } from '../model/slice/SearchProductSice';
+import ButtonExit from 'shared/ui/ButtonExit/ButtonExit';
 interface Props {
   className?: string;
 }
@@ -96,9 +97,8 @@ const SearchProduct: FC<Props> = (props: Props) => {
             >
               <Icon className={cls.iconSubmite} Src={IconSearch} />
             </Button>
-            <Button className={cls.buttonExit} onClick={closedSearhForm}>
-              &#10006;
-            </Button>
+            <ButtonExit className={cls.buttonExit} onClick={closedSearhForm}/>
+  
           </form>
         )
       )}

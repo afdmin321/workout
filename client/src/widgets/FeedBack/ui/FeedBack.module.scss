@@ -44,7 +44,11 @@
 }
 .buttonBack {
   padding: 5px 14px 9px;
-  color: var(--colorDecoration);
+  span {
+    width: 17px;
+    height: 17px;
+    font-size: 18px;
+  }
   &:first-child {
     border-right: 1px solid var(--colorDecoration);
   }
@@ -59,7 +63,6 @@
     max-height: 350px;
     width: auto;
     transition: max-height 0.3s linear;
- 
   }
 }
 .wrapperChat {
@@ -85,7 +88,7 @@
 .icon {
   width: 17px;
   height: 17px;
-  font-size: 18px;
+ 
 }
 
 @media (min-width: 370px) {

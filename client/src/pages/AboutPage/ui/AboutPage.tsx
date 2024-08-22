@@ -1,13 +1,10 @@
 import { FC, memo, useState } from 'react';
 import cls from './AboutPage.module.scss';
-import YouTube from 'react-youtube';
 import { Icon } from 'shared/ui/Icon/Icon';
 import IconDuotone from 'shared/assets/icons/duotone.svg';
 import IconTick from 'shared/assets/icons/tick.svg';
 import IconCertificate from 'shared/assets/icons/certificate.svg';
 import IconDelivery from 'shared/assets/icons/delivery.svg';
-import { Loader } from 'shared/ui/Loader/Loader';
-import { classNames } from 'shared/lib/classNames/classNames';
 import OneImg from 'shared/assets/about/gerb2.jpg';
 import TwoImg from 'shared/assets/about/iskra.jpg';
 const AboutPage: FC = () => {
@@ -18,20 +15,14 @@ const AboutPage: FC = () => {
   return (
     <div className={cls.AboutPage}>
       <div className={cls.wrapperVideo}>
-        {isLoading && (
-          <div className={cls.loadingWrapper}>
-            <h2>Видео загружается...</h2>
-            <div className={cls.loaderWrapper}>
-              <Loader />
-            </div>
-          </div>
-        )}
-        <YouTube
-          videoId="5htaIcuqjAc"
-          className={classNames(cls.video, { [cls.invisible]: isLoading })}
-          iframeClassName={cls.video}
-          onReady={stopLoading}
-        />
+        <iframe
+          width="100%"
+          height="450"
+          src="https://rutube.ru/play/embed/2de05bf92c0ade0c2f4dad9d441d86ac/"
+          frameBorder="0"
+          allow="clipboard-write; autoplay"
+          allowFullScreen
+        ></iframe>
       </div>
       <div className={cls.wrapperImg}>
         <img
@@ -55,7 +46,7 @@ const AboutPage: FC = () => {
           <p className={cls.text}>
             ВОРКАУТ.РФ ВХОДИТ ГРУППУ КОМПАНИЙ "СТРОЙ ГОРОД" И ЯВЛЯЕТСЯ
             СЕРТИФИЦИРОВАННЫМ ПРОИЗВОДИТЕЛЕМ СПОРТИВНОГО И ДЕТСКОГО ИГРОВОГО
-            ОБОРУДОВАНИЯ. 
+            ОБОРУДОВАНИЯ.
           </p>
         </li>
         <li className={cls.item}>
@@ -63,7 +54,7 @@ const AboutPage: FC = () => {
             <Icon Src={IconTick} className={cls.icon} />
           </div>
           <p className={cls.text}>
-            МЫ ЗАНИМАЕМ ЛИДИРУЮЩИЕ ПОЗИЦИИ БОЛЕЕ 12 ЛЕТ НА РЫНКЕ.  ТОЛЬКО
+            МЫ ЗАНИМАЕМ ЛИДИРУЮЩИЕ ПОЗИЦИИ БОЛЕЕ 12 ЛЕТ НА РЫНКЕ. ТОЛЬКО
             КАЧЕСТВЕННОЕ СПОРТИВНОЕ ОБОРУДОВАНИЕ ПО КОНКУРЕНТОСПОСОБНЫМ ЦЕНАМ.
           </p>
         </li>
@@ -72,7 +63,7 @@ const AboutPage: FC = () => {
             <Icon Src={IconCertificate} className={cls.icon} />
           </div>
           <p className={cls.text}>
-            КОПИИ СЕРТИФИКАТОВ ВЫДАЮТСЯ ПО ФАКТУ ЗАКЛЮЧЕНИЯ ДОГОВОРА .
+            КОПИИ СЕРТИФИКАТОВ ВЫДАЮТСЯ ПО ФАКТУ ЗАКЛЮЧЕНИЯ ДОГОВОРА.
           </p>
         </li>
         <li className={cls.item}>

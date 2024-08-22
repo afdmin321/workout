@@ -9,6 +9,7 @@ import FormCall, { ThemeForm } from 'features/FormCall/ui/FormCall';
 import { Chat } from 'widgets/Chat';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { FormCallAction } from 'features/FormCall/model/slice/FormCallSlice';
+import ButtonExit from 'shared/ui/ButtonExit/ButtonExit';
 
 interface Props {
   className?: string;
@@ -20,13 +21,13 @@ const FeedBack: FC<Props> = (props: Props) => {
   const openCallWindow = () => {
     setCall(true);
     if (chat) {
-      closedChatWindow()
+      closedChatWindow();
     }
   };
   const openChatWindow = () => {
     setChat(true);
     if (call) {
-      closedCallWindow()
+      closedCallWindow();
     }
   };
   const closedCallWindow = () => {
@@ -54,12 +55,11 @@ const FeedBack: FC<Props> = (props: Props) => {
               <Icon Src={IconCall} className={cls.icon} />
             </Button>
           ) : (
-            <Button
+            <ButtonExit
               className={classNames(cls.button, {}, [cls.buttonBack])}
               onClick={closedCallWindow}
-            >
-              <span className={cls.icon}>&#10006;</span>
-            </Button>
+            />
+           
           )}
           {!chat ? (
             <Button
@@ -69,12 +69,10 @@ const FeedBack: FC<Props> = (props: Props) => {
               <Icon Src={IconChat} className={cls.icon} />
             </Button>
           ) : (
-            <Button
+            <ButtonExit
               className={classNames(cls.button, {}, [cls.buttonBack])}
               onClick={closedChatWindow}
-            >
-              <span className={cls.icon}>&#10006;</span>
-            </Button>
+            />
           )}
         </div>
         <div

@@ -39,13 +39,14 @@ body,
 }
 *::-webkit-scrollbar {
   width: 8px;
-
 }
 *::-webkit-scrollbar-thumb {
-  background-color: var(--colorDecoration); 
-  border-radius: 20px; 
-
+  background-color: var(--colorDecoration);
+  border-radius: 20px;
 }
 *::-webkit-scrollbar-track {
-  background: var(--bg-secondary);        
+  background: var(--bg-secondary);
+}
+.ymaps-2-1-79-gototech, .ymaps-2-1-79-copyright__link, .ymaps-2-1-79-gototaxi__container {
+  display: none !important;
 }

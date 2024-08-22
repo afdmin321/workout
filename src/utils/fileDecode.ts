@@ -7,9 +7,16 @@ class FileDecode {
     const currentDate = dayjs().unix();
     const nameImage = `${currentDate + Math.round(Math.random() * 100)}.jpg`;
     const buffer = Buffer.from(img.split(',')[1], 'base64');
-    const path = resolve(__dirname, '../', '../', 'images', nameImage);
+    const path = resolve(
+      __dirname,
+      '../',
+      '../',
+      'client',
+      'images',
+      nameImage,
+    );
     writeFileSync(path, buffer);
-    return '/images/' + nameImage;
+    return '../images/' + nameImage;
   }
 }
 export default new FileDecode();
