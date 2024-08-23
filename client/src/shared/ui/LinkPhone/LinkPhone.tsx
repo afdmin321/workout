@@ -13,6 +13,7 @@ const LinkPhone: FC<Props> = (props: Props) => {
   const { className, classNameIcon, classNameText, ...otherProps } = props;
   return (
     <Link
+      aria-label="наш номер телефона: 88002017773"
       href="tel:88002017773"
       className={classNames(cls.link, {}, [className])}
     >

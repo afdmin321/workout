@@ -5,9 +5,11 @@ import { classNames } from 'shared/lib/classNames/classNames';
 interface Props {
   src: string;
   className?: string;
+  resize: number
 }
 const SwiperItem: FC<Props> = (props: Props) => {
-  const { className, src, ...otherProps } = props;
+  const { className, resize, src, ...otherProps } = props;
+  console.log(resize);
   return (
     <div
       className={classNames(cls.SwiperItem, {}, [className])}

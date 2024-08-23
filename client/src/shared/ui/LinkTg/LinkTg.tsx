@@ -12,6 +12,7 @@ const LinkTg: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
     <Link
+      aria-label="перейти на наш телеграм: https://t.me/Stroygorod1988"
       href="https://t.me/Stroygorod1988"
       className={cls.link}
       {...otherProps}

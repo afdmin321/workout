@@ -59,7 +59,7 @@ const BasketPage: FC<Props> = (props: Props) => {
             <AppLink to={RoutePath.products} theme={ThemeLink.BLUE}>
               каталог
             </AppLink>{' '}
-            каталог чтобы добавить товары
+            ,чтобы добавить товары
           </h2>
         </div>
       )}

@@ -18,7 +18,11 @@ const LinkBasket: FC<Props> = (props: Props) => {
       className={classNames(cls.LinkBasket, {}, [className])}
       {...otherProps}
     >
-      <AppLink to={getNavbarBasket.path} className={cls.linkBasket}>
+      <AppLink
+        to={getNavbarBasket.path}
+        aria-label="корзина товаров"
+        className={cls.linkBasket}
+      >
         {
           <>
             <Icon className={cls.icon} Src={getNavbarBasket.icon} />

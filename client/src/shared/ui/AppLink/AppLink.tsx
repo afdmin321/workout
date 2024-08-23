@@ -1,4 +1,4 @@
-import { FC, memo, useRef } from 'react';
+import { FC, memo } from 'react';
 import cls from './AppLink.module.scss';
 import { NavLink, LinkProps } from 'react-router-dom';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';

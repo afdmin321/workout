@@ -1,9 +1,19 @@
-import { FC, ReactNode, memo } from 'react';
+import {
+  FC,
+  ReactNode,
+  memo,
+  LinkHTMLAttributes,
+  DetailedHTMLProps,
+} from 'react';
 import cls from './Link.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ThemeLink } from '../AppLink/AppLink';
 
-interface Props {
+interface Props
+  extends DetailedHTMLProps<
+    LinkHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  > {
   children: ReactNode;
   href: string;
   target?: string;

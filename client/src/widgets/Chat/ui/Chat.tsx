@@ -52,7 +52,6 @@ const Chat: FC<Props> = (props: Props) => {
     dispatch(chatSliceAction.setMessage(message));
     dispatch(chatSliceAction.clearMessage());
     if (!messages.length) {
-      console.log(messages.length);
       setTimeout(() => dispatch(chatSliceAction.setStartAdmineMessage()), 500);
     }
 
@@ -117,14 +116,15 @@ const Chat: FC<Props> = (props: Props) => {
         <Input
           classNameLabel={cls.label}
           className={cls.input}
+          aria-label='поле для ввода текста сообщений'
           placeholder="Введите текст"
           value={text}
           onChange={onChangeText}
         />
-        <Button type={typeButton.SUBMITE} className={cls.submite}>
+        <Button aria-label='кнопка отправки сообщения' type={typeButton.SUBMITE} className={cls.submite}>
           <Icon Src={IconArrow} className={cls.icon} />
         </Button>
-        <Button className={cls.buttomClip}>
+        <Button aria-label='кнопка для прикрепления файла' className={cls.buttomClip}>
           <Icon Src={IconClip} className={cls.iconClip} />
         </Button>
       </form>

@@ -49,6 +49,7 @@ const FeedBack: FC<Props> = (props: Props) => {
         <div className={classNames(cls.buttons, {}, [])}>
           {!call ? (
             <Button
+              aria-label="открыть форму заказа звонка"
               className={classNames(cls.button, {}, [cls.buttonCall])}
               onClick={openCallWindow}
             >
@@ -59,10 +60,10 @@ const FeedBack: FC<Props> = (props: Props) => {
               className={classNames(cls.button, {}, [cls.buttonBack])}
               onClick={closedCallWindow}
             />
-           
           )}
           {!chat ? (
             <Button
+              aria-label="открыть форму чата с менеджером"
               className={classNames(cls.button, {}, [cls.buttonChat])}
               onClick={openChatWindow}
             >

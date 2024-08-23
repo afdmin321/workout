@@ -15,6 +15,7 @@ const LinkMail: FC<Props> = (props: Props) => {
     <Link
       href="mailto:info@gk-sg.ru"
       className={classNames(cls.link, {}, [className])}
+      aria-label="наш почтовый ящик info@gk-sg.ru"
       {...otherProps}
     >
       <Icon

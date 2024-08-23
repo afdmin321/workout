@@ -70,6 +70,7 @@ const SearchProduct: FC<Props> = (props: Props) => {
           className={cls.buttonSearch}
           theme={ThemeButton.CLEAR}
           onClick={openSearhForm}
+          aria-label='кнопка отрытия окна поиска товаров'
         >
           <Icon className={cls.iconSearch} Src={IconSearch} />
         </Button>
@@ -79,6 +80,7 @@ const SearchProduct: FC<Props> = (props: Props) => {
             <Input
               value={search}
               onChange={onChangeInput}
+              aria-label='поле для заполнения ключа поиска по товаром'
               className={classNames(
                 cls.input,
                 { [cls.in]: hasTransitionedIn, [cls.visible]: searchView },
@@ -90,6 +92,7 @@ const SearchProduct: FC<Props> = (props: Props) => {
             <Button
               className={cls.buttonSubmite}
               theme={ThemeButton.CLEAR}
+              aria-label='кнопка отправки запроса поиска'
               type={typeButton.SUBMITE}
               onClick={(evt) => {
                 onHandlerSubmite(evt);

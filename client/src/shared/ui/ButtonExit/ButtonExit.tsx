@@ -11,6 +11,7 @@ const ButtonExit: FC<Props> = (props: Props) => {
   const { className, onClick, ...otherProps } = props;
   return (
     <Button
+      aria-label="закрыть всплывающее окно"
       className={classNames(cls.button, {}, [className])}
       onClick={onClick}
       {...otherProps}

@@ -78,6 +78,7 @@ const FormCall: FC<Props> = (props: Props) => {
         onChange={onCangeName}
         text="Имя*"
         placeholder="Лев Николаевич"
+        aria-label="поле для заполнения имени"
         err={errorName}
       />
       <Input
@@ -87,6 +88,7 @@ const FormCall: FC<Props> = (props: Props) => {
         classNameLabel={cls.label}
         text="Телефон*"
         placeholder="+79777000777"
+        aria-label="поле для заполнения номера телефона"
         err={errorPhone}
       />
       {theme === ThemeForm.ORDER && (
@@ -94,7 +96,11 @@ const FormCall: FC<Props> = (props: Props) => {
           <span>*</span>
           <div>
             Оформляя заказ Вы соглашаетесь с условиями&ensp;
-            <AppLink to={RoutePath.oferta} theme={ThemeLink.BLUE}>
+            <AppLink
+              aria-label="ссылка на страницу с офертой"
+              to={RoutePath.oferta}
+              theme={ThemeLink.BLUE}
+            >
               оферты
             </AppLink>
           </div>
@@ -108,6 +114,7 @@ const FormCall: FC<Props> = (props: Props) => {
           type={typeButton.SUBMITE}
           theme={ThemeButton.ROUNDED}
           disabled={submiteDisabled}
+          aria-label="кнопка отправки формы"
         >
           {textSubmite ? textSubmite : 'Заказать звонок'}
         </Button>

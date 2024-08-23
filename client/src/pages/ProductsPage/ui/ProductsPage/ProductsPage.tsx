@@ -4,21 +4,17 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import ProductList from 'entities/Product/ui/ProductList/ProductList';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { Icon } from 'shared/ui/Icon/Icon';
-
 import {
   DynamicModuleLoader,
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
   getProducts,
-  ProductsPageAction,
   ProductsPageReducer,
 } from '../../model/slice/ProductsPageSlice';
 import { useSelector } from 'react-redux';
 import {
   getProductsPageHasMore,
-  getProductsPage,
   getProductsPageError,
   getProductsPageIsLoading,
   getProductsPageSort,
@@ -26,12 +22,10 @@ import {
 import { fetchNextProductsPage } from '../../model/services/fetchNextProductsPage/fetchNextProductsPage';
 import { initProductsPage } from '../../model/services/initProductPage/initProductsPage';
 import { Page } from 'widgets/Page/Page';
-
-import { ProductSort } from 'entities/Product/model/types/Product';
 import ProductsPageFilter from '../ProductsPageFilter/ProductsPageFilter';
 import { useSearchParams } from 'react-router-dom';
 import ProductSkeleton from 'entities/Product/ui/ProductSkeleton/ProductSkeleton';
-import { error } from 'console';
+
 
 interface Props {
   className?: string;
@@ -66,12 +60,11 @@ const ProductsPage: FC<Props> = (props: Props) => {
           {Array(10)
             .fill(5)
             .map(() => {
-              return <ProductSkeleton />;
+              return <ProductSkeleton key={Math.random()} />;
             })}
         </div>
       </>
     );
-    console.log(content);
   }
   if (error) {
     content = (
