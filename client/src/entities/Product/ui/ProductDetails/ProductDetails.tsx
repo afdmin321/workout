@@ -60,28 +60,29 @@ const ProductDetails: FC<Props> = (props: Props) => {
     );
   }
   if (product) {
+    const productSize = `${product.length}x${product.width}мм H=${product.height}`;
     content = (
       <>
         <img
-          onClick={() => onHandlerClickImage(product?.images[0]?.src)}
+          onClick={() => onHandlerClickImage(product.images[0]?.src)}
           className={cls.img}
-          src={product?.images[0]?.src}
-          alt={product?.name}
+          src={product.images[0]?.src}
+          alt={product.name}
         />
         <div className={cls.wrapperInfo}>
-          <h2 className={cls.name}>{product?.name}</h2>
-          <Price price={product?.price} />
+          <h2 className={cls.name}>{product.name}</h2>
+          <Price price={product.price} />
           <div className={cls.articleNumber}>
-            Артикул: {product?.articleNumber}
+            Артикул: {product.articleNumber}
           </div>
-          <div className={cls.size}>Габаритные размеры: {product?.size}</div>
-          <p className={cls.description}>{product?.description}</p>
-          {product?.material ? (
+          <div className={cls.size}>Габаритные размеры: {productSize}</div>
+          <p className={cls.description}>{product.description}</p>
+          {product.material ? (
             <div className={cls.material}>Материал: {product.material}</div>
           ) : (
             ''
           )}
-          {product?.ageGroup ? (
+          {product.ageGroup ? (
             <div className={cls.ageGroup}>
               Возростная группа: {product.ageGroup}
             </div>

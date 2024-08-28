@@ -13,16 +13,7 @@ export class OrderProducts {
   id: number;
 
   @Column()
-  name: string;
-
-  @Column()
-  articleNumber: string;
-
-  @Column()
   link: string;
-
-  @Column({ nullable: true })
-  price: number | null;
 
   @ManyToOne((_) => Orders, (orders) => orders.products)
   @JoinColumn({ name: 'order_id' })

@@ -19,11 +19,11 @@ export class ProductsService {
   ) {}
 
   async create(createProductsDto: CreateProductsDto) {
-    console.log(createProductsDto);
     const isExist = await this.productsRepository.findBy({
       name: createProductsDto.name,
       category: createProductsDto.category,
     });
+
     if (isExist.length)
       throw new BadRequestException('This product already exist');
 
@@ -39,14 +39,21 @@ export class ProductsService {
       height: createProductsDto.height,
       material: createProductsDto.material,
       price: createProductsDto.price,
+      lengthDelivery: createProductsDto.lengthDelivery,
+      widthDelivery: createProductsDto.widthDelivery,
+      heightDelivery: createProductsDto.heightDelivery,
+      weightDelivery: createProductsDto.weightDelivery,
     };
     if (!newProduct) throw new BadRequestException('Somethins went wrong...');
-    const product = await this.productsRepository.save(newProduct);
-    this.imagesService.create({
-      images: createProductsDto.images,
-      product: product,
+
+    return this.productsRepository.save(newProduct).then((res) => {
+      const images = {
+        images: createProductsDto.images,
+        product: res,
+      };
+      this.imagesService.create(images).then((res) => res);
+      return res;
     });
-    return product;
   }
 
   async findAll() {

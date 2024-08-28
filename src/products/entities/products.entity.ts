@@ -50,4 +50,14 @@ export class Products {
 
   @Column({ nullable: true })
   height: number | null;
+
+  @Column({ nullable: true })
+  lengthDelivery: number | null;
+
+  @Column({ nullable: true })
+  widthDelivery: number | null;
+  @Column({ nullable: true })
+  weightDelivery: number | null;
+  @Column({ nullable: true })
+  heightDelivery: number | null;
 }

@@ -2,30 +2,22 @@ import { OrderType } from 'types/OrderType';
 
 class HtmlTemlate {
   getOrderTgTemplate(data: OrderType) {
-    const products = data.products.map((product, index) => {
-      return `${index}. https://localhost:7000/products/${product.id}`;
-    });
-    return `Имя: ${data.client_name}; Телефон: ${data.phone}; ${products}`;
+    return `Имя: ${data.client_name}; Телефон: ${data.phone}; Стоимость: ${data.products.reduce(
+      (acc, product) => acc + product.price,
+      0,
+    )}`;
   }
   getOrderTemplate(data: OrderType) {
     const products = data.products
-      .map((product) => {
+      .map((product, index) => {
         return `<li style="padding: 10px; border-bottom: 1px solid black;">
-        <div>
-        <div style="display: inline-block; width: 35%;">Название товара</div>
-        <div style="display: inline-block; font-weight: 900;">${product.name}</div>
-        </div>
-        <br/>
-        <div>
-        <div style="display: inline-block; width: 35%;">Атрикул товара:</div>
-        <div style="display: inline-block; font-weight: 900;">${product.articleNumber}</div>
-        </div>
-        <br/>
-        <div>
-        <div style="display: inline-block; width: 35%;">Цена товара:</div>
-        <div style="display: inline-block; font-weight: 900;">${product.price || 'По запросу'}</div>
-        </div>
-        </li>`;
+      <div>
+      <div style="display: inline-block; width: 35%;">Cылка на продукт</div>
+      <div style="display: inline-block; font-weight: 900;"><a href=""https://воркаут.рф/products/${product.id}>Товар ${index + 1}</div>
+      </div>
+      <br/>
+      <div>
+      </li>`;
       })
       .join('');
     const orderPrice = data.products.reduce(
@@ -48,11 +40,6 @@ class HtmlTemlate {
             <div style="display: inline-block; width: 40%;">Телефон:</div>
             <div style="display: inline-block; font-weight: 900;">${data.phone}</div>
           </div>
-     ${
-       data.email
-         ? `<div style=" padding: 10px; gap: 0 40px; border-bottom: 1px solid black;"><div style="display: inline-block; width: 40%;">Email:</div><div style="display: inline-block; font-weight: 900;"> ${data.email}</div></div>`
-         : ''
-     }
      <div style=" padding: 10px">Товары:</div>
           <ol>
           ${products}

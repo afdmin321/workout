@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo } from 'react';
+import { FC, memo, useCallback } from 'react';
 
 import {
   ProductFilter,
@@ -18,7 +18,6 @@ interface Props {
   className?: string;
 }
 const ProductsPageFilter: FC<Props> = (props: Props) => {
-  const { className, ...otherProps } = props;
   const dispatch = useAppDispatch();
   const sort = useSelector(getProductsPageSort);
   const filter = useSelector(getProductsPageFilter);

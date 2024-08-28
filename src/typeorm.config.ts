@@ -12,7 +12,8 @@ const AppDataSource = new DataSource({
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/migrations/*{.ts,.js}'],
 });
-
+console.log(AppDataSource);
+console.log(__dirname);
 AppDataSource.initialize()
   .then(() => {
     console.log('Data Source has been initialized!');

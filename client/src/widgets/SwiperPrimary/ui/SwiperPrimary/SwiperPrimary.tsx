@@ -57,12 +57,12 @@ const SwiperPrimary: FC<Props> = (props: Props) => {
     >
       <Swiper
         modules={[EffectCube, Autoplay, Pagination]}
-        // autoplay={{
-        //   delay: 4500,
-        // }}
+        autoplay={{
+          delay: 4500,
+        }}
         grabCursor
         pagination={{ clickable: true }}
-        // slidesPerView="auto"
+        slidesPerView="auto"
         speed={400}
         touchEventsTarget="container"
         watchOverflow

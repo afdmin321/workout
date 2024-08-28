@@ -1,15 +1,17 @@
 if (!process.env.IS_TS_NODE) {
   require('module-alias/register');
 }
-import * as bodyParser from 'body-parser';
 import { NestFactory } from '@nestjs/core';
+import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { AppModule } from 'app.module';
+import { json, urlencoded } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  app.use(bodyParser.json({ limit: '50mb' }));
-  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+  app.use(json({ limit: '50mb' }));
+  app.use(urlencoded({ extended: true, limit: '50mb' }));
+  new FastifyAdapter({ bodyLimit: 108038100 });
   app.enableCors();
   await app.listen(3000);
 }

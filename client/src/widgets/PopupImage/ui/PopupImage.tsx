@@ -30,15 +30,22 @@ const PopupImage: FC<Props> = (props: Props) => {
   }, [dispatch]);
 
   const onHandlerImageNext = useCallback(() => {
-    const nextImage = images![indexCurrentImage! + 1];
-    if (nextImage) {
-      dispatch(PopupImageAction.setCurrentImgSrc(nextImage.src));
+    console.log(indexCurrentImage);
+    console.log(currentImgSrc);
+    if (images?.length && (indexCurrentImage || indexCurrentImage === 0)) {
+      const nextImage = images[indexCurrentImage + 1];
+      console.log(nextImage);
+      if (nextImage) {
+        dispatch(PopupImageAction.setCurrentImgSrc(nextImage.src));
+      }
     }
   }, [dispatch, images, currentImgSrc]);
   const onHandlerImageBack = useCallback(() => {
-    const nextImage = images![indexCurrentImage! - 1];
-    if (nextImage) {
-      dispatch(PopupImageAction.setCurrentImgSrc(nextImage.src));
+    if (images?.length && indexCurrentImage) {
+      const prevImage = images[indexCurrentImage - 1];
+      if (prevImage) {
+        dispatch(PopupImageAction.setCurrentImgSrc(prevImage.src));
+      }
     }
   }, [dispatch, images, currentImgSrc]);
   return (

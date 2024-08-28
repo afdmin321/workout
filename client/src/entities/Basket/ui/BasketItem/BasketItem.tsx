@@ -15,6 +15,10 @@ interface Props {
 const BasketItem: FC<Props> = (props: Props) => {
   const { className, data: product, ...otherProps } = props;
   const price = product.price ? product.price * product.quantity : null;
+  const productSize =
+    product.length && product.width && product.height
+      ? `${product.length}x${product.width}мм H=${product.height}`
+      : null;
   const dispatch = useAppDispatch();
   const onHandlerButtonDelet = useCallback(() => {
     dispatch(basketListActions.deleteItem(product.id));
@@ -25,9 +29,7 @@ const BasketItem: FC<Props> = (props: Props) => {
       className={classNames(cls.BasketItem, {}, [className])}
       {...otherProps}
     >
-      <div className={cls.imgWrapper}>
-        <img src={product.images[0].src} alt={product.name} className={cls.img} />
-      </div>
+      <img src={product.images[0].src} alt={product.name} className={cls.img} />
 
       <div className={cls.wrapperInfo}>
         <div className={cls.wrapperText}>
@@ -40,9 +42,9 @@ const BasketItem: FC<Props> = (props: Props) => {
           <div className={cls.articlNumber}>
             Артикул: {product.articleNumber}
           </div>
-          <div className={cls.size}>
-            Габариты: {product.size && product.size.split(' ').join('')}
-          </div>
+          {productSize && (
+            <div className={cls.size}>Габариты: {productSize}</div>
+          )}
         </div>
         <div className={cls.quantityWrapper}>
           <Quantity product={product} quantity={product.quantity} />

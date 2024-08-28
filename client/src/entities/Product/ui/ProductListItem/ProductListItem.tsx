@@ -19,6 +19,10 @@ const ProductListItem: FC<Props> = (props: Props) => {
     navigate(RoutePath.product_details + product.id);
   }, [navigate, product.id]);
   const productImages = product.images.length ? product.images[0]?.src : '';
+  const productSize =
+    product.length && product.width && product.height
+      ? `${product.length}x${product.width}мм H=${product.height}`
+      : null;
   return (
     <div
       className={classNames(cls.ProductListItem, {}, [className])}
@@ -26,18 +30,14 @@ const ProductListItem: FC<Props> = (props: Props) => {
       id={product.id}
       onClick={onOpenArticle}
     >
-      <div className={cls.img}>
-        <img src={productImages} alt={product.name} className={cls.img} />
-      </div>
+      <img src={productImages} alt={product.name} className={cls.img} />
 
       <h2 className={cls.name} title={product.name}>
         {product.name}
       </h2>
       <Price price={product.price} className={cls.price} />
       <div className={cls.articleNumber}>Артикул: {product.articleNumber}</div>
-      <div className={cls.size}>
-        Габариты: {product.size && product.size.split(' ').join('')}
-      </div>
+      {productSize && <div className={cls.size}>Габариты: {productSize}</div>}
       <div onClick={(e) => e.stopPropagation()}>
         <IncreasingBasket product={product} />
       </div>

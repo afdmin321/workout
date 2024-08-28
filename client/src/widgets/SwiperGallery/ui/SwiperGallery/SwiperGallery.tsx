@@ -21,20 +21,20 @@ const SwiperGallery: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   const dispatch = useAppDispatch();
   const resize = useResize();
-  const { isLoading, data: Slides, error } = useSwiperGallery();
+  const { isLoading, data: slides, error } = useSwiperGallery();
   const slidesPerView = resize < 470 ? 1 : 3;
   let content;
 
+  console.log(slides);
   const onHandlerClickItem = useCallback(
     (currentImageSrc: string) => {
-      if (!Slides && !currentImageSrc) {
-        return;
+      if (slides && currentImageSrc) {
+        dispatch(PopupImageAction.setCurrentImgSrc(currentImageSrc));
+        dispatch(PopupImageAction.setImages(slides as []));
+        dispatch(PopupImageAction.setPopupImageVisible(true));
       }
-      dispatch(PopupImageAction.setCurrentImgSrc(currentImageSrc));
-      dispatch(PopupImageAction.setImages(Slides as []));
-      dispatch(PopupImageAction.setPopupImageVisible(true));
     },
-    [dispatch],
+    [dispatch, slides],
   );
 
   if (isLoading) {
@@ -71,7 +71,7 @@ const SwiperGallery: FC<Props> = (props: Props) => {
         watchOverflow
         wrapperClass={cls.wrapperSwiper}
       >
-        {Slides?.map((el) => {
+        {slides?.map((el) => {
           return (
             <SwiperSlide key={el?.id}>
               {({ isNext }) => (

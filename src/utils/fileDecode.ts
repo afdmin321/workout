@@ -12,10 +12,13 @@ class FileDecode {
       '../',
       '../',
       'client',
+      'dist',
       'images',
       nameImage,
     );
+    console.log(path);
     writeFileSync(path, buffer);
+    console.log('fasdf');
     return '../images/' + nameImage;
   }
 }

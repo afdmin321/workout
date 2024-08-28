@@ -5,7 +5,7 @@ import IconDuotone from 'shared/assets/icons/duotone.svg';
 import IconTick from 'shared/assets/icons/tick.svg';
 import IconCertificate from 'shared/assets/icons/certificate.svg';
 import IconDelivery from 'shared/assets/icons/delivery.svg';
-import OneImg from 'shared/assets/about/gerb2.jpg';
+import OneImg from 'shared/assets/about/yoke.jpg';
 import TwoImg from 'shared/assets/about/iskra.jpg';
 const AboutPage: FC = () => {
   const [isLoading, setIsLoading] = useState(true);

@@ -18,43 +18,38 @@ export class OrderService {
   async create(createOrderDto: CreateOrderDto) {
     const { sendMessage } = nodeMailer;
     const { getOrderTemplate, getOrderTgTemplate } = htmlTemlate;
-    console.log(createOrderDto);
-
-    const newOrder = await this.ordersRepository.save({
-      client_name: createOrderDto.client_name,
-      phone: createOrderDto.phone,
-      products: createOrderDto.products,
-    });
-    if (createOrderDto.products) {
-      const products = createOrderDto.products.map((product) => {
-        return {
-          order: newOrder,
-          name: product.name,
-          price: product.price,
-          articleNumber: product.articleNumber,
-          link: `https://воркаут.рф/products/${product.id}`,
-        };
-      });
-      this.orderProductsRepository
-        .insert(products)
-        .then((res) => console.log(res));
-    }
 
     const messageHtml = getOrderTemplate(createOrderDto);
 
-    // sendMessage('afdmin321@yandex.ru', messageHtml);
+    sendMessage('afdmin321@yandex.ru', messageHtml);
+
     telegramApi.sendMessage(getOrderTgTemplate(createOrderDto));
-    return newOrder;
+
+    return this.ordersRepository
+      .save({
+        client_name: createOrderDto.client_name,
+        phone: createOrderDto.phone,
+        allPrice: createOrderDto.products.reduce(
+          (acc, product) => acc + product.price,
+          0,
+        ),
+      })
+      .then((res) => {
+        if (createOrderDto.products) {
+          const products = createOrderDto.products.map((product) => {
+            return {
+              order: res,
+              link: `https://воркаут.рф/products/${product.id}`,
+            };
+          });
+          this.orderProductsRepository.insert(products);
+        }
+        return res;
+      });
   }
 
   async findAll() {
-    return this.ordersRepository.find({
-      relations: {
-        products: true,
-      },
-    });
-
-    return this.orderProductsRepository.find({ relations: { order: true } });
+    return this.ordersRepository.find({ relations: { products: true } });
   }
 
   findOne(id: string) {

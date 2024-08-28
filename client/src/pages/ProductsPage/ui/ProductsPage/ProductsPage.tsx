@@ -26,7 +26,6 @@ import ProductsPageFilter from '../ProductsPageFilter/ProductsPageFilter';
 import { useSearchParams } from 'react-router-dom';
 import ProductSkeleton from 'entities/Product/ui/ProductSkeleton/ProductSkeleton';
 
-
 interface Props {
   className?: string;
 }
@@ -55,15 +54,13 @@ const ProductsPage: FC<Props> = (props: Props) => {
 
   if (isLoading) {
     content = (
-      <>
-        <div className={cls.skeletonWrapper}>
-          {Array(10)
-            .fill(5)
-            .map(() => {
-              return <ProductSkeleton key={Math.random()} />;
-            })}
-        </div>
-      </>
+      <div className={cls.skeletonWrapper}>
+        {Array(10)
+          .fill(5)
+          .map(() => {
+            return <ProductSkeleton key={Math.random()} />;
+          })}
+      </div>
     );
   }
   if (error) {

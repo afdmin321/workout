@@ -4,6 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useProductRecommendationsList } from '../api/ProductRecommendationsListApi';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 
 interface Props {
   className?: string;
@@ -27,29 +28,48 @@ const ProductRecommendationsList: FC<Props> = (props: Props) => {
     },
     [navigate],
   );
-  const productsRecommendation = productsFilter?.map((product, index) => {
-    if (index < 4) {
-      return (
-        <div className={cls.imgWrapper} key={product.id}>
+  let content;
+
+  if (isLoading) {
+    content = (
+      <>
+        {Array(4)
+          .fill(4)
+          .map(() => {
+            return <Skeleton className={cls.img} key={Math.random()} />;
+          })}
+      </>
+    );
+  } else if (error) {
+    content = (
+      <h3 style={{ textAlign: 'center', fontSize: '20px' }}>
+        Произошла ошибка при загрузке рекомендованных товаров {':('} Попробуйте
+        обновить страницу!
+      </h3>
+    );
+  } else {
+    const productsRecommendation = productsFilter?.map((product, index) => {
+      if (index < 4) {
+        return (
           <img
             onClick={() => onOpenArticle(product.id)}
             className={cls.img}
             src={product.images[0]?.src}
             alt={product.name}
+            key={product.id}
           />
-        </div>
-      );
-    }
-  });
+        );
+      }
+    });
+    content = productsRecommendation;
+  }
   return (
     <div
       className={classNames(cls.ProductRecommendationsList, {}, [className])}
       {...otherProps}
     >
       <h3 className={cls.title}>с этим товаром берут</h3>
-      <div className={cls.productsRecommendationWrapper}>
-        {productsRecommendation}
-      </div>
+      <div className={cls.productsRecommendationWrapper}>{content}</div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import { Products } from 'products/entities/products.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { OrderProducts } from './orderProducts.entity';
 
@@ -13,6 +12,9 @@ export class Orders {
   @Column()
   phone: string;
 
+  @Column({ nullable: true })
+  allPrice: number | null;
+
   @OneToMany((_) => OrderProducts, (orderProduct) => orderProduct.order)
-  products: Products[];
+  products: OrderProducts[];
 }
