@@ -51,7 +51,7 @@ const Quantity: FC<Props> = (props: Props) => {
       <Button
         className={classNames(cls.button, {}, [cls.subtract])}
         onClick={onHandlerDownQuantity}
-        theme={ThemeButton.OUTLINE}
+        theme={ThemeButton.SECONDARY}
       >
         -
       </Button>
@@ -59,7 +59,7 @@ const Quantity: FC<Props> = (props: Props) => {
       <Button
         className={classNames(cls.button, {}, [cls.add])}
         onClick={onHandlerAddQuantity}
-        theme={ThemeButton.OUTLINE}
+        theme={ThemeButton.SECONDARY}
       >
         +
       </Button>

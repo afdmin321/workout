@@ -1,9 +1,5 @@
 @import 'reset';
 @import 'variables/global';
-@import 'themes/light';
-@import 'themes/dark';
-@import 'themes/green';
-
 body,
 .app {
   font: var(--font-m);
@@ -47,6 +43,8 @@ body,
 *::-webkit-scrollbar-track {
   background: var(--bg-secondary);
 }
-.ymaps-2-1-79-gototech, .ymaps-2-1-79-copyright__link, .ymaps-2-1-79-gototaxi__container {
+.ymaps-2-1-79-gototech,
+.ymaps-2-1-79-copyright__link,
+.ymaps-2-1-79-gototaxi__container {
   display: none !important;
 }

@@ -1,3 +1,4 @@
+@import 'app/styles/variables/mixin';
 .Button {
   cursor: pointer;
   padding: 0;
@@ -51,8 +52,36 @@
   opacity: 0.5;
 }
 
+.primary,
+.primary_round {
+  border: none;
+  font-weight: 600;
+  width: 100%;
+  @include primary-gradient;
+  min-height: 30px;
+  box-sizing: border-box;
+}
+.secondary,
+.secondary_round {
+  min-height: 30px;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  color: white;
+  font-weight: 600;
+  text-shadow: 5px 0px 7px #000;
+  @include secondary-gradient;
+}
+.primary_round,
+.secondary_round {
+  width: 100%;
+  border-radius: 20px;
+}
 @media (min-width: 1000px) {
-  .outline {
+  .primary,
+  .primary_round,
+  .secondary,
+  .secondary_round {
     min-height: 40px;
     font-size: 18px;
   }

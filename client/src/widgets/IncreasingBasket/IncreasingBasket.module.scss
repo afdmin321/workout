@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
 }
+
+
 .toBasket {
   border-left: none;
 }
@@ -13,7 +15,6 @@
   justify-content: center;
 }
 @media (min-width: 1000px) {
-
   .link {
     height: 38px;
   }

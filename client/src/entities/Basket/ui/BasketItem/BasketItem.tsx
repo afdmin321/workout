@@ -50,7 +50,7 @@ const BasketItem: FC<Props> = (props: Props) => {
           <Quantity product={product} quantity={product.quantity} />
           <Button
             className={cls.button}
-            theme={ThemeButton.OUTLINE}
+            theme={ThemeButton.PRIMARY}
             onClick={onHandlerButtonDelet}
           >
             удалить товар

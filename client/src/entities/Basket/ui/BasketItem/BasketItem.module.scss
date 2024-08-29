@@ -1,14 +1,16 @@
 .BasketItem {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 10px 0;
   max-width: 420px;
 }
 .img {
   width: 100%;
   max-width: 170px;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/15;
   object-fit: contain;
+  align-self: center;
 }
 
 .name {
@@ -50,6 +52,10 @@
   }
   .name {
     max-width: 340px;
+  }
+  .img {
+    aspect-ratio: 16/10;
+    align-self: stretch;
   }
 }
 @media (min-width: 1000px) {

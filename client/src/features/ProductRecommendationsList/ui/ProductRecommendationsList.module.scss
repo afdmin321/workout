@@ -17,8 +17,11 @@
   width: 150px;
   height: 125px;
   overflow: hidden;
-  object-fit: cover;
+  object-fit: contain;
   cursor: pointer;
+  &:hover {
+    box-shadow: 1px 1px 4px .5px var(--secondary-color);
+  }
 }
 .title {
   font-size: 24px;

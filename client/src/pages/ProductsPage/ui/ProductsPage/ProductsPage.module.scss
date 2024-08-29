@@ -12,3 +12,13 @@
   gap: 20px;
   flex-wrap: wrap;
 }
+@media (min-width: 650px) {
+  .ProductsPage {
+    gap: 20px;
+  }
+}
+@media (min-width: 1000px) {
+  .ProductsPage {
+    gap: 30px;
+  }
+}

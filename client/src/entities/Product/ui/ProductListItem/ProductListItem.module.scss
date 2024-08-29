@@ -5,6 +5,9 @@
   flex-direction: column;
   gap: 7px;
   cursor: pointer;
+  &:hover {
+    box-shadow: 1px -1px 4px 0px var(--secondary-color);
+  }
 }
 .img {
   width: 100%;

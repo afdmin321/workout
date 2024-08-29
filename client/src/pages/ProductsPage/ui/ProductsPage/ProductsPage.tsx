@@ -75,7 +75,7 @@ const ProductsPage: FC<Props> = (props: Props) => {
       <>
         <ProductList products={products} />
         {hasMore && (
-          <Button theme={ThemeButton.OUTLINE} onClick={onLoadNextPart}>
+          <Button theme={ThemeButton.PRIMARY} onClick={onLoadNextPart}>
             Показать ешё
           </Button>
         )}

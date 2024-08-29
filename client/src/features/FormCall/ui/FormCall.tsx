@@ -112,7 +112,7 @@ const FormCall: FC<Props> = (props: Props) => {
         <Button
           className={cls.button}
           type={typeButton.SUBMITE}
-          theme={ThemeButton.ROUNDED}
+          theme={ThemeButton.SECONDARY_ROUND}
           disabled={submiteDisabled}
           aria-label="кнопка отправки формы"
         >

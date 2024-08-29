@@ -1,0 +1,39 @@
+@mixin primary-gradient() {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7343312324929971) 0%,
+    rgba(173, 169, 169, 1) 46%
+  );
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7343312324929971) 0%,
+    rgba(173, 169, 169, 1) 46%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7343312324929971) 0%,
+    rgba(173, 169, 169, 1) 46%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ada9a9",GradientType=1);
+}
+@mixin secondary-gradient() {
+  
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7343312324929971) 0%,
+    rgba(0, 144, 43, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7343312324929971) 0%,
+    rgba(0, 144, 43, 1) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7343312324929971) 0%,
+    rgba(0, 144, 43, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#00902b",GradientType=1);
+}

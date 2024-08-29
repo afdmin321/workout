@@ -38,14 +38,14 @@ const IncreasingBasket: FC<Props> = (props: Props) => {
         <Button
           className={cls.addToBasket}
           onClick={addProductToBasket}
-          theme={ThemeButton.OUTLINE}
+          theme={ThemeButton.SECONDARY}
         >
           добавить в корзину
         </Button>
       ) : (
         <>
           <Quantity quantity={quantity} product={product} />
-          <Button className={cls.toBasket} theme={ThemeButton.OUTLINE}>
+          <Button className={cls.toBasket} theme={ThemeButton.SECONDARY}>
             <AppLink to={RoutePath.basket} className={cls.link}>
               в корзину
             </AppLink>

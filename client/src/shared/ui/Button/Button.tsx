@@ -3,6 +3,10 @@ import cls from './Button.module.scss';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 
 export enum ThemeButton {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  PRIMARY_ROUND = 'primary_round',
+  SECONDARY_ROUND = 'secondary_round',
   CLEAR = 'clear',
   ROUNDED = 'rounded',
   OUTLINE = 'outline',
@@ -45,7 +49,6 @@ const ButtonComponent: FC<Props> = (props) => {
     ...otherProps
   } = props;
   const mods: Mods = {
-    [cls[theme]]: true,
     [cls.square]: square,
     [cls[size]]: true,
     [cls.disabled]: disabled,
