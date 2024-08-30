@@ -19,22 +19,19 @@ class NodeMailer {
       },
     });
 
-    return transporter
-      .sendMail({
-        from: '"WORKOUT ORDER" <design@стройгород-юг.рф>',
-        to: email,
-        subject: 'New Order Workout',
-        text: JSON.stringify(message),
-        html: message,
-        headers: {
-          'x-unprocessed': {
-            prepared: true,
-            value: 'a really long header or',
-          },
+    return transporter.sendMail({
+      from: '"WORKOUT ORDER" <design@стройгород-юг.рф>',
+      to: email,
+      subject: 'New Order Workout',
+      text: JSON.stringify(message),
+      html: message,
+      headers: {
+        'x-unprocessed': {
+          prepared: true,
+          value: 'a really long header or',
         },
-      })
-      .then((res) => res)
-      .catch((err) => console.log(err));
+      },
+    });
   }
 }
 export default new NodeMailer();

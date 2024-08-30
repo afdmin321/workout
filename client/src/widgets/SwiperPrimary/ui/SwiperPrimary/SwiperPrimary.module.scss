@@ -20,7 +20,7 @@
   max-width: 315px;
 }
 .textBorder {
-  background-color: #fff;
+  background-color: var(--white);
   padding: 17px 30px;
   border-radius: 20px;
   color: var(--colorDecoration);
@@ -269,11 +269,9 @@
   .textStimulateTren,
   .textStimulateColor {
     font-size: 32px;
- 
   }
   .textBorderTren {
     margin-bottom: 40px;
-
   }
 }
 @media (min-width: 1380px) {

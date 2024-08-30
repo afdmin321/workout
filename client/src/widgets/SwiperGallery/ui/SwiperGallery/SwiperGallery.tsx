@@ -25,7 +25,6 @@ const SwiperGallery: FC<Props> = (props: Props) => {
   const slidesPerView = resize < 470 ? 1 : 3;
   let content;
 
-  console.log(slides);
   const onHandlerClickItem = useCallback(
     (currentImageSrc: string) => {
       if (slides && currentImageSrc) {

@@ -41,6 +41,9 @@
   font-weight: bold;
   line-height: 1.2;
   letter-spacing: 7px;
+  display: flex;
+  align-items: center;
+  gap: 0 7px;
 }
 .icon {
   width: 20px;
@@ -60,6 +63,14 @@
 }
 .widthWrapperPrimary {
   padding: 5px 0 10px 0;
+}
+.logoImg {
+  width: 32px;
+  height: 25px;
+}
+.logoLink {
+  opacity: 1 !important;
+  border-bottom: none !important;
 }
 
 @media (min-width: 370px) {
@@ -90,11 +101,18 @@
     font-size: 13px;
   }
   .listPrimary {
-    gap: 0 25px;
+    gap: 0 15px;
     font-size: 15px;
+  }
+  .widthWrapperPrimary {
+    flex-direction: column;
   }
   .title {
     font-size: 32px;
+  }
+  .logoImg {
+    width: 45px;
+    height: 34px;
   }
   .wrapperSecondary {
     padding: 10px 0;
@@ -105,10 +123,19 @@
 }
 @media (min-width: 740px) {
   .widthWrapperPrimary {
-    gap: 0 75px;
+    gap: 0 45px;
+    flex-direction: row;
   }
 }
-@media (min-width: 1460px) {
+@media (min-width: 800px) {
+  .widthWrapperPrimary {
+    gap: 0 75px;
+  }
+  .listPrimary {
+    gap: 0 25px;
+  }
+}
+@media (min-width: 1440px) {
   .wrapper {
     padding-left: 0;
     gap: 0 45px;
@@ -127,6 +154,10 @@
   }
   .title {
     font-size: 48px;
+  }
+  .logoImg {
+    width: 55px;
+    height: 42px;
   }
   .wrapperSecondary {
     padding: 10px 0;

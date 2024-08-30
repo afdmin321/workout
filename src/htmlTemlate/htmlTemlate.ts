@@ -9,11 +9,12 @@ class HtmlTemlate {
   }
   getOrderTemplate(data: OrderType) {
     const products = data.products
-      .map((product, index) => {
+      .map((product) => {
         return `<li style="padding: 10px; border-bottom: 1px solid black;">
       <div>
-      <div style="display: inline-block; width: 35%;">Cылка на продукт</div>
-      <div style="display: inline-block; font-weight: 900;"><a href=""https://воркаут.рф/products/${product.id}>Товар ${index + 1}</div>
+      <div style="display: inline-block; width: 35%;"><a href="https://воркаут.рф/products/${product.id}">Cылка на продукт</a></div>
+      <div style="display: inline-block; font-weight: 900;">${product.articleNumber}</div>
+      <div style="display: inline-block; font-weight: 900;">Цена: ${product.price}Р</div>
       </div>
       <br/>
       <div>
@@ -46,7 +47,7 @@ class HtmlTemlate {
           </ol>
           <div style="display: flex; flex-direction: row; padding: 10px; gap: 0 40px; border-bottom: 1px solid black;">
             <div style="display: inline-block; width: 40%;">Общая Цена:</div>
-            <div style="display: inline-block; font-weight: 900;" >${orderPrice || 'по запросу'}</div>
+            <div style="display: inline-block; font-weight: 900;" >${orderPrice + 'Р' || 'по запросу'}</div>
           </div>
           </div> `;
   }

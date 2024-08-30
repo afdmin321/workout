@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import cls from './Navbar.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Connect } from 'widgets/Connect';
@@ -6,8 +6,12 @@ import SearchProduct from 'features/SearchProduct/ui/SearchProduct';
 import SecondaryItems from './SecondaryItems/SecondaryItems';
 import PrimaryItems from './PrimaryItems/PrimaryItems';
 import LinkBasket from 'shared/ui/LinkBasket/LinkBasket';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
+import IconLogo from 'shared/assets/icons/logo.png';
 
 const Navbar = () => {
+  console.log(IconLogo);
   return (
     <header className={cls.header}>
       <div className={cls.wrapperSecondary}>
@@ -31,7 +35,12 @@ const Navbar = () => {
             'width-wrapper',
           ])}
         >
-          <h1 className={cls.title}>workout</h1>
+          <AppLink to={RoutePath.main} className={cls.logoLink}>
+            <h1 className={cls.title}>
+              <img src={IconLogo} alt="Логотип" className={cls.logoImg} />
+              воркаут.рф
+            </h1>
+          </AppLink>
           <PrimaryItems className={classNames(cls.list, {}, [cls.listPrimary])}>
             <LinkBasket />
           </PrimaryItems>

@@ -7,9 +7,13 @@ import { OrderProducts } from './entities/orderProducts.entity';
 import nodeMailer from 'utils/nodeMailer';
 import htmlTemlate from 'htmlTemlate/htmlTemlate';
 import telegramApi from 'telegramApi/telegramApi';
+import { emailUsers, telegramUsers } from 'const/const';
+import { Logger } from 'Logger/Logger';
+
 @Injectable()
 export class OrderService {
   constructor(
+    private readonly logger: Logger,
     @InjectRepository(Orders)
     private readonly ordersRepository: Repository<Orders>,
     @InjectRepository(OrderProducts)
@@ -21,9 +25,41 @@ export class OrderService {
 
     const messageHtml = getOrderTemplate(createOrderDto);
 
-    sendMessage('afdmin321@yandex.ru', messageHtml);
+    sendMessage(emailUsers.emailManager, messageHtml).catch((err) => {
+      this.logger.error(
+        `ORDER: ошибка отправки заказа менеджеру в тг! Ошибка: ${err.message}`,
+      );
+      telegramApi
+        .sendMessage(
+          telegramUsers.idAdmin,
+          'ORDER: ошибка отправки заказа менеджеру на почту',
+        )
+        .catch((errTg) =>
+          sendMessage(
+            emailUsers.emailAdmin,
+            `ORDER: ошибка отправки заказа менеджеру и админу в тг! Ошибка: ${err.message}; Ошибка Тг ${errTg.message}`,
+          ),
+        );
+    });
 
-    telegramApi.sendMessage(getOrderTgTemplate(createOrderDto));
+    telegramApi
+      .sendMessage(telegramUsers.idManager, getOrderTgTemplate(createOrderDto))
+      .catch((err) => {
+        this.logger.error(
+          `ORDER: ошибка отправки заказа менеджеру в тг! Ошибка: ${err.message}`,
+        );
+        telegramApi
+          .sendMessage(
+            telegramUsers.idAdmin,
+            'ORDER: ошибка отправки заказа менеджеру в тг!',
+          )
+          .catch((errTg) => {
+            sendMessage(
+              emailUsers.emailAdmin,
+              `ORDER: ошибка отправки заказа менеджеру и админу в тг!  Ошибка: ${err.message}; Ошибка Тг ${errTg.message}`,
+            );
+          });
+      });
 
     return this.ordersRepository
       .save({
@@ -42,14 +78,65 @@ export class OrderService {
               link: `https://воркаут.рф/products/${product.id}`,
             };
           });
-          this.orderProductsRepository.insert(products);
+
+          this.orderProductsRepository.insert(products).catch((err) => {
+            this.logger.error(
+              `ORDER: ошибка записи товаров заказа в бд! Ошибка: ${err.message}`,
+            );
+            telegramApi
+              .sendMessage(
+                telegramUsers.idAdmin,
+                'ORDER: ошибка записи товаров заказа в бд',
+              )
+              .catch((errTg) =>
+                sendMessage(
+                  emailUsers.emailAdmin,
+                  `ORDER: ORDER: ошибка записи товаров заказа в бд и отправка ошибки админу в тг! Ошибка: ${err.message}; Ошибка Тг ${errTg.message}`,
+                ),
+              );
+          });
         }
         return res;
+      })
+      .catch((err) => {
+        this.logger.error(
+          `ORDER: ошибка записи заказа в бд! Ошибка: ${err.message}`,
+        );
+        telegramApi
+          .sendMessage(
+            telegramUsers.idAdmin,
+            'ORDER: ошибка записи заказа в бд',
+          )
+          .catch((errTg) =>
+            sendMessage(
+              emailUsers.emailAdmin,
+              `ORDER: ORDER: ошибка записи заказа в бд и отправка ошибки админу в тг! Ошибка: ${err.message}; Ошибка Тг ${errTg.message}`,
+            ),
+          );
+        throw Error(err.message);
       });
   }
 
   async findAll() {
-    return this.ordersRepository.find({ relations: { products: true } });
+    return this.ordersRepository
+      .find({ relations: { products: true } })
+      .catch((err) => {
+        this.logger.error(
+          `ORDER: ошибка получения всех заказов! Ошибка: ${err.message}`,
+        );
+        telegramApi
+          .sendMessage(
+            telegramUsers.idAdmin,
+            'ORDER: ошибка получения всех заказов!',
+          )
+          .catch((errTg) =>
+            nodeMailer.sendMessage(
+              emailUsers.emailAdmin,
+              `ORDER: ORDER: ошибка получения всех заказов! и отправка ошибки админу в тг! Ошибка: ${err.message}; Ошибка Тг ${errTg.message}`,
+            ),
+          );
+        throw Error(err.message);
+      });
   }
 
   findOne(id: string) {

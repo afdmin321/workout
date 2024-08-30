@@ -24,11 +24,6 @@ export class CategoriesController {
     return this.categoriesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.categoriesService.findOne(id);
-  }
-
   @Post()
   @UseGuards(JwtAuthGuard)
   @UsePipes(new ValidationPipe())
@@ -48,6 +43,7 @@ export class CategoriesController {
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
+  @UsePipes(new ValidationPipe())
   remove(@Param('id') id: string) {
     return this.categoriesService.remove(id);
   }
