@@ -14,6 +14,7 @@ import { getUserInited } from 'entities/User/model/selectors/UserSelector';
 import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { UserActions } from 'entities/User/model/slice/UserSlice';
+import ScrollToTop from 'features/ScrollToTop/ScrollToTop';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -25,11 +26,18 @@ const App = () => {
   useEffect(() => {
     dispatch(UserActions.initAuthData());
   }, [dispatch]);
+
+
   return (
     <div className={classNames('app')}>
       <Navbar />
       <div className="content-page width-wrapper">
-        {inited && <AppRouter />}
+        {inited && (
+          <>
+            <AppRouter />
+            <ScrollToTop />
+          </>
+        )}
       </div>
       {popupSuccessApplicationVisible && <SuccessApplication />}
       <FeedBack />

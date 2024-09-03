@@ -11,7 +11,6 @@ import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 import IconLogo from 'shared/assets/icons/logo.png';
 
 const Navbar = () => {
-  console.log(IconLogo);
   return (
     <header className={cls.header}>
       <div className={cls.wrapperSecondary}>

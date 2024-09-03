@@ -4,3 +4,10 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+.skeletonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}

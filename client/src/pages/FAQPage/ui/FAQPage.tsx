@@ -11,7 +11,7 @@ interface Props {
 const FAQPage: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <div className={classNames(cls.FAQPage, {}, [className])} {...otherProps}>
+    <section className={classNames(cls.FAQPage, {}, [className])} {...otherProps}>
       <DropDown question="Сертифицирована ли Ваша продукция, где можно посмотреть сертификаты?">
         <div>
           Да, вся наша продукция сертифицирована. Сертификаты можно посмотреть
@@ -78,7 +78,7 @@ const FAQPage: FC<Props> = (props: Props) => {
           <li>Возраст детей, для которых предназначена площадка.</li>
         </ul>
       </DropDown>
-    </div>
+    </section>
   );
 };
 

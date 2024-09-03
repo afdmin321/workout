@@ -9,9 +9,9 @@ interface Props {
 const LoginPage: FC<Props> = (props: Props) => {
  const { className, ...otherProps } = props;
   return (
-    <div className={classNames(cls.LoginPage, {}, [className])} {...otherProps}>
+    <section className={classNames(cls.LoginPage, {}, [className])} {...otherProps}>
         <LoginForm/>
-    </div>
+    </section>
   )
 };
 

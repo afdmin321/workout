@@ -13,15 +13,19 @@
   --sidebar-width: 300px;
   --sidebar-width-collapsed: 80px;
   --bg-secondary: #d9d9d9;
+  --white: #fff;
+  --secondary-color: rgba(0, 144, 43, 1);
   --overlay-color: rgba(0 0 0 / 60%);
   --red-light: #f00;
   --red-dark: #ce0505;
+  --text-color-secondary: #e0ab69;
   --colorDecoration: #474444;
   --color-link-allot: rgb(0, 0, 145);
   --swiper-navigation-color: #47444496;
-  --swiper-theme-color: --colorDecoration !important;
-  --swiper-pagination-color: #474444;
-  --white: #fff;
+  --swiper-pagination-bullet-inactive-color: #e9e9e9be !important;
+  --swiper-pagination-color: var(--bg-secondary) !important;
+  --skeleton-color: var(--bg-secondary);
+  --skeleton-shadow: var(--colorDecoration);
   --modal-z-index: 10;
   --swiper-pagination-bullet-size: 17px;
 }/*# sourceMappingURL=global.css.map */

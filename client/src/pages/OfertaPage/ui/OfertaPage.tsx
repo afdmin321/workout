@@ -10,7 +10,7 @@ interface Props {
 const OfertaPage: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <div
+    <section
       className={classNames(cls.OfertaPage, {}, [className])}
       {...otherProps}
     >
@@ -416,7 +416,7 @@ const OfertaPage: FC<Props> = (props: Props) => {
         <div className={cls.text}>к/с 30101810900000000556</div>
         <div className={cls.text}>БИК 040349556</div>
       </div>
-    </div>
+    </section>
   );
 };
 

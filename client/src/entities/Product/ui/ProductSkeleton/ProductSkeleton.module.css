@@ -1,0 +1,13 @@
+.ProductSkeleton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 310px;
+}
+
+@media (min-width: 375px) {
+  .ProductSkeleton {
+    max-width: 345px;
+  }
+}/*# sourceMappingURL=ProductSkeleton.module.css.map */

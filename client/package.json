@@ -4,7 +4,7 @@
   "description": "Web store",
   "main": "index.ts",
   "scripts": {
-    "start": "webpack serve --env port=7000",
+    "start": "webpack serve --env port=7000 apiUrl=https://xn----7sbkfabgm0avc8afvk0e9cj2d.xn--p1ai/api",
     "build:prod": "webpack --env mode=production apiUrl=https://xn----7sbkfabgm0avc8afvk0e9cj2d.xn--p1ai/api",
     "build:dev": "webpack --env mode=development",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
@@ -75,7 +75,7 @@
     "react-dom": "^18.2.0",
     "react-id-swiper": "^4.0.0",
     "react-redux": "^8.1.3",
-    "react-router-dom": "^6.21.3",
+    "react-router-dom": "^6.26.1",
     "react-window": "^1.8.10",
     "react-youtube": "^10.1.0",
     "swiper": "^11.1.4",

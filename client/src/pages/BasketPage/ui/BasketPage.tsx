@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode, useCallback, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import cls from './BasketPage.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { BasketList } from 'entities/Basket';
@@ -27,7 +27,7 @@ const BasketPage: FC<Props> = (props: Props) => {
   const price = useSpacePrice(AllPrice);
 
   return (
-    <div
+    <section
       className={classNames(cls.BasketPage, {}, [className])}
       {...otherProps}
     >
@@ -54,7 +54,7 @@ const BasketPage: FC<Props> = (props: Props) => {
       ) : (
         <div className={cls.basketNull}>
           <h2 className={cls.title}>
-            <div>В корзине не чего нет(</div>
+            <div>В корзине ничего нет {':('}</div>
             перейдите в{' '}
             <AppLink to={RoutePath.products} theme={ThemeLink.BLUE}>
               каталог
@@ -63,7 +63,7 @@ const BasketPage: FC<Props> = (props: Props) => {
           </h2>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

@@ -9,6 +9,7 @@ import { RequireAuth } from './RequireAuth';
 
 const AppRouter: FC = () => {
   const renderWithWrapper = useCallback((route: AppRoutesProps) => {
+    window.scrollTo(0, 0);
     const element = <div className="page-wrapper">{route.element}</div>;
     return (
       <Route

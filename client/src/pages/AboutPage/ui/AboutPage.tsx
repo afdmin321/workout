@@ -1,4 +1,4 @@
-import { FC, memo, useState } from 'react';
+import { FC, memo } from 'react';
 import cls from './AboutPage.module.scss';
 import { Icon } from 'shared/ui/Icon/Icon';
 import IconDuotone from 'shared/assets/icons/duotone.svg';
@@ -8,12 +8,8 @@ import IconDelivery from 'shared/assets/icons/delivery.svg';
 import OneImg from 'shared/assets/about/yoke.jpg';
 import TwoImg from 'shared/assets/about/iskra.jpg';
 const AboutPage: FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const stopLoading = () => {
-    setIsLoading(false);
-  };
   return (
-    <div className={cls.AboutPage}>
+    <section className={cls.AboutPage}>
       <div className={cls.wrapperVideo}>
         <iframe
           width="100%"
@@ -76,7 +72,7 @@ const AboutPage: FC = () => {
           </p>
         </li>
       </ul>
-    </div>
+    </section>
   );
 };
 

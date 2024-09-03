@@ -49,7 +49,11 @@
 
 .buttonBack {
   padding: 5px 14px 9px;
-  color: var(--colorDecoration);
+}
+.buttonBack span {
+  width: 17px;
+  height: 17px;
+  font-size: 18px;
 }
 .buttonBack:first-child {
   border-right: 1px solid var(--colorDecoration);
@@ -94,7 +98,6 @@
 .icon {
   width: 17px;
   height: 17px;
-  font-size: 18px;
 }
 
 @media (min-width: 370px) {

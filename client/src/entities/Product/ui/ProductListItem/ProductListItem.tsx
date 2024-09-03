@@ -7,6 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 
 import IncreasingBasket from 'widgets/IncreasingBasket/IncreasingBasket';
+import { ScrollWatchesActions } from 'widgets/ScrollWatches';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from 'shared/ui/Button/Button';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
 
 interface Props {
   className?: string;
@@ -15,9 +20,25 @@ interface Props {
 const ProductListItem: FC<Props> = (props: Props) => {
   const { className, product, ...otherProps } = props;
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const onScrol = () => {
+    dispatch(
+      ScrollWatchesActions.setScrollPosition({
+        position: window.scrollY,
+        path: '/catalog',
+      }),
+    );
+  };
   const onOpenArticle = useCallback(() => {
+    onScrol();
     navigate(RoutePath.product_details + product.id);
   }, [navigate, product.id]);
+
+  const auth = useSelector(getUserAuthData);
+  const onHandlerButtonEdit = (e: any) => {
+    e.stopPropagation();
+    console.log(123123);
+  };
   const productImages = product.images.length ? product.images[0]?.src : '';
   const productSize =
     product.length && product.width && product.height
@@ -41,6 +62,19 @@ const ProductListItem: FC<Props> = (props: Props) => {
       <div onClick={(e) => e.stopPropagation()}>
         <IncreasingBasket product={product} />
       </div>
+      {auth?.token && (
+        <>
+          <Button
+            onClick={onHandlerButtonEdit}
+            className={classNames(cls.buttonAdmin, {}, [cls.buttonEdit])}
+          >
+            &#128393;
+          </Button>
+          <Button onClick={onHandlerButtonEdit} className={classNames(cls.buttonAdmin, {}, [cls.buttonDelet])}>
+            &#128465;
+          </Button>
+        </>
+      )}
     </div>
   );
 };

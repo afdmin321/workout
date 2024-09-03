@@ -16,13 +16,13 @@ const ProductDetailsPage: FC<Props> = (props: Props) => {
     return <div>Товар не найден</div>;
   }
   return (
-    <div
+    <section
       className={classNames(cls.ProductDetailsPage, {}, [className])}
       {...otherProps}
     >
       <ProductDetails id={id} />
       <ProductRecommendationsList idProductStop={id} />
-    </div>
+    </section>
   );
 };
 

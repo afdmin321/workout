@@ -16,8 +16,9 @@
 
 .buttonSubmite {
   position: absolute;
-  right: 25px;
+  right: 30px;
   top: 4px;
+  padding: 1px 5px;
 }
 
 .iconSearch,
@@ -32,8 +33,8 @@
 }
 
 .buttonExit {
-  align-self: flex-start;
-  color: var(--colorDecoration);
+  font-size: 17px;
+  padding: 0 3px;
 }
 
 .label {

@@ -8,7 +8,7 @@ interface Props {
 const GuaranteesPage: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <div
+    <section
       className={classNames(cls.GuaranteesPage, {}, [className])}
       {...otherProps}
     >
@@ -211,7 +211,7 @@ const GuaranteesPage: FC<Props> = (props: Props) => {
           </p>
         </li>
       </ul>
-    </div>
+    </section>
   );
 };
 

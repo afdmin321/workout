@@ -8,5 +8,5 @@ interface Props {
 }
 
 export const NotFoundPage: FC<Props> = ({ className }: Props) => {
-    return <div className={classNames(cls.NotFoundPage, {}, [className])}>{"Страница не найдена"}</div>;
+    return <section className={classNames(cls.NotFoundPage, {}, [className])}>{"Страница не найдена"}</section>;
 };

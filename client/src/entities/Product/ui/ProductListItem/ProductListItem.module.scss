@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: 7px;
   cursor: pointer;
+  position: relative;
   &:hover {
     box-shadow: 0 -7px 5px -3px var(--secondary-color);
   }
@@ -22,13 +23,10 @@
 .price {
   margin-top: auto;
 }
-.articleNumber {
-}
-.size {
-}
 
 @media (min-width: 390px) {
   .ProductListItem {
     width: 345px;
   }
 }
+

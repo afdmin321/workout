@@ -15,7 +15,7 @@ interface Props {
 const ContactPage: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <div
+    <section
       className={classNames(cls.ContactPage, {}, [className])}
       {...otherProps}
     >
@@ -51,7 +51,7 @@ const ContactPage: FC<Props> = (props: Props) => {
       <FormCall className={cls.form} theme={ThemeForm.CONTACT}>
         <h2 className={cls.formTitle}>Мы перезвоним в буднии дни с 8-17</h2>
       </FormCall>
-    </div>
+    </section>
   );
 };
 

@@ -27,56 +27,21 @@ select {
   --sidebar-width: 300px;
   --sidebar-width-collapsed: 80px;
   --bg-secondary: #d9d9d9;
+  --white: #fff;
+  --secondary-color: rgba(0, 144, 43, 1);
   --overlay-color: rgba(0 0 0 / 60%);
   --red-light: #f00;
   --red-dark: #ce0505;
+  --text-color-secondary: #e0ab69;
   --colorDecoration: #474444;
   --color-link-allot: rgb(0, 0, 145);
   --swiper-navigation-color: #47444496;
-  --swiper-theme-color: --colorDecoration !important;
-  --swiper-pagination-color: #474444;
-  --white: #fff;
+  --swiper-pagination-bullet-inactive-color: #e9e9e9be !important;
+  --swiper-pagination-color: var(--bg-secondary) !important;
+  --skeleton-color: var(--bg-secondary);
+  --skeleton-shadow: var(--colorDecoration);
   --modal-z-index: 10;
   --swiper-pagination-bullet-size: 17px;
-}
-
-.app_light_theme {
-  --bg-color: #e8e8ea;
-  --inverted-bg-color: #0e0e75;
-  --primary-color: #062688;
-  --secondary-color: #0654fa;
-  --inverted-primary-color: #04ff04;
-  --inverted-secondary-color: #027c02;
-  --skeleton-color: #fff;
-  --skeleton-shadow: rgb(0 0 0 / 30.1%);
-  --code-bg: #ffff;
-  --card-bg: #a7a7b3;
-}
-
-.app_dark_theme {
-  --bg-color: #0e0e75;
-  --inverted-bg-color: #e8e8ea;
-  --primary-color: #04ff04;
-  --secondary-color: #027c02;
-  --inverted-primary-color: #062688;
-  --inverted-secondary-color: #0654fa;
-  --skeleton-color: #1515ad;
-  --skeleton-shadow: #2b2be8;
-  --code-bg: #1212a1;
-  --card-bg: #303068;
-}
-
-.app_green_theme {
-  --bg-color: #f4fbf5;
-  --inverted-bg-color: #175424;
-  --primary-color: #25340e;
-  --secondary-color: #175424;
-  --inverted-primary-color: #d6d6d6;
-  --inverted-secondary-color: #f4fbf4;
-  --skeleton-color: #175424;
-  --skeleton-shadow: #25340e;
-  --code-bg: #ffff;
-  --card-bg: #b7ceba;
 }
 
 body,
@@ -85,9 +50,25 @@ body,
   color: var(--primary-color);
 }
 
+.swiper-button-prev::after {
+  margin-left: -22px !important;
+}
+
+.swiper-button-next::after {
+  margin-left: -22px !important;
+}
+
 .app {
+  flex-grow: 1;
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
   background: var(--bg-color);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -100,6 +81,7 @@ body,
 .content-page {
   display: flex;
   height: 100%;
+  width: 100%;
   flex: 1 1 auto;
 }
 
@@ -107,4 +89,23 @@ body,
   width: 100%;
   max-width: 1440px;
   margin: auto;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--colorDecoration);
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.ymaps-2-1-79-gototech,
+.ymaps-2-1-79-copyright__link,
+.ymaps-2-1-79-gototaxi__container {
+  display: none !important;
 }/*# sourceMappingURL=index.css.map */

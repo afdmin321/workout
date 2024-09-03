@@ -3,4 +3,23 @@
   flex-direction: column;
   gap: 10px;
   padding-bottom: 50px;
+}
+
+.skeletonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 650px) {
+  .ProductsPage {
+    gap: 20px;
+  }
+}
+@media (min-width: 1000px) {
+  .ProductsPage {
+    gap: 30px;
+  }
 }/*# sourceMappingURL=ProductsPage.module.css.map */

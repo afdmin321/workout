@@ -10,7 +10,7 @@ interface Props {
 const MainPage: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <div className={classNames(cls.MainPage, {}, [className])} {...otherProps}>
+    <section className={classNames(cls.MainPage, {}, [className])} {...otherProps}>
       <div className={cls.wrapperSwiperPrimary}>
         <SwiperPrimary />
       </div>
@@ -18,7 +18,7 @@ const MainPage: FC<Props> = (props: Props) => {
       <div className={cls.wrapperSwiperSecondary}>
         <SwiperSecondary />
       </div>
-    </div>
+    </section>
   );
 };
 
