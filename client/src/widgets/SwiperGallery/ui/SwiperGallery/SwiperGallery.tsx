@@ -11,8 +11,9 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { PopupImageAction } from 'widgets/PopupImage';
 
 import { useResize } from 'shared/lib/hooks/useResize/useResize';
-import { useSwiperGallery } from 'widgets/SwiperGallery/model/api/SwiperGalleryApi';
+import { useGetSwiperGallery } from 'widgets/SwiperGallery/model/api/SwiperGalleryApi';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+
 interface Props {
   className?: string;
 }
@@ -21,7 +22,7 @@ const SwiperGallery: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   const dispatch = useAppDispatch();
   const resize = useResize();
-  const { isLoading, data: slides, error } = useSwiperGallery();
+  const { isLoading, data: slides, error } = useGetSwiperGallery();
   const slidesPerView = resize < 470 ? 1 : 3;
   let content;
 
@@ -75,7 +76,7 @@ const SwiperGallery: FC<Props> = (props: Props) => {
             <SwiperSlide key={el?.id}>
               {({ isNext }) => (
                 <SwiperItem
-                  src={el.src}
+                  slide={el}
                   onHandler={onHandlerClickItem}
                   isActive={isNext}
                 />
@@ -89,7 +90,7 @@ const SwiperGallery: FC<Props> = (props: Props) => {
 
   return (
     <div
-      className={classNames(cls.SwiperSecondary, {}, [className])}
+      className={classNames(cls.SwiperGallery, {}, [className])}
       {...otherProps}
     >
       {content}

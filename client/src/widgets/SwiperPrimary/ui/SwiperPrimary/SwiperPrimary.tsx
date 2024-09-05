@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo } from 'react';
 import cls from './SwiperPrimary.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,7 +7,6 @@ import 'swiper/scss';
 import 'swiper/scss/effect-cube';
 import 'swiper/scss/pagination';
 import 'swiper/scss/scrollbar';
-import SwiperItem from '../SwiperItem/SwiperItem';
 import slideOneSize370 from 'shared/assets/bannerd_primary/1-370.jpg';
 import slideOneSize750 from 'shared/assets/bannerd_primary/1-750.jpg';
 import slideOneSize1000 from 'shared/assets/bannerd_primary/1-1000.jpg';
@@ -82,7 +81,7 @@ const SwiperPrimary: FC<Props> = (props: Props) => {
             <div className={cls.textBorder}>ВЫСОКОГО КАЧЕСТВА</div>
             <div className={cls.textWrapper}>
               <div className={cls.textStimulate}>
-                КУПИТЬ СПОРТИВНОЕ ОБОРУДОВАНИЕ МОЖНО ПРЯМО СЕЙЧАС:
+                КУПИТЬ СПОРТИВНОЕ ОБОРУДОВАНИЕ ПРЯМО СЕЙЧАС:
               </div>
               <div className={cls.advantagesWrapper}>
                 <div className={cls.advantages}>

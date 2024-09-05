@@ -1,0 +1,26 @@
+.ButtonDeleted {
+  top: 0;
+  right: 0;
+}
+.popoupDeleted {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--colorDecoration);
+  color: white;
+  padding: 100px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.wrapperButton {
+  display: flex;
+  justify-content: space-between;
+}
+.button {
+  font-size: 25px;
+  color: inherit;
+  padding: 20px;
+}

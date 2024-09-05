@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 10px 0;
   padding-bottom: 50px;
-
 }
 
 .title {
@@ -13,7 +12,9 @@
 .wrapperSwiperPrimary {
   margin-bottom: 30px;
 }
-
+.wrapperTitle {
+  position: relative;
+}
 @media (min-width: 650px) {
   .MainPage {
     gap: 25px 0;

@@ -7,8 +7,8 @@ export const getNavbarBasket = {
 };
 export const getNavbarPrimaryItems: NavbarItemsType[] = [
   { path: RoutePath.main, text: 'ГЛАВНАЯ' },
-  { path: RoutePath.about, text: 'О НАС' },
   { path: RoutePath.products, text: 'КАТАЛОГ' },
+  { path: RoutePath.about, text: 'О НАС' },
   { path: RoutePath.contact, text: 'КОНТАКТЫ' },
 ];
 export const getNavbarSecondaryItems: NavbarItemsType[] = [

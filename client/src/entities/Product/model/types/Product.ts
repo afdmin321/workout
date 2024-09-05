@@ -27,6 +27,7 @@ export interface Product {
   articleNumber: string;
   category: ProductCategory;
   images: ProductImeges[];
+  disabled: boolean;
   price: number | null;
   ageGroup: string | null;
   material: string | null;
@@ -36,4 +37,19 @@ export interface Product {
   lengthDelivery: number | null;
   widthDelivery: number | null;
   heightDelivery: number | null;
+  weightDelivery: number | null;
+}
+export interface CreateProductImages extends Omit<ProductImeges, 'id'> {
+  id?: string;
+}
+export interface CreateProductCategory {
+  id: string;
+  name: string;
+  disabled: boolean;
+}
+export interface CreateProduct
+  extends Omit<Product, 'id' | 'images' | 'category'> {
+  id?: string;
+  category?: CreateProductCategory;
+  images: CreateProductImages[];
 }

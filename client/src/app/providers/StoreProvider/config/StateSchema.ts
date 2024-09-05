@@ -7,7 +7,7 @@ import {
 import { CombinedState } from 'redux';
 import { AxiosInstance } from 'axios';
 import { rtkApi } from 'shared/api/rtkApi';
-import { ProductDetailsSchema } from 'entities/Product';
+import { ProductDetailsSchema, CreateProductSchema } from 'entities/Product';
 import { BasketListSchema } from 'entities/Basket/model/types/BasketListSchema';
 import { ProductsPageSchema } from 'pages/ProductsPage/model/types/ProductsPageSchema';
 import { ScrollWatchesSchema } from 'widgets/ScrollWatches';
@@ -33,6 +33,7 @@ export interface StateSchema {
   productDetails?: ProductDetailsSchema;
   productsPage?: ProductsPageSchema;
   authByUsername?: AuthByUsernameSchema;
+  createProduct?: CreateProductSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

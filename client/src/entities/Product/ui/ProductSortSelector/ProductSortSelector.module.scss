@@ -1,7 +1,6 @@
 .iconSort {
   width: 25px;
   height: 25px;
-
 }
 .ProductSortSelector {
   min-height: 40px;
@@ -10,11 +9,10 @@
   align-items: center;
   padding: 0 30px;
   border-radius: 15px;
- 
+  position: relative;
 }
 @media (min-width: 1000px) {
   .ProductSortSelector {
     min-height: 50px;
   }
- 
-} 
+}

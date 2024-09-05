@@ -15,6 +15,8 @@ import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { UserActions } from 'entities/User/model/slice/UserSlice';
 import ScrollToTop from 'features/ScrollToTop/ScrollToTop';
+import { useLocation } from 'react-router-dom';
+import { ScrollWatchesActions } from 'widgets/ScrollWatches';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -26,8 +28,20 @@ const App = () => {
   useEffect(() => {
     dispatch(UserActions.initAuthData());
   }, [dispatch]);
+  const { pathname } = useLocation();
 
-
+  const onScroll = () => {
+    dispatch(
+      ScrollWatchesActions.setScrollPosition({
+        path: pathname,
+        position: window.scrollY,
+      }),
+    );
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [pathname]);
   return (
     <div className={classNames('app')}>
       <Navbar />

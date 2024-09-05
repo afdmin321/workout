@@ -7,11 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 
 import IncreasingBasket from 'widgets/IncreasingBasket/IncreasingBasket';
-import { ScrollWatchesActions } from 'widgets/ScrollWatches';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Button } from 'shared/ui/Button/Button';
-import { useSelector } from 'react-redux';
-import { getUserAuthData } from 'entities/User';
+import ButtonEdit from 'shared/ui/ButtonEdit/ButtonEdit';
+import ButtonDeleted from 'shared/ui/ButtonDeleted/ButtonDeleted';
+import { fetchDeletProduct } from 'entities/Product/model/services/fetchDeletProduct';
 
 interface Props {
   className?: string;
@@ -21,24 +20,20 @@ const ProductListItem: FC<Props> = (props: Props) => {
   const { className, product, ...otherProps } = props;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const onScrol = () => {
-    dispatch(
-      ScrollWatchesActions.setScrollPosition({
-        position: window.scrollY,
-        path: '/catalog',
-      }),
-    );
-  };
-  const onOpenArticle = useCallback(() => {
-    onScrol();
+  const onOpenProduct = useCallback(() => {
     navigate(RoutePath.product_details + product.id);
   }, [navigate, product.id]);
 
-  const auth = useSelector(getUserAuthData);
-  const onHandlerButtonEdit = (e: any) => {
-    e.stopPropagation();
-    console.log(123123);
-  };
+  const onHandlerButtonEdit = useCallback(() => {
+    navigate(RoutePath.edit_product + product.id);
+  }, [navigate, product.id]);
+  const onHandlerButtonDelete = useCallback(
+    (evt: React.MouseEvent<HTMLButtonElement>) => {
+      evt.stopPropagation();
+      dispatch(fetchDeletProduct(product.id));
+    },
+    [dispatch, product.id],
+  );
   const productImages = product.images.length ? product.images[0]?.src : '';
   const productSize =
     product.length && product.width && product.height
@@ -49,7 +44,7 @@ const ProductListItem: FC<Props> = (props: Props) => {
       className={classNames(cls.ProductListItem, {}, [className])}
       {...otherProps}
       id={product.id}
-      onClick={onOpenArticle}
+      onClick={onOpenProduct}
     >
       <img src={productImages} alt={product.name} className={cls.img} />
 
@@ -58,23 +53,22 @@ const ProductListItem: FC<Props> = (props: Props) => {
       </h2>
       <Price price={product.price} className={cls.price} />
       <div className={cls.articleNumber}>Артикул: {product.articleNumber}</div>
-      {productSize && <div className={cls.size}>Габариты: {productSize}</div>}
+      {product.length && (
+        <div className={cls.size}>Габариты: {productSize}</div>
+      )}
       <div onClick={(e) => e.stopPropagation()}>
         <IncreasingBasket product={product} />
       </div>
-      {auth?.token && (
-        <>
-          <Button
-            onClick={onHandlerButtonEdit}
-            className={classNames(cls.buttonAdmin, {}, [cls.buttonEdit])}
-          >
-            &#128393;
-          </Button>
-          <Button onClick={onHandlerButtonEdit} className={classNames(cls.buttonAdmin, {}, [cls.buttonDelet])}>
-            &#128465;
-          </Button>
-        </>
-      )}
+
+      <ButtonEdit
+        onClick={onHandlerButtonEdit}
+        className={classNames(cls.buttonEdit)}
+      />
+
+      <ButtonDeleted
+        onHandler={onHandlerButtonDelete}
+        className={classNames(cls.buttonDelet)}
+      />
     </div>
   );
 };

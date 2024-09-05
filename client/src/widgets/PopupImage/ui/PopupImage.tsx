@@ -30,8 +30,6 @@ const PopupImage: FC<Props> = (props: Props) => {
   }, [dispatch]);
 
   const onHandlerImageNext = useCallback(() => {
-    console.log(indexCurrentImage);
-    console.log(currentImgSrc);
     if (images?.length && (indexCurrentImage || indexCurrentImage === 0)) {
       const nextImage = images[indexCurrentImage + 1];
       console.log(nextImage);

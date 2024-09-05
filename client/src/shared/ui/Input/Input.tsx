@@ -9,6 +9,7 @@ type HTMLInputProps = Omit<
 interface Props extends HTMLInputProps {
   className?: string;
   classNameLabel?: string;
+  classNameText?: string;
   value?: string | number;
   onChange?: (value: string) => void;
   err?: string;
@@ -21,6 +22,7 @@ const InputComponent: FC<Props> = (props) => {
   const {
     className,
     classNameLabel,
+    classNameText,
     value,
     onChange,
     type = 'text',
@@ -42,7 +44,9 @@ const InputComponent: FC<Props> = (props) => {
   };
   return (
     <label className={classNames(cls.label, mods, [classNameLabel])}>
-      {text && <div className={cls.text}>{text}</div>}
+      {text && (
+        <div className={classNames(cls.text, {}, [classNameText])}>{text}</div>
+      )}
       <input
         ref={ref}
         readOnly={readonly}

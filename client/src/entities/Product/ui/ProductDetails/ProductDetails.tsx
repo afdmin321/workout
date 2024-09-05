@@ -75,8 +75,12 @@ const ProductDetails: FC<Props> = (props: Props) => {
           <div className={cls.articleNumber}>
             Артикул: {product.articleNumber}
           </div>
-          <div className={cls.size}>Габаритные размеры: {productSize}</div>
-          <p className={cls.description}>{product.description}</p>
+          {product.length && (
+            <div className={cls.size}>Габаритные размеры: {productSize}</div>
+          )}
+          {product.description && (
+            <p className={cls.description}>{product.description}</p>
+          )}
           {product.material ? (
             <div className={cls.material}>Материал: {product.material}</div>
           ) : (

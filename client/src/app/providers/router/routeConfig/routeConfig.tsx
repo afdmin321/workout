@@ -1,4 +1,5 @@
 import { AboutPage } from 'pages/AboutPage';
+import AddProductPage from 'pages/AddProductPage/AddProductPage';
 import { BasketPage } from 'pages/BasketPage';
 import { ContactPage } from 'pages/ContactPage';
 import { FAQPage } from 'pages/FAQPage';
@@ -27,6 +28,10 @@ export enum AppRoutes {
   FAQ = 'faq',
   OFERTA = 'oferta',
   AUTH = 'auth',
+  ADD_PRODUCT = 'add_product',
+  EDIT_PRODUCT = 'edit_product',
+  ADD_SLIDES_GALLERY = 'add_slides_gallery',
+  EDIT_SLIDES_GALLERY = 'edit_slides_gallery',
   // last
   NOT_FOUND = 'not_found',
 }
@@ -43,67 +48,79 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.FAQ]: '/faq',
   [AppRoutes.OFERTA]: '/oferta',
   [AppRoutes.AUTH]: '/auth',
+  [AppRoutes.ADD_PRODUCT]: '/add/product',
+  [AppRoutes.EDIT_PRODUCT]: '/edit/product/', // +:id
+  [AppRoutes.ADD_SLIDES_GALLERY]: '/add/slides/gallery',
+  [AppRoutes.EDIT_SLIDES_GALLERY]: '/edit/slides/gallery',
   [AppRoutes.NOT_FOUND]: '*',
 };
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MAIN]: {
     path: RoutePath.main,
     element: <MainPage />,
-
   },
   [AppRoutes.ABOUT]: {
     path: RoutePath.about,
     element: <AboutPage />,
-
   },
   [AppRoutes.PRODUCTS]: {
     path: RoutePath.products,
     element: <ProductsPage />,
-
   },
   [AppRoutes.PRODUCT_DETAILS]: {
     path: `${RoutePath.product_details}:id`,
     element: <ProductDetailsPage />,
-
   },
   [AppRoutes.CONTACT]: {
     path: RoutePath.contact,
     element: <ContactPage />,
-
   },
   [AppRoutes.BASKET]: {
     path: RoutePath.basket,
     element: <BasketPage />,
-
   },
   [AppRoutes.GUARANTEES]: {
     path: RoutePath.guarantees,
     element: <GuaranteesPage />,
-
   },
   [AppRoutes.CERTIFICATES]: {
     path: RoutePath.certificates,
     element: <СertificatePage />,
-
   },
   [AppRoutes.FAQ]: {
     path: RoutePath.faq,
     element: <FAQPage />,
-
   },
   [AppRoutes.OFERTA]: {
     path: RoutePath.oferta,
     element: <OfertaPage />,
-
   },
   [AppRoutes.AUTH]: {
     path: RoutePath.auth,
     element: <LoginPage />,
-
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,
     element: <NotFoundPage />,
-
+  },
+  [AppRoutes.ADD_PRODUCT]: {
+    path: RoutePath.add_product,
+    element: <AddProductPage />,
+    authOnly: true,
+  },
+  [AppRoutes.EDIT_PRODUCT]: {
+    path: `${RoutePath.edit_product}:id`,
+    element: <div>edit product</div>,
+    authOnly: true,
+  },
+  [AppRoutes.ADD_SLIDES_GALLERY]: {
+    path: RoutePath.add_slides_gallery,
+    element: <div>add slides gallery</div>,
+    authOnly: true,
+  },
+  [AppRoutes.EDIT_SLIDES_GALLERY]: {
+    path: RoutePath.edit_slides_gallery,
+    element: <div>edit slides gallery</div>,
+    authOnly: true,
   },
 };

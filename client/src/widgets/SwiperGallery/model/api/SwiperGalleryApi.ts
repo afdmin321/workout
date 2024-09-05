@@ -6,9 +6,10 @@ export const swiperGalleryApi = rtkApi.injectEndpoints({
     getGallerySlide: build.query<SwiperGalleryType[], void>({
       query: () => ({
         url: '/gallery',
+        method: 'GET',
       }),
     }),
   }),
 });
 
-export const useSwiperGallery = swiperGalleryApi.useGetGallerySlideQuery;
+export const useGetSwiperGallery = swiperGalleryApi.useGetGallerySlideQuery;

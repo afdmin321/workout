@@ -24,7 +24,7 @@ export enum typeButton {
   SUBMITE = 'submit',
   RESET = 'reset',
 }
-interface Props
+export interface ButtonProps
   extends DetailedHTMLProps<
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
@@ -37,7 +37,7 @@ interface Props
   type?: typeButton;
 }
 
-const ButtonComponent: FC<Props> = (props) => {
+const ButtonComponent: FC<ButtonProps> = (props) => {
   const {
     className,
     theme = ThemeButton.CLEAR,

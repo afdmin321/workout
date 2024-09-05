@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo, useCallback, useMemo } from 'react';
 import cls from './ProductSortSelector.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ProductSort } from 'entities/Product/model/types/Product';
@@ -7,6 +7,9 @@ import DropDownList, {
 } from 'shared/ui/DropDownList/DropDownList';
 import { Icon } from 'shared/ui/Icon/Icon';
 import SortIcon from 'shared/assets/icons/filter_text.svg';
+import ButtonAdd from 'shared/ui/ButtonAdd/ButtonAdd';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 
 interface Props {
   className?: string;
@@ -15,6 +18,7 @@ interface Props {
 }
 const ProductSortSelector: FC<Props> = (props: Props) => {
   const { className, sort, onHandlerSort, ...otherProps } = props;
+  const navigate = useNavigate();
   const sortOptions = useMemo<DropDownListOption<ProductSort>[]>(
     () => [
       { id: ProductSort.GREAT_PRICE, text: 'подороже' },
@@ -24,6 +28,9 @@ const ProductSortSelector: FC<Props> = (props: Props) => {
     ],
     [],
   );
+  const onHandlerButtonAdd = useCallback(() => {
+    navigate(RoutePath.add_product);
+  }, [navigate]);
   return (
     <div
       className={classNames(cls.ProductSortSelector, {}, [className])}
@@ -37,6 +44,7 @@ const ProductSortSelector: FC<Props> = (props: Props) => {
       >
         <Icon Src={SortIcon} className={cls.iconSort}></Icon>
       </DropDownList>
+      <ButtonAdd onClick={onHandlerButtonAdd} />
     </div>
   );
 };
