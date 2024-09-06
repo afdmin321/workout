@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useMemo } from 'react';
 import cls from './ProductFormAdd.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
@@ -17,6 +17,14 @@ import {
   getCreateProductIsLoading,
 } from 'entities/Product/model/selectors/getCreateProduct';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import Checkbox from 'shared/ui/Checkbox/Checkbox';
+import { Select, SelectOptions } from 'shared/ui/Select/Select';
+import InputFile from 'shared/ui/inputFile/InputFile';
+import { useFilesBase64 } from 'shared/lib/hooks/useFilesBase64/useFilesBase64';
+import { CreateProductImages } from 'entities/Product/model/types/Product';
+import { useGetCategory } from 'entities/Category/api/categoryApi';
+import { Category } from 'entities/Category';
+import FormImageItem from './FormImageItem/FormImageItem';
 
 interface Props {
   className?: string;
@@ -30,89 +38,153 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const data = useSelector(getCreateProductData);
   const isLoading = useSelector(getCreateProductIsLoading);
   const error = useSelector(getCreateProductError);
+  const { data: categories, error: errorCategory } = useGetCategory();
+
+  const selectCategoryOptions = useMemo<SelectOptions[]>(() => {
+    return categories?.map((category: Category) => {
+      return { value: JSON.stringify(category), content: category.name };
+    });
+  }, [categories]);
+
   const onChangeName = useCallback(
     (value: string) => {
       dispatch(CreateProductAction.setName(value));
     },
-    [data],
+    [dispatch, data?.name],
   );
   const onChangeDescription = useCallback(
     (value: string) => {
       dispatch(CreateProductAction.setDescription(value));
     },
-    [data],
+    [dispatch, data?.description],
   );
   const onChangeDisabled = useCallback(
     (value: boolean) => {
       dispatch(CreateProductAction.setDisabled(value));
     },
-    [data],
+    [dispatch, data?.disabled],
   );
   const onChangeArticleNumber = useCallback(
     (value: string) => {
       dispatch(CreateProductAction.setArticleNumber(value));
     },
-    [data],
+    [dispatch, data?.articleNumber],
   );
-  //   const onChangeCategory = useCallback((value: ) => {
-  //     dispatch(CreateProductAction());
-  //   }, [data]);
-  //   const onChangeImages = useCallback((value: ) => {
-  //     dispatch(CreateProductAction());
-  //   }, [data]);
-  const onChangePrice = useCallback(
-    (value: number) => {
-      dispatch(CreateProductAction.setPrice(value));
+  const onChangeCategory = useCallback(
+    (value: string) => {
+      const valueParse: Category = JSON.parse(value);
+      if (valueParse) dispatch(CreateProductAction.setCategory(valueParse));
     },
-    [data],
+    [dispatch, data?.category],
+  );
+  const onChangeImages = useCallback(
+    async (files: FileList | null) => {
+      if (files?.length) {
+        const fileList: string[] = await useFilesBase64(files);
+        const value: CreateProductImages[] = fileList.map((img, index) => {
+          return {
+            src: img,
+            index: index + 1,
+          };
+        });
+        if (fileList.length) {
+          dispatch(CreateProductAction.setImages(value));
+        }
+      }
+    },
+    [dispatch, data?.images],
+  );
+  const onChangePrice = useCallback(
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(CreateProductAction.setPrice(valueNum));
+      }
+    },
+    [dispatch, data?.price],
   );
   const onChangeAgeGroup = useCallback(
     (value: string) => {
       dispatch(CreateProductAction.setAgeGroup(value));
     },
-    [data],
+    [dispatch, data?.ageGroup],
   );
   const onChangeLength = useCallback(
-    (value: number) => {
-      dispatch(CreateProductAction.setLength(value));
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(CreateProductAction.setLength(valueNum));
+      }
     },
-    [data],
+    [dispatch, data?.length],
   );
   const onChangeWidth = useCallback(
-    (value: number) => {
-      dispatch(CreateProductAction.setWidth(value));
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(CreateProductAction.setWidth(valueNum));
+      }
     },
-    [data],
+    [dispatch, data?.width],
   );
   const onChangeHeight = useCallback(
-    (value: number) => {
-      dispatch(CreateProductAction.setHeight(value));
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(CreateProductAction.setHeight(valueNum));
+      }
     },
-    [data],
+    [dispatch, data?.height],
   );
   const onChangeLengthDelivery = useCallback(
-    (value: number) => {
-      dispatch(CreateProductAction.setLengthDelivery(value));
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(CreateProductAction.setLengthDelivery(valueNum));
+      }
     },
-    [data],
+    [dispatch, data?.lengthDelivery],
   );
   const onChangeWidthDelivery = useCallback(
-    (value: number) => {
-      dispatch(CreateProductAction.setWidthDelivery(value));
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(CreateProductAction.setWidthDelivery(valueNum));
+      }
     },
-    [data],
+    [dispatch, data?.widthDelivery],
   );
   const onChangeHeightDelivery = useCallback(
-    (value: number) => {
-      dispatch(CreateProductAction.setHeightDelivery(value));
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(CreateProductAction.setHeightDelivery(valueNum));
+      }
     },
-    [data],
+    [dispatch, data?.heightDelivery],
   );
   const onChangeWeightDelivery = useCallback(
-    (value: number) => {
-      dispatch(CreateProductAction.setWeightDelivery(value));
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(CreateProductAction.setWeightDelivery(valueNum));
+      }
     },
-    [data],
+    [dispatch, data?.weightDelivery],
+  );
+  const onChangeEditImageIndex = useCallback(
+    (img: string, value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum)) {
+        dispatch(
+          CreateProductAction.editImagesIndex({
+            img: img,
+            index: valueNum || 1,
+          }),
+        );
+      }
+    },
+    [dispatch, data?.images],
   );
 
   return (
@@ -137,13 +209,11 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           value={data?.description}
           onChange={onChangeDescription}
         />
-        <Input
+        <Checkbox
           name="disabled"
-          classNameText={cls.text}
-          classNameLabel={cls.wrapperInput}
-          text="Товар активен?*"
-          value={`${data?.disabled}`}
-          type="select"
+          onChange={onChangeDisabled}
+          checked={data?.disabled || false}
+          placeholder="Товар активен?*"
         />
         <Input
           name="articleNumber"
@@ -151,30 +221,45 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Артикул*"
           value={data?.articleNumber}
+          onChange={onChangeArticleNumber}
         />
-        <Input
-          name="category"
-          classNameText={cls.text}
-          classNameLabel={cls.wrapperInput}
-          text="Категория*"
-          type="select"
-          value={data?.category?.name}
+        <Select
+          value={JSON.stringify(data?.category)}
+          onChange={onChangeCategory}
+          options={selectCategoryOptions}
+          label="Выберите категорию*"
         />
-        <Input
+        <InputFile
           name="images"
-          classNameLabel={cls.wrapperInput}
-          classNameText={cls.text}
-          text="Картинки*"
+          placeholder="Устанавите картинки"
           type="file"
           accept=".jpeg,.jpg,.png"
+          files={data?.images}
+          onChange={onChangeImages}
           multiple
         />
+        {data?.images.length && (
+          <div className={cls.wrapperImages}>
+            {[...data.images]
+              .sort(
+                (a, b) => parseFloat(a.index + '') - parseFloat(b.index + ''),
+              )
+              .map((img, index) => (
+                <FormImageItem
+                  key={index}
+                  img={img}
+                  onChange={onChangeEditImageIndex}
+                />
+              ))}
+          </div>
+        )}
         <Input
           name="price"
           classNameLabel={cls.wrapperInput}
           classNameText={cls.text}
           text="Цена*"
           value={data?.price || ''}
+          onChange={onChangePrice}
         />
         <Input
           name="ageGroup"
@@ -182,6 +267,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Возростная категория"
           value={data?.ageGroup || ''}
+          onChange={onChangeAgeGroup}
         />
         <Input
           name="length"
@@ -189,6 +275,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Длина"
           value={data?.length || ''}
+          onChange={onChangeLength}
         />
         <Input
           name="width"
@@ -196,6 +283,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Ширина"
           value={data?.width || ''}
+          onChange={onChangeWidth}
         />
         <Input
           name="height"
@@ -203,6 +291,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Высота"
           value={data?.height || ''}
+          onChange={onChangeHeight}
         />
         <Input
           name="lengthDelivery"
@@ -210,6 +299,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Длина упаковки"
           value={data?.lengthDelivery || ''}
+          onChange={onChangeLengthDelivery}
         />
         <Input
           name="widthDelivery"
@@ -217,6 +307,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Ширина упаковки"
           value={data?.widthDelivery || ''}
+          onChange={onChangeWidthDelivery}
         />
         <Input
           name="heightDelivery"
@@ -224,6 +315,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Высота упаковки"
           value={data?.heightDelivery || ''}
+          onChange={onChangeHeightDelivery}
         />
         <Input
           name="weightDelivery"
@@ -231,6 +323,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           classNameLabel={cls.wrapperInput}
           text="Вес упаковки"
           value={data?.weightDelivery || ''}
+          onChange={onChangeWeightDelivery}
         />
       </form>
     </DynamicModuleLoader>

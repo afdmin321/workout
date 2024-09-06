@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CreateProduct, CreateProductImages } from '../types/Product';
+import {
+  CreateProduct,
+  CreateProductCategory,
+  CreateProductImages,
+} from '../types/Product';
 import { CreateProductSchema } from '../types/ProductSchema';
 
 const initialState: CreateProductSchema = {
@@ -41,6 +45,9 @@ const createProductSlice = createSlice({
     setImages: (state, { payload }: PayloadAction<CreateProductImages[]>) => {
       state.data.images = payload;
     },
+    setCategory: (state, { payload }: PayloadAction<CreateProductCategory>) => {
+      state.data.category = payload;
+    },
     setPrice: (state, { payload }: PayloadAction<number>) => {
       state.data.price = payload;
     },
@@ -70,6 +77,30 @@ const createProductSlice = createSlice({
     },
     setWeightDelivery: (state, { payload }: PayloadAction<number>) => {
       state.data.weightDelivery = payload;
+    },
+    editImagesIndex: (
+      state,
+      { payload }: PayloadAction<{ img: string; index: number }>,
+    ) => {
+      state.data.images = state.data.images.map((img) => {
+        if (img.src === payload.img) {
+          const targetImageIndex = state.data.images.findIndex(
+            (image) => image.index === payload.index,
+          );
+          if (targetImageIndex > 0) {
+        
+            state.data.images[targetImageIndex].index = img.index;
+          }
+          return { ...img, index: payload.index };
+        }
+
+        return img;
+      });
+    },
+    deleteImage: (state, { payload }: PayloadAction<string>) => {
+      state.data.images = state.data.images.filter(
+        (img) => img.src !== payload,
+      );
     },
   },
   extraReducers: {},

@@ -10,5 +10,10 @@
 .text {
   display: flex;
   align-items: center;
+}
 
+.wrapperImages {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }

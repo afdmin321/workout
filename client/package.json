@@ -12,7 +12,7 @@
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix"
   },
-  "author": "Alex",
+  "author": "Alexander Ratushnyak",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.23.7",
