@@ -1,0 +1,29 @@
+.AddSlidesGallery {
+  padding: 25px 25px 50px;
+}
+.image {
+  max-width: 520px;
+  max-height: 320px;
+  border: 1px solid var(--bg-secondary);
+}
+.wrapperImages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+.wrapperImage {
+  position: relative;
+}
+.buttonDelete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}

@@ -6,6 +6,7 @@
   border-radius: 20px;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .img {
@@ -16,6 +17,7 @@
 }
 
 .active {
+  transition: max-height 0.2s linear;
   width: 140px;
   max-height: 120px;
 }

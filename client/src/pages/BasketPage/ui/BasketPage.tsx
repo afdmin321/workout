@@ -21,7 +21,7 @@ const BasketPage: FC<Props> = (props: Props) => {
       if (el.price) {
         return el.price * el.quantity + akk;
       }
-      return 0;
+      return akk;
     }, 0);
   }, [products]);
   const price = useSpacePrice(AllPrice);

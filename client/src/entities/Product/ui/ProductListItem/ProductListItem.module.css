@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: 7px;
   cursor: pointer;
+  position: relative;
 }
 .ProductListItem:hover {
   box-shadow: 0 -7px 5px -3px var(--secondary-color);
@@ -15,6 +16,7 @@
   height: 292px;
   -o-object-fit: contain;
      object-fit: contain;
+  cursor: pointer;
 }
 
 .name {

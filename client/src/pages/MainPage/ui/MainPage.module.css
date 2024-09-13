@@ -14,6 +14,10 @@
   margin-bottom: 30px;
 }
 
+.wrapperTitle {
+  position: relative;
+}
+
 @media (min-width: 650px) {
   .MainPage {
     gap: 25px 0;

@@ -39,7 +39,13 @@ const ButtonDeleted: FC<Props> = (props: Props) => {
             <div className={cls.wrapperButton}>
               {!isLoading ? (
                 <>
-                  <Button className={cls.button} onClick={onHandler}>
+                  <Button
+                    className={cls.button}
+                    onClick={(evt) => {
+                      onHandler(evt);
+                      onToggle(evt);
+                    }}
+                  >
                     ДА
                   </Button>
                   <Button className={cls.button} onClick={onToggle}>

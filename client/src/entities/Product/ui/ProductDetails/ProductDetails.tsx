@@ -66,7 +66,7 @@ const ProductDetails: FC<Props> = (props: Props) => {
         <img
           onClick={() => onHandlerClickImage(product.images[0]?.src)}
           className={cls.img}
-          src={product.images[0]?.src}
+          src={'https://xn--80adypkog.xn--p1ai/' + product.images[0]?.src}
           alt={product.name}
         />
         <div className={cls.wrapperInfo}>

@@ -11,6 +11,10 @@
   outline: none;
 }
 
+.text {
+  display: block;
+}
+
 .error {
   padding-left: 5px;
   padding-top: 2px;

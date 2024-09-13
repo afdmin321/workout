@@ -1,0 +1,16 @@
+.image {
+  width: 250px;
+  height: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.wrapperImages {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.FormImageItem {
+  max-width: 300px;
+}/*# sourceMappingURL=FormImageItem.module.css.map */

@@ -58,7 +58,7 @@ export class CategoriesService {
 
   async findAll() {
     return this.categoriesRepository
-      .find({ relations: { products: true } })
+      .find()
       .then((res) => res)
       .catch((err) => {
         this.logger.error(

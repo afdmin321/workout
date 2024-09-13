@@ -54,7 +54,7 @@ const ProductRecommendationsList: FC<Props> = (props: Props) => {
           <img
             onClick={() => onOpenArticle(product.id)}
             className={cls.img}
-            src={product.images[0]?.src}
+            src={"https://xn--80adypkog.xn--p1ai/" + product.images[0]?.src}
             alt={product.name}
             key={product.id}
           />

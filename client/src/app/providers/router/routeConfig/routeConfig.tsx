@@ -1,7 +1,9 @@
 import { AboutPage } from 'pages/AboutPage';
 import AddProductPage from 'pages/AddProductPage/AddProductPage';
+import { AddSlidesGallery } from 'pages/AddSlidesGallery';
 import { BasketPage } from 'pages/BasketPage';
 import { ContactPage } from 'pages/ContactPage';
+import { EditProductPage } from 'pages/EditProductPage';
 import { FAQPage } from 'pages/FAQPage';
 import { GuaranteesPage } from 'pages/GuaranteesPage';
 import { LoginPage } from 'pages/LoginPage';
@@ -110,12 +112,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.EDIT_PRODUCT]: {
     path: `${RoutePath.edit_product}:id`,
-    element: <div>edit product</div>,
+    element: <EditProductPage />,
     authOnly: true,
   },
   [AppRoutes.ADD_SLIDES_GALLERY]: {
     path: RoutePath.add_slides_gallery,
-    element: <div>add slides gallery</div>,
+    element: <AddSlidesGallery />,
     authOnly: true,
   },
   [AppRoutes.EDIT_SLIDES_GALLERY]: {

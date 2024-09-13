@@ -67,7 +67,7 @@ const PopupImage: FC<Props> = (props: Props) => {
           <Button className={cls.buttonExit} onClick={onHandlerButtonExit}>
             &#10006;
           </Button>
-          <img className={cls.img} src={currentImgSrc} />
+          <img className={cls.img} src={"https://xn--80adypkog.xn--p1ai/" + currentImgSrc} />
         </div>
 
         <Button

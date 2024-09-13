@@ -22,6 +22,7 @@
   -o-object-fit: contain;
      object-fit: contain;
   align-self: center;
+  cursor: pointer;
 }
 
 .name {

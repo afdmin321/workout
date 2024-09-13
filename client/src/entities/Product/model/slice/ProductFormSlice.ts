@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  CreateProduct,
-  CreateProductCategory,
-  CreateProductImages,
-} from '../types/Product';
+import { CreateProduct,ProductCategory } from '../types/Product';
 import { CreateProductSchema } from '../types/ProductSchema';
 
 const initialState: CreateProductSchema = {
@@ -26,8 +22,8 @@ const initialState: CreateProductSchema = {
     weightDelivery: null,
   },
 };
-const createProductSlice = createSlice({
-  name: 'createProductSlice',
+const productFormSlice = createSlice({
+  name: 'productFormSlice',
   initialState,
   reducers: {
     setName: (state, { payload }: PayloadAction<string>) => {
@@ -42,10 +38,10 @@ const createProductSlice = createSlice({
     setDisabled: (state, { payload }: PayloadAction<boolean>) => {
       state.data.disabled = payload;
     },
-    setImages: (state, { payload }: PayloadAction<CreateProductImages[]>) => {
+    setImages: (state, { payload }: PayloadAction<string[]>) => {
       state.data.images = payload;
     },
-    setCategory: (state, { payload }: PayloadAction<CreateProductCategory>) => {
+    setCategory: (state, { payload }: PayloadAction<ProductCategory>) => {
       state.data.category = payload;
     },
     setPrice: (state, { payload }: PayloadAction<number>) => {
@@ -78,33 +74,18 @@ const createProductSlice = createSlice({
     setWeightDelivery: (state, { payload }: PayloadAction<number>) => {
       state.data.weightDelivery = payload;
     },
-    editImagesIndex: (
-      state,
-      { payload }: PayloadAction<{ img: string; index: number }>,
-    ) => {
-      state.data.images = state.data.images.map((img) => {
-        if (img.src === payload.img) {
-          const targetImageIndex = state.data.images.findIndex(
-            (image) => image.index === payload.index,
-          );
-          if (targetImageIndex > 0) {
-        
-            state.data.images[targetImageIndex].index = img.index;
-          }
-          return { ...img, index: payload.index };
-        }
-
-        return img;
-      });
-    },
     deleteImage: (state, { payload }: PayloadAction<string>) => {
-      state.data.images = state.data.images.filter(
-        (img) => img.src !== payload,
-      );
+      state.data.images = state.data.images.filter((img) => img !== payload);
+    },
+    clearState: () => {
+      return initialState;
+    },
+    setData: (state, { payload }: PayloadAction<CreateProduct>) => {
+      state.data = payload;
     },
   },
   extraReducers: {},
 });
 
-export const { actions: CreateProductAction, reducer: CreateProductReducer } =
-  createProductSlice;
+export const { actions: ProductFormAction, reducer: ProductFormReducer } =
+productFormSlice;

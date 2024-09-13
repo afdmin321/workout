@@ -45,7 +45,7 @@ const InputComponent: FC<Props> = (props) => {
   return (
     <label className={classNames(cls.label, mods, [classNameLabel])}>
       {text && (
-        <div className={classNames(cls.text, {}, [classNameText])}>{text}</div>
+        <span className={classNames(cls.text, {}, [classNameText])}>{text}</span>
       )}
       <input
         ref={ref}

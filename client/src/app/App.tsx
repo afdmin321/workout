@@ -26,6 +26,11 @@ const App = () => {
   const popupImageVisible = useSelector(getPopupImagesVisible);
   const inited = useSelector(getUserInited);
   useEffect(() => {
+    const contentOff = document.getElementById('content_off');
+    if (contentOff) {
+      contentOff.style.display = 'none';
+    }
+
     dispatch(UserActions.initAuthData());
   }, [dispatch]);
   const { pathname } = useLocation();

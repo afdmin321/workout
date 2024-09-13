@@ -6,25 +6,17 @@ import { Input } from 'shared/ui/Input/Input';
 
 interface Props {
   className?: string;
-  img: CreateProductImages;
+  src: string;
   onChange: (src: string, index: string) => void;
 }
 const FormImageItem: FC<Props> = (props: Props) => {
-  const { className, img, onChange, ...otherProps } = props;
+  const { className, src, onChange, ...otherProps } = props;
   return (
     <div
       className={classNames(cls.FormImageItem, {}, [className])}
       {...otherProps}
     >
-      <img className={cls.image} src={img.src} alt="image" />
-      <Input
-        onChange={(index) => {
-          onChange(img.src, index);
-        }}
-        type="number"
-        text="изменить индекс"
-        value={img.index}
-      />
+      <img className={cls.image} src={src} alt="image" />
     </div>
   );
 };

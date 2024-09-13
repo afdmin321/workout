@@ -1,9 +1,9 @@
 import { rtkApi } from 'shared/api/rtkApi';
-import { SwiperGalleryType } from '../types/SwiperGalleryType';
+import { SwiperGallerySlide } from '../types/SwiperGallerySlide';
 
 export const swiperGalleryApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getGallerySlide: build.query<SwiperGalleryType[], void>({
+    getGallerySlide: build.query<SwiperGallerySlide[], void>({
       query: () => ({
         url: '/gallery',
         method: 'GET',

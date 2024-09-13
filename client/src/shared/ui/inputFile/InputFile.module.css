@@ -1,0 +1,30 @@
+.file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.fileWrapper {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  gap: 0 10px;
+  align-items: flex-end;
+}
+
+.placeholder {
+  text-wrap: nowrap;
+  border: 1px solid var(--secondary-color);
+  padding: 5px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  background: rgb(36, 36, 36);
+  color: var(--secondary-color);
+}
+
+.done {
+  color: var(--color-red);
+}/*# sourceMappingURL=InputFile.module.css.map */

@@ -17,7 +17,7 @@ const BasketItem: FC<Props> = (props: Props) => {
   const price = product.price ? product.price * product.quantity : null;
   const productSize =
     product.length && product.width && product.height
-      ? `${product.length}x${product.width}мм H=${product.height}`
+      ? `${product.length}x${product.width}мм, H=${product.height}`
       : null;
   const dispatch = useAppDispatch();
   const onHandlerButtonDelet = useCallback(() => {
@@ -29,7 +29,11 @@ const BasketItem: FC<Props> = (props: Props) => {
       className={classNames(cls.BasketItem, {}, [className])}
       {...otherProps}
     >
-      <img src={product.images[0].src} alt={product.name} className={cls.img} />
+      <img
+        src={'https://xn--80adypkog.xn--p1ai/' + product.images[0].src}
+        alt={product.name}
+        className={cls.img}
+      />
 
       <div className={cls.wrapperInfo}>
         <div className={cls.wrapperText}>

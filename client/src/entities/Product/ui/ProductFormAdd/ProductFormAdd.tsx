@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo } from 'react';
 import cls from './ProductFormAdd.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
@@ -7,37 +7,42 @@ import {
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
-  CreateProductAction,
-  CreateProductReducer,
-} from 'entities/Product/model/slice/CreateProductSlice';
+  ProductFormAction,
+  ProductFormReducer,
+} from 'entities/Product/model/slice/ProductFormSlice';
 import { useSelector } from 'react-redux';
 import {
-  getCreateProductData,
-  getCreateProductError,
-  getCreateProductIsLoading,
-} from 'entities/Product/model/selectors/getCreateProduct';
+  getProductFormData,
+  getProductFormError,
+  getProductFormIsLoading,
+} from 'entities/Product/model/selectors/getProductForm';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import Checkbox from 'shared/ui/Checkbox/Checkbox';
 import { Select, SelectOptions } from 'shared/ui/Select/Select';
 import InputFile from 'shared/ui/inputFile/InputFile';
 import { useFilesBase64 } from 'shared/lib/hooks/useFilesBase64/useFilesBase64';
-import { CreateProductImages } from 'entities/Product/model/types/Product';
 import { useGetCategory } from 'entities/Category/api/categoryApi';
 import { Category } from 'entities/Category';
 import FormImageItem from './FormImageItem/FormImageItem';
+import { Button, ThemeButton, typeButton } from 'shared/ui/Button/Button';
+import { fetchProductById } from 'entities/Product/model/services/ProductDetailsServices';
+import { CreateProduct } from 'entities/Product/model/types/Product';
 
 interface Props {
   className?: string;
+  id?: string;
+  onSubmite: () => void;
 }
 const reducers: ReducersList = {
-  createProduct: CreateProductReducer,
+  formProduct: ProductFormReducer,
 };
 const ProductFormAdd: FC<Props> = (props: Props) => {
-  const { className, ...otherProps } = props;
+  const { className, onSubmite, id, ...otherProps } = props;
+
   const dispatch = useAppDispatch();
-  const data = useSelector(getCreateProductData);
-  const isLoading = useSelector(getCreateProductIsLoading);
-  const error = useSelector(getCreateProductError);
+  const data = useSelector(getProductFormData);
+  const isLoading = useSelector(getProductFormIsLoading);
+  const error = useSelector(getProductFormError);
   const { data: categories, error: errorCategory } = useGetCategory();
 
   const selectCategoryOptions = useMemo<SelectOptions[]>(() => {
@@ -46,49 +51,62 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     });
   }, [categories]);
 
+  const onChangeCategory = useCallback(
+    (value: string) => {
+      const valueParse: Category = JSON.parse(value);
+      if (valueParse) dispatch(ProductFormAction.setCategory(valueParse));
+    },
+    [dispatch, data?.category],
+  );
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchProductById(id)).then((res) => {
+        const el = JSON.parse(JSON.stringify(res.payload));
+        if (el) {
+          const editProduct: CreateProduct = { ...el, images: [] };
+          dispatch(ProductFormAction.setData(editProduct));
+        }
+      });
+    }
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (categories?.length && !data?.category)
+      dispatch(ProductFormAction.setCategory(categories[0]));
+  }, [categories, data?.category]);
+
   const onChangeName = useCallback(
     (value: string) => {
-      dispatch(CreateProductAction.setName(value));
+      dispatch(ProductFormAction.setName(value));
     },
     [dispatch, data?.name],
   );
   const onChangeDescription = useCallback(
     (value: string) => {
-      dispatch(CreateProductAction.setDescription(value));
+      dispatch(ProductFormAction.setDescription(value));
     },
     [dispatch, data?.description],
   );
   const onChangeDisabled = useCallback(
     (value: boolean) => {
-      dispatch(CreateProductAction.setDisabled(value));
+      dispatch(ProductFormAction.setDisabled(value));
     },
     [dispatch, data?.disabled],
   );
   const onChangeArticleNumber = useCallback(
     (value: string) => {
-      dispatch(CreateProductAction.setArticleNumber(value));
+      dispatch(ProductFormAction.setArticleNumber(value));
     },
     [dispatch, data?.articleNumber],
   );
-  const onChangeCategory = useCallback(
-    (value: string) => {
-      const valueParse: Category = JSON.parse(value);
-      if (valueParse) dispatch(CreateProductAction.setCategory(valueParse));
-    },
-    [dispatch, data?.category],
-  );
+
   const onChangeImages = useCallback(
     async (files: FileList | null) => {
       if (files?.length) {
         const fileList: string[] = await useFilesBase64(files);
-        const value: CreateProductImages[] = fileList.map((img, index) => {
-          return {
-            src: img,
-            index: index + 1,
-          };
-        });
         if (fileList.length) {
-          dispatch(CreateProductAction.setImages(value));
+          dispatch(ProductFormAction.setImages(fileList));
         }
       }
     },
@@ -98,14 +116,14 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     (value: string) => {
       const valueNum = Number(value.trim());
       if (!isNaN(valueNum)) {
-        dispatch(CreateProductAction.setPrice(valueNum));
+        dispatch(ProductFormAction.setPrice(valueNum));
       }
     },
     [dispatch, data?.price],
   );
   const onChangeAgeGroup = useCallback(
     (value: string) => {
-      dispatch(CreateProductAction.setAgeGroup(value));
+      dispatch(ProductFormAction.setAgeGroup(value));
     },
     [dispatch, data?.ageGroup],
   );
@@ -113,7 +131,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     (value: string) => {
       const valueNum = Number(value.trim());
       if (!isNaN(valueNum)) {
-        dispatch(CreateProductAction.setLength(valueNum));
+        dispatch(ProductFormAction.setLength(valueNum));
       }
     },
     [dispatch, data?.length],
@@ -122,7 +140,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     (value: string) => {
       const valueNum = Number(value.trim());
       if (!isNaN(valueNum)) {
-        dispatch(CreateProductAction.setWidth(valueNum));
+        dispatch(ProductFormAction.setWidth(valueNum));
       }
     },
     [dispatch, data?.width],
@@ -131,7 +149,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     (value: string) => {
       const valueNum = Number(value.trim());
       if (!isNaN(valueNum)) {
-        dispatch(CreateProductAction.setHeight(valueNum));
+        dispatch(ProductFormAction.setHeight(valueNum));
       }
     },
     [dispatch, data?.height],
@@ -140,7 +158,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     (value: string) => {
       const valueNum = Number(value.trim());
       if (!isNaN(valueNum)) {
-        dispatch(CreateProductAction.setLengthDelivery(valueNum));
+        dispatch(ProductFormAction.setLengthDelivery(valueNum));
       }
     },
     [dispatch, data?.lengthDelivery],
@@ -149,7 +167,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     (value: string) => {
       const valueNum = Number(value.trim());
       if (!isNaN(valueNum)) {
-        dispatch(CreateProductAction.setWidthDelivery(valueNum));
+        dispatch(ProductFormAction.setWidthDelivery(valueNum));
       }
     },
     [dispatch, data?.widthDelivery],
@@ -158,7 +176,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     (value: string) => {
       const valueNum = Number(value.trim());
       if (!isNaN(valueNum)) {
-        dispatch(CreateProductAction.setHeightDelivery(valueNum));
+        dispatch(ProductFormAction.setHeightDelivery(valueNum));
       }
     },
     [dispatch, data?.heightDelivery],
@@ -167,32 +185,33 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     (value: string) => {
       const valueNum = Number(value.trim());
       if (!isNaN(valueNum)) {
-        dispatch(CreateProductAction.setWeightDelivery(valueNum));
+        dispatch(ProductFormAction.setWeightDelivery(valueNum));
       }
     },
     [dispatch, data?.weightDelivery],
-  );
-  const onChangeEditImageIndex = useCallback(
-    (img: string, value: string) => {
-      const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
-        dispatch(
-          CreateProductAction.editImagesIndex({
-            img: img,
-            index: valueNum || 1,
-          }),
-        );
-      }
-    },
-    [dispatch, data?.images],
   );
 
   return (
     <DynamicModuleLoader reducers={reducers}>
       <form
+        onSubmit={(evt) => {
+          evt.preventDefault();
+          onSubmite();
+        }}
         className={classNames(cls.ProductFormAdd, {}, [className])}
         {...otherProps}
       >
+        {id && (
+          <Input
+            name="id"
+            classNameLabel={cls.wrapperInput}
+            classNameText={cls.text}
+            text="id"
+            value={data?.id}
+            readonly={true}
+            onChange={onChangeName}
+          />
+        )}
         <Input
           name="name"
           classNameLabel={cls.wrapperInput}
@@ -240,17 +259,9 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
         />
         {data?.images.length && (
           <div className={cls.wrapperImages}>
-            {[...data.images]
-              .sort(
-                (a, b) => parseFloat(a.index + '') - parseFloat(b.index + ''),
-              )
-              .map((img, index) => (
-                <FormImageItem
-                  key={index}
-                  img={img}
-                  onChange={onChangeEditImageIndex}
-                />
-              ))}
+            {[...data.images].map((img, index) => (
+              <FormImageItem key={index} src={img} onChange={() => ''} />
+            ))}
           </div>
         )}
         <Input
@@ -325,6 +336,9 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           value={data?.weightDelivery || ''}
           onChange={onChangeWeightDelivery}
         />
+        <Button theme={ThemeButton.SECONDARY} type={typeButton.SUBMITE}>
+          {id ? 'Изменить товар' : 'Добавить товар'}
+        </Button>
       </form>
     </DynamicModuleLoader>
   );

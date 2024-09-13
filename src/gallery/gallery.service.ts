@@ -14,7 +14,7 @@ export class GalleryService {
   ) {}
   async create(createGalleryDto: CreateGalleryDto) {
     const { imageDecode } = fileDecode;
-    const data = createGalleryDto.data.map((el) => {
+    const data = createGalleryDto.images.map((el) => {
       return { ...el, src: imageDecode(el.src) };
     });
     return this.galleryRepository.insert(data).then((res) => res);

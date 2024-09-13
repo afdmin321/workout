@@ -1,7 +1,7 @@
 import { FC, memo, useCallback } from 'react';
 import cls from './ProductListItem.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Product } from 'entities/Product/model/types/Product';
+import {  Product } from 'entities/Product/model/types/Product';
 import Price from 'shared/ui/Price/Price';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
@@ -24,9 +24,15 @@ const ProductListItem: FC<Props> = (props: Props) => {
     navigate(RoutePath.product_details + product.id);
   }, [navigate, product.id]);
 
-  const onHandlerButtonEdit = useCallback(() => {
-    navigate(RoutePath.edit_product + product.id);
-  }, [navigate, product.id]);
+  const onHandlerButtonEdit = useCallback(
+    (evt: React.MouseEvent<HTMLButtonElement>) => {
+      evt.stopPropagation();
+
+      navigate(RoutePath.edit_product + product.id);
+
+    },
+    [dispatch, navigate, product.id],
+  );
   const onHandlerButtonDelete = useCallback(
     (evt: React.MouseEvent<HTMLButtonElement>) => {
       evt.stopPropagation();
@@ -37,8 +43,9 @@ const ProductListItem: FC<Props> = (props: Props) => {
   const productImages = product.images.length ? product.images[0]?.src : '';
   const productSize =
     product.length && product.width && product.height
-      ? `${product.length}x${product.width}мм H=${product.height}`
+      ? `${product.length}x${product.width}мм, H=${product.height}`
       : null;
+
   return (
     <div
       className={classNames(cls.ProductListItem, {}, [className])}
@@ -46,7 +53,11 @@ const ProductListItem: FC<Props> = (props: Props) => {
       id={product.id}
       onClick={onOpenProduct}
     >
-      <img src={productImages} alt={product.name} className={cls.img} />
+      <img
+        src={'https://xn--80adypkog.xn--p1ai/' + productImages}
+        alt={product.name}
+        className={cls.img}
+      />
 
       <h2 className={cls.name} title={product.name}>
         {product.name}

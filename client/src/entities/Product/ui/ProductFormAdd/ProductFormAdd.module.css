@@ -1,0 +1,21 @@
+.ProductFormAdd {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wrapperInput {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+}
+
+.wrapperImages {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}/*# sourceMappingURL=ProductFormAdd.module.css.map */

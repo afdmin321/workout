@@ -1,25 +1,26 @@
-
 .input {
-    border: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: #fff;
+  text-shadow: 0 0 0 var(--primary-color);
+  border-radius: 30px;
+  padding: 0 10px 0 10px;
+  &:focus {
     outline: none;
-    width: 100%;
-    background: #fff;
-    text-shadow: 0 0 0 var(--primary-color);
-    border-radius: 30px;
-    padding: 0 10px 0 10px;
-    &:focus {
-        outline: none;
-    }
+  }
 }
-
+.text {
+  display: block;
+}
 .error {
-    padding-left: 5px;
-    padding-top: 2px;
-    font-size: 11px;
-    line-height: 1;
-    text-wrap: wrap;
-    color: var(--red-dark);
+  padding-left: 5px;
+  padding-top: 2px;
+  font-size: 11px;
+  line-height: 1;
+  text-wrap: wrap;
+  color: var(--red-dark);
 }
 .label {
-    min-height: 86px;
+  min-height: 86px;
 }

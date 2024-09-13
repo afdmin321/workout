@@ -18,6 +18,7 @@ import { SuccessApplicationSchema } from 'widgets/SuccessApplication/model/types
 import { PopupImageSchema } from 'widgets/PopupImage';
 import { AuthByUsernameSchema } from 'features/AuthByUsername';
 import { UserSchema } from 'entities/User/model/types/User';
+import { SwiperGallerySchema } from 'widgets/SwiperGallery/model/types/SwiperGallerySchema';
 
 export interface StateSchema {
   user: UserSchema;
@@ -33,7 +34,8 @@ export interface StateSchema {
   productDetails?: ProductDetailsSchema;
   productsPage?: ProductsPageSchema;
   authByUsername?: AuthByUsernameSchema;
-  createProduct?: CreateProductSchema;
+  formProduct?: CreateProductSchema;
+  formSwiperGallery?: SwiperGallerySchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

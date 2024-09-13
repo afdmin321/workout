@@ -1,6 +1,7 @@
-export enum ProductCategory {
-  WORKOUT = 'WORKOUT',
-  TRAINER = 'TRAINER',
+export interface ProductCategory {
+  id: string;
+  name: string;
+  disabled: boolean;
 }
 export enum CategoryId {
   WORKOUT = '43abe61a-0a60-4ec8-b2f7-095b30022bba',
@@ -18,7 +19,6 @@ export enum ProductSort {
 export interface ProductImeges {
   id: string;
   src: string;
-  index: number;
 }
 export interface Product {
   id: string;
@@ -42,14 +42,10 @@ export interface Product {
 export interface CreateProductImages extends Omit<ProductImeges, 'id'> {
   id?: string;
 }
-export interface CreateProductCategory {
-  id: string;
-  name: string;
-  disabled: boolean;
-}
+
 export interface CreateProduct
   extends Omit<Product, 'id' | 'images' | 'category'> {
   id?: string;
-  category?: CreateProductCategory;
-  images: CreateProductImages[];
+  category?: ProductCategory;
+  images: string[];
 }

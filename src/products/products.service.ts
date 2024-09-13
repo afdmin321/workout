@@ -108,7 +108,7 @@ export class ProductsService {
       return this.productsRepository
         .findOne({
           where: { id },
-          relations: { images: true },
+          relations: { images: true, category: true },
         })
         .then((res) => res);
     } catch (err) {

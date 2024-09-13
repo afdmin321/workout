@@ -1,0 +1,14 @@
+.checkbox {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+.checkboxWrapper {
+  display: flex;
+  gap: 0 10px;
+}
+
+.placeholder {
+  text-wrap: nowrap;
+}/*# sourceMappingURL=Checkbox.module.css.map */
