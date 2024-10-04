@@ -1,3 +1,5 @@
+import { ImageType } from "widgets/ImagesEditItem";
+
 export interface ProductCategory {
   id: string;
   name: string;
@@ -16,17 +18,14 @@ export enum ProductSort {
   LOWER_SIZE = 'length&ASC',
   GREAT_SIZE = 'length&DESC',
 }
-export interface ProductImeges {
-  id: string;
-  src: string;
-}
+
 export interface Product {
   id: string;
   name: string;
   description: string;
   articleNumber: string;
   category: ProductCategory;
-  images: ProductImeges[];
+  images: ImageType[];
   disabled: boolean;
   price: number | null;
   ageGroup: string | null;
@@ -39,13 +38,10 @@ export interface Product {
   heightDelivery: number | null;
   weightDelivery: number | null;
 }
-export interface CreateProductImages extends Omit<ProductImeges, 'id'> {
-  id?: string;
-}
-
 export interface CreateProduct
   extends Omit<Product, 'id' | 'images' | 'category'> {
   id?: string;
   category?: ProductCategory;
-  images: string[];
+  images: ImageType[];
+  newImages: ImageType[];
 }

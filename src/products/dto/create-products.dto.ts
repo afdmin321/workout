@@ -1,5 +1,6 @@
 import { Categories } from 'categories/entities/categories.entity';
 import { IsNotEmpty } from 'class-validator';
+import { Image } from 'types/Image';
 
 export class CreateProductsDto {
   @IsNotEmpty()
@@ -18,7 +19,7 @@ export class CreateProductsDto {
   articleNumber: string;
 
   @IsNotEmpty()
-  images: string[] | null; // encoded in base64
+  images: Image[] | null; // encoded in base64
 
   ageGroup: string | null;
   length?: number | null;

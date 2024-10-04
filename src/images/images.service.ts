@@ -4,6 +4,7 @@ import { CreateImagesDto } from 'images/dto/create-images.dto';
 import { Images } from './entities/images.entity';
 import { Repository } from 'typeorm';
 import FileDecode from 'utils/fileDecode';
+import { UpdateImagesDto } from './dto/update-images.dto';
 
 @Injectable()
 export class ImagesService {
@@ -13,13 +14,23 @@ export class ImagesService {
   ) {}
   async create(createImagesDto: CreateImagesDto) {
     const { imageDecode } = FileDecode;
-    const data = createImagesDto.images.map((image) => {
-      return { product: createImagesDto.product, src: imageDecode(image) };
+    const data = createImagesDto.data.map((image) => {
+      return {
+        ...image,
+        src: imageDecode(image.src),
+      };
     });
-
-    return this.imagesRepository.insert(data).then((res) => res);
+    return this.imagesRepository
+      .insert(data)
+      .then((res) => res)
+      .catch((err) => console.log(err));
   }
-
+  async update(updateImagesDto: UpdateImagesDto) {
+    const data = updateImagesDto.data;
+    for (let i = 0; i < data.length; i++) {
+      await this.imagesRepository.update(data[i].id, data[i]);
+    }
+  }
   async findAll() {
     return this.imagesRepository.find().then((res) => res);
   }

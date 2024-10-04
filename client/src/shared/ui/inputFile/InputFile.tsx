@@ -20,10 +20,6 @@ const InputFile: FC<inputProps> = (props) => {
     onChange?.(files);
   };
 
-  if (inpitFile.current && !files) {
-    inpitFile.current.value = files;
-  }
-
   const idInput = useId();
   return (
     <div className={cls.fileWrapper}>

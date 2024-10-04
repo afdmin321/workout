@@ -17,6 +17,7 @@ const ProductRecommendationsList: FC<Props> = (props: Props) => {
     data: products,
     error,
   } = useProductRecommendationsList(idProductStop);
+  console.log(products);
   const productsFilter = products?.filter(
     (product) => product.id !== idProductStop,
   );
@@ -49,12 +50,12 @@ const ProductRecommendationsList: FC<Props> = (props: Props) => {
     );
   } else {
     const productsRecommendation = productsFilter?.map((product, index) => {
-      if (index < 4) {
+      if (index < 4 && product.id !== idProductStop) {
         return (
           <img
             onClick={() => onOpenArticle(product.id)}
             className={cls.img}
-            src={"https://xn--80adypkog.xn--p1ai/" + product.images[0]?.src}
+            src={'https://xn--80adypkog.xn--p1ai/' + product.images[0]?.src}
             alt={product.name}
             key={product.id}
           />

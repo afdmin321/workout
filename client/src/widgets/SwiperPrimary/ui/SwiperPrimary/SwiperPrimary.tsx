@@ -108,14 +108,14 @@ const SwiperPrimary: FC<Props> = (props: Props) => {
             <div className={classNames(cls.text, {}, [cls.textTren])}>
               Закажите
             </div>
-            <h2 className={classNames(cls.title, {}, [cls.titleTrn])}>
+            <h3 className={classNames(cls.title, {}, [cls.titleTrn])}>
               ЭФФЕКТИВНЫЕ{' '}
               <span
                 className={classNames(cls.titleColor, {}, [cls.titleColorTren])}
               >
                 ТРЕНАЖЕРЫ
               </span>
-            </h2>
+            </h3>
             <div
               className={classNames(cls.textBorder, {}, [cls.textBorderTren])}
             >

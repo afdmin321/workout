@@ -1,33 +1,32 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { getProductFormData } from '../selectors/getProductForm';
 import { getUserAuthData } from 'entities/User';
 import { fetchProducts } from 'pages/ProductsPage/model/services/fetchProducts/fetchProducts';
 import { SuccessApplicationAction } from 'widgets/SuccessApplication/model/slice/SuccessApplication';
 import { ProductFormAction } from '../slice/ProductFormSlice';
+import { getProductFormData } from '../selectors/getProductForm';
 
-export const fetchUpdateProduct = createAsyncThunk<
+export const fetchUpdateImagesProduct = createAsyncThunk<
   void,
   void,
   ThunkConfig<string>
->('produktfetchUpdateProduct', async (_, thunkApi) => {
+>('produkt/fetchUpdateImagesProduct', async (_, thunkApi) => {
   const { extra, rejectWithValue, dispatch, getState } = thunkApi;
   const data = getProductFormData(getState());
   const user = getUserAuthData(getState());
-  if (!data?.id || !user?.token) {
+  if (!data?.images?.length || !user?.token) {
     throw new Error();
   }
   try {
-    const migrateData = {
-      ...data,
-      images: data.newImages,
-      newImages: undefined,
-    };
-    const response = await extra.api.patch(`/products/${data.id}`, migrateData, {
-      headers: {
-        Authorization: 'Bearer ' + user?.token,
+    const response = await extra.api.patch(
+      `/images`,
+      { ...data?.images, src: undefined },
+      {
+        headers: {
+          Authorization: 'Bearer ' + user?.token,
+        },
       },
-    });
+    );
     if (!response.data) {
       throw new Error();
     }

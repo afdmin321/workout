@@ -3,7 +3,9 @@ import { Products } from 'products/entities/products.entity';
 
 export class CreateImagesDto {
   @IsNotEmpty()
-  images: string[];
-  @IsNotEmpty()
-  product: Products;
+  data: {
+    src: string;
+    index: number;
+    product: Products;
+  }[];
 }

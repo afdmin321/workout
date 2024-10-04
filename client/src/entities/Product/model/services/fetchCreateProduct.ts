@@ -24,7 +24,7 @@ export const fetchCreateProduct = createAsyncThunk<
     ) {
       throw new Error();
     }
-
+    console.log(data);
     const response = await extra.api.post(
       '/products',
       {

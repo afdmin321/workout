@@ -23,10 +23,12 @@ import InputFile from 'shared/ui/inputFile/InputFile';
 import { useFilesBase64 } from 'shared/lib/hooks/useFilesBase64/useFilesBase64';
 import { useGetCategory } from 'entities/Category/api/categoryApi';
 import { Category } from 'entities/Category';
-import FormImageItem from './FormImageItem/FormImageItem';
 import { Button, ThemeButton, typeButton } from 'shared/ui/Button/Button';
 import { fetchProductById } from 'entities/Product/model/services/ProductDetailsServices';
 import { CreateProduct } from 'entities/Product/model/types/Product';
+import { fetchDeletImageProduct } from 'entities/Product/model/services/fetchDeletImageProduct';
+import { EditIndexImages, ImagesEditItem } from 'widgets/ImagesEditItem';
+import { fetchUpdateImagesProduct } from 'entities/Product/model/services/fetchUpdateImagesProduct';
 
 interface Props {
   className?: string;
@@ -40,6 +42,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const { className, onSubmite, id, ...otherProps } = props;
 
   const dispatch = useAppDispatch();
+
   const data = useSelector(getProductFormData);
   const isLoading = useSelector(getProductFormIsLoading);
   const error = useSelector(getProductFormError);
@@ -64,13 +67,16 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
       dispatch(fetchProductById(id)).then((res) => {
         const el = JSON.parse(JSON.stringify(res.payload));
         if (el) {
-          const editProduct: CreateProduct = { ...el, images: [] };
+          const editProduct: CreateProduct = { ...el, newImages: [] };
           dispatch(ProductFormAction.setData(editProduct));
         }
       });
     }
   }, [dispatch, id]);
 
+  const imageIndex = data?.images?.length
+    ? data?.images?.reduce((acc, curr) => (acc.index > curr.index ? acc : curr))
+    : null;
   useEffect(() => {
     if (categories?.length && !data?.category)
       dispatch(ProductFormAction.setCategory(categories[0]));
@@ -82,6 +88,14 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     },
     [dispatch, data?.name],
   );
+
+  const onChangeId = useCallback(
+    (value: string) => {
+      dispatch(ProductFormAction.setId(value));
+    },
+    [dispatch, data?.id],
+  );
+
   const onChangeDescription = useCallback(
     (value: string) => {
       dispatch(ProductFormAction.setDescription(value));
@@ -106,16 +120,22 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
       if (files?.length) {
         const fileList: string[] = await useFilesBase64(files);
         if (fileList.length) {
-          dispatch(ProductFormAction.setImages(fileList));
+          const result = fileList.map((el, index) => {
+            return {
+              src: el,
+              index: imageIndex ? imageIndex.index + index + 1 : index + 1,
+            };
+          });
+          dispatch(ProductFormAction.setNewImages(result));
         }
       }
     },
-    [dispatch, data?.images],
+    [dispatch, data?.newImages],
   );
   const onChangePrice = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
+      if (!isNaN(valueNum) && value.length <= 9) {
         dispatch(ProductFormAction.setPrice(valueNum));
       }
     },
@@ -130,7 +150,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const onChangeLength = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
+      if (!isNaN(valueNum) && value.length <= 9) {
         dispatch(ProductFormAction.setLength(valueNum));
       }
     },
@@ -139,7 +159,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const onChangeWidth = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
+      if (!isNaN(valueNum) && value.length <= 9) {
         dispatch(ProductFormAction.setWidth(valueNum));
       }
     },
@@ -148,7 +168,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const onChangeHeight = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
+      if (!isNaN(valueNum) && value.length <= 9) {
         dispatch(ProductFormAction.setHeight(valueNum));
       }
     },
@@ -157,7 +177,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const onChangeLengthDelivery = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
+      if (!isNaN(valueNum) && value.length <= 9) {
         dispatch(ProductFormAction.setLengthDelivery(valueNum));
       }
     },
@@ -166,7 +186,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const onChangeWidthDelivery = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
+      if (!isNaN(valueNum) && value.length <= 9) {
         dispatch(ProductFormAction.setWidthDelivery(valueNum));
       }
     },
@@ -175,7 +195,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const onChangeHeightDelivery = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
+      if (!isNaN(valueNum) && value.length <= 9) {
         dispatch(ProductFormAction.setHeightDelivery(valueNum));
       }
     },
@@ -184,15 +204,64 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
   const onChangeWeightDelivery = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
-      if (!isNaN(valueNum)) {
+      if (!isNaN(valueNum) && value.length <= 9) {
         dispatch(ProductFormAction.setWeightDelivery(valueNum));
       }
     },
     [dispatch, data?.weightDelivery],
   );
-
+  const onChangeDeleteNewImage = useCallback(
+    (src: string) => {
+      dispatch(ProductFormAction.deleteNewImage(src));
+    },
+    [dispatch],
+  );
+  const onHandlerDeleteImage = useCallback(
+    (src: string) => {
+      const targetImage = data?.images?.find((el) => el.src === src);
+      if (targetImage?.id) {
+        dispatch(fetchDeletImageProduct(targetImage?.id));
+      }
+    },
+    [dispatch, data?.images],
+  );
+  const onChangeEditIndexNewImages = useCallback(
+    (value: EditIndexImages) => {
+      if (value.index <= Number(imageIndex?.index)) {
+        return;
+      }
+      dispatch(ProductFormAction.editIndexNewImages(value));
+    },
+    [dispatch],
+  );
+  const onChangeEditIndexImages = useCallback(
+    (value: EditIndexImages) => {
+      dispatch(ProductFormAction.editIndexImages(value));
+    },
+    [dispatch],
+  );
   return (
     <DynamicModuleLoader reducers={reducers}>
+      <form
+        className={cls.formUpdateImage}
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(fetchUpdateImagesProduct());
+        }}
+      >
+        {data?.images?.length &&
+          data?.images?.map((el) => (
+            <ImagesEditItem
+              image={el}
+              key={el.id}
+              onChange={onChangeEditIndexImages}
+              onDelete={onHandlerDeleteImage}
+            />
+          ))}
+        <Button theme={ThemeButton.SECONDARY} type={typeButton.SUBMITE}>
+          Изменить индекс картинок
+        </Button>
+      </form>
       <form
         onSubmit={(evt) => {
           evt.preventDefault();
@@ -208,8 +277,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
             classNameText={cls.text}
             text="id"
             value={data?.id}
-            readonly={true}
-            onChange={onChangeName}
+            onChange={onChangeId}
           />
         )}
         <Input
@@ -253,14 +321,19 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           placeholder="Устанавите картинки"
           type="file"
           accept=".jpeg,.jpg,.png"
-          files={data?.images}
+          files={data?.newImages}
           onChange={onChangeImages}
           multiple
         />
-        {data?.images.length && (
+        {data?.newImages.length && (
           <div className={cls.wrapperImages}>
-            {[...data.images].map((img, index) => (
-              <FormImageItem key={index} src={img} onChange={() => ''} />
+            {[...data.newImages].map((img, index) => (
+              <ImagesEditItem
+                key={index}
+                image={img}
+                onChange={onChangeEditIndexNewImages}
+                onDelete={onChangeDeleteNewImage}
+              />
             ))}
           </div>
         )}

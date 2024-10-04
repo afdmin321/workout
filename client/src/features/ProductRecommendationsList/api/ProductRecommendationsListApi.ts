@@ -8,7 +8,6 @@ export const recommendationsApi = rtkApi.injectEndpoints({
         url: '/products/random',
         params: {
           limit: 5,
-          id
         },
       }),
       keepUnusedDataFor: 1,

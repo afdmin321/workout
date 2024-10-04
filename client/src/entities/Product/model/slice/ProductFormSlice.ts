@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CreateProduct,ProductCategory } from '../types/Product';
+import {
+  CreateProduct,
+  ProductCategory,
+} from '../types/Product';
 import { CreateProductSchema } from '../types/ProductSchema';
+
+import { ImageType } from 'widgets/ImagesEditItem';
 
 const initialState: CreateProductSchema = {
   isLoading: false,
@@ -10,6 +15,7 @@ const initialState: CreateProductSchema = {
     articleNumber: '',
     disabled: false,
     images: [],
+    newImages: [],
     price: null,
     ageGroup: null,
     material: null,
@@ -22,10 +28,31 @@ const initialState: CreateProductSchema = {
     weightDelivery: null,
   },
 };
+const editIndexImages = (
+  state: ImageType[],
+  payload: { src: string; index: number },
+) => {
+  const targetImage = state.find((el) => el.src === payload.src);
+  const existingIndex = state.find((el) => el.index === payload.index);
+  return state.map((el) => {
+    if (existingIndex && targetImage) {
+      if (existingIndex.src === el.src) {
+        return { ...el, index: targetImage.index };
+      }
+    }
+    if (el.src === payload.src) {
+      return { ...el, index: payload.index };
+    }
+    return el;
+  });
+};
 const productFormSlice = createSlice({
   name: 'productFormSlice',
   initialState,
   reducers: {
+    setId: (state, { payload }: PayloadAction<string>) => {
+      state.data.id = payload;
+    },
     setName: (state, { payload }: PayloadAction<string>) => {
       state.data.name = payload;
     },
@@ -38,8 +65,11 @@ const productFormSlice = createSlice({
     setDisabled: (state, { payload }: PayloadAction<boolean>) => {
       state.data.disabled = payload;
     },
-    setImages: (state, { payload }: PayloadAction<string[]>) => {
-      state.data.images = payload;
+    setNewImages: (
+      state,
+      { payload }: PayloadAction<ImageType[]>,
+    ) => {
+      state.data.newImages = payload;
     },
     setCategory: (state, { payload }: PayloadAction<ProductCategory>) => {
       state.data.category = payload;
@@ -74,18 +104,35 @@ const productFormSlice = createSlice({
     setWeightDelivery: (state, { payload }: PayloadAction<number>) => {
       state.data.weightDelivery = payload;
     },
-    deleteImage: (state, { payload }: PayloadAction<string>) => {
-      state.data.images = state.data.images.filter((img) => img !== payload);
+    deleteNewImage: (state, { payload }: PayloadAction<string>) => {
+      state.data.newImages = state.data.newImages.filter(
+        (img) => img.src !== payload,
+      );
     },
+
     clearState: () => {
       return initialState;
     },
     setData: (state, { payload }: PayloadAction<CreateProduct>) => {
       state.data = payload;
     },
+    editIndexNewImages: (
+      state,
+      { payload }: PayloadAction<{ src: string; index: number }>,
+    ) => {
+      state.data.newImages = editIndexImages(state.data.newImages, payload);
+    },
+    editIndexImages: (
+      state,
+      { payload }: PayloadAction<{ src: string; index: number }>,
+    ) => {
+      state.data.images = editIndexImages(state.data.images, payload);
+    },
+    deleteUpdateImage: (state, { payload }: PayloadAction<string>) => {
+      state.data.images = state.data.images?.filter((el) => el.id !== payload);
+    },
   },
-  extraReducers: {},
 });
 
 export const { actions: ProductFormAction, reducer: ProductFormReducer } =
-productFormSlice;
+  productFormSlice;

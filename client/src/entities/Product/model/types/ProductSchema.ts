@@ -6,6 +6,7 @@ export interface ProductDetailsSchema {
   data?: Product;
 }
 
-export interface CreateProductSchema extends Omit<ProductDetailsSchema, 'data'> {
-  data: CreateProduct
+export interface CreateProductSchema
+  extends Omit<ProductDetailsSchema, 'data'> {
+  data: CreateProduct;
 }

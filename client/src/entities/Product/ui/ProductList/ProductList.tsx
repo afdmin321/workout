@@ -18,7 +18,6 @@ const ProductList: FC<Props> = (props: Props) => {
   const products = useSelector(getProducts.selectAll);
   const error = useSelector(getProductsPageError);
   const isLoading = useSelector(getProductsPageIsLoading);
-
   let content;
   if (true) {
     content = (

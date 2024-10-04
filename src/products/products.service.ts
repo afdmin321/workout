@@ -7,7 +7,7 @@ import { CreateProductsDto } from './dto/create-products.dto';
 import { UpdateProductsDto } from './dto/update-products.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Products } from './entities/products.entity';
-import { Like, Repository } from 'typeorm';
+import { ILike, Repository, Not } from 'typeorm';
 import { ImagesService } from 'images/images.service';
 
 @Injectable()
@@ -48,8 +48,9 @@ export class ProductsService {
 
     return this.productsRepository.save(newProduct).then((res) => {
       const images = {
-        images: createProductsDto.images,
-        product: res,
+        data: createProductsDto.images.map((image) => {
+          return { ...image, product: res };
+        }),
       };
       this.imagesService.create(images).then((res) => res);
       return res;
@@ -91,9 +92,9 @@ export class ProductsService {
         },
         where: search
           ? [
-              { articleNumber: Like(`%${search}%`), category: { id: filter } },
-              { name: Like(`%${search}%`), category: { id: filter } },
-              { description: Like(`%${search}%`), category: { id: filter } },
+              { articleNumber: ILike(`%${search}%`), category: { id: filter } },
+              { name: ILike(`%${search}%`), category: { id: filter } },
+              { description: ILike(`%${search}%`), category: { id: filter } },
             ]
           : { category: { id: filter } },
 
@@ -128,14 +129,15 @@ export class ProductsService {
       images: undefined,
     });
     if (updateProductsDto?.images?.length) {
-      const newImages = updateProductsDto.images.filter(
-        (image) => !Boolean(product.images.find((e) => e.src === image)),
-      );
-      if (newImages.length) {
-        this.imagesService.create({
-          images: newImages,
-          product: product,
+      const newImages = updateProductsDto.images
+        .filter(
+          (image) => !Boolean(product.images.find((e) => e.src === image.src)),
+        )
+        .map((image) => {
+          return { ...image, product: product };
         });
+      if (newImages.length) {
+        this.imagesService.create({ data: newImages });
       }
     }
     return newProduct;

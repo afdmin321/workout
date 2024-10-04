@@ -30,7 +30,7 @@ const MainPage: FC<Props> = (props: Props) => {
         <SwiperPrimary />
       </div>
       <div className={cls.wrapperTitle}>
-        <h2 className={cls.title}>ГАЛЕРЕЯ НАШИХ РАБОТ</h2>
+        <h4 className={cls.title}>ГАЛЕРЕЯ НАШИХ РАБОТ</h4>
         <ButtonEdit onClick={onHandlerButtonEdit} />
         <ButtonAdd onClick={onHandlerButtonAdd} />
       </div>
