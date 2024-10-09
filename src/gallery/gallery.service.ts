@@ -5,6 +5,7 @@ import { CreateGalleryDto } from 'gallery/dto/create-gallery.dto';
 import { Gallery } from './entities/gallery.entity';
 import { Repository } from 'typeorm';
 import fileDecode from 'utils/fileDecode';
+import { UpdateGalleryDto } from './dto/update-gallery.dto';
 
 @Injectable()
 export class GalleryService {
@@ -24,6 +25,14 @@ export class GalleryService {
     return this.galleryRepository.find().then((res) => res);
   }
 
+  async update(updateGalleryDto: UpdateGalleryDto) {
+    const updateDate = updateGalleryDto.images?.map((image) => {
+      return { index: image.index, id: image.id };
+    });
+    return updateDate.forEach((image) => {
+      this.galleryRepository?.update(image.id, image);
+    });
+  }
   async remove(id: string) {
     try {
       return this.galleryRepository.delete(id).then((res) => res);

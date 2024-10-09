@@ -7,7 +7,7 @@ import { CreateProductsDto } from './dto/create-products.dto';
 import { UpdateProductsDto } from './dto/update-products.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Products } from './entities/products.entity';
-import { ILike, Repository, Not } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { ImagesService } from 'images/images.service';
 
 @Injectable()
@@ -149,5 +149,15 @@ export class ProductsService {
     } catch (err) {
       throw new NotFoundException('product not found');
     }
+  }
+
+  async updatePriceCatalog(multiply: number) {
+    const catalog = await this.productsRepository.find();
+    return catalog.forEach((product) =>
+      this.update(product.id, {
+        id: product.id,
+        price: product.price * Number(multiply),
+      }),
+    );
   }
 }
