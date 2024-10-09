@@ -2,12 +2,12 @@ import { FC, memo, useCallback } from 'react';
 import cls from './SwiperSlide.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import ButtonDeleted from 'shared/ui/ButtonDeleted/ButtonDeleted';
-import { SwiperGallerySlide } from 'widgets/SwiperGallery/model/types/SwiperGallerySlide';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchDeleteSlideSwiperGallery } from 'widgets/SwiperGallery/model/services/fetchDeleteSlideSwiperGallery';
+import { ImageType } from 'widgets/ImagesEditItem';
 
 interface Props {
-  slide: SwiperGallerySlide;
+  slide: ImageType;
   onHandler: (value: string) => void;
   isActive?: boolean;
   className?: string;

@@ -27,7 +27,7 @@ import { Button, ThemeButton, typeButton } from 'shared/ui/Button/Button';
 import { fetchProductById } from 'entities/Product/model/services/ProductDetailsServices';
 import { CreateProduct } from 'entities/Product/model/types/Product';
 import { fetchDeletImageProduct } from 'entities/Product/model/services/fetchDeletImageProduct';
-import { EditIndexImages, ImagesEditItem } from 'widgets/ImagesEditItem';
+import { EditIndexImages, ImageEditItem } from 'widgets/ImagesEditItem';
 import { fetchUpdateImagesProduct } from 'entities/Product/model/services/fetchUpdateImagesProduct';
 
 interface Props {
@@ -251,7 +251,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
       >
         {data?.images?.length &&
           data?.images?.map((el) => (
-            <ImagesEditItem
+            <ImageEditItem
               image={el}
               key={el.id}
               onChange={onChangeEditIndexImages}
@@ -328,7 +328,7 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
         {data?.newImages.length && (
           <div className={cls.wrapperImages}>
             {[...data.newImages].map((img, index) => (
-              <ImagesEditItem
+              <ImageEditItem
                 key={index}
                 image={img}
                 onChange={onChangeEditIndexNewImages}

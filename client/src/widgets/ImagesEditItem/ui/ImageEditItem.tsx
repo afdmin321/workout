@@ -5,14 +5,13 @@ import { Input } from 'shared/ui/Input/Input';
 import ButtonExit from 'shared/ui/ButtonExit/ButtonExit';
 import { EditIndexImages, ImageType } from '../model/type/ImageType';
 
-
 interface Props {
   className?: string;
   image: ImageType;
   onChange: ({ src, index }: EditIndexImages) => void;
   onDelete: (src: string) => void;
 }
-const ImagesEditItem: FC<Props> = (props: Props) => {
+const ImageEditItem: FC<Props> = (props: Props) => {
   const { className, image, onDelete, onChange, ...otherProps } = props;
 
   return (
@@ -30,6 +29,9 @@ const ImagesEditItem: FC<Props> = (props: Props) => {
         text="изменить индекс "
         value={image.index}
         onChange={(value) => {
+          if (isNaN(Number(value))) {
+            return;
+          }
           onChange({ src: image.src, index: Number(value) });
         }}
       />
@@ -38,4 +40,4 @@ const ImagesEditItem: FC<Props> = (props: Props) => {
   );
 };
 
-export default memo(ImagesEditItem);
+export default memo(ImageEditItem);

@@ -6,6 +6,7 @@ import {
 import { CreateProductSchema } from '../types/ProductSchema';
 
 import { ImageType } from 'widgets/ImagesEditItem';
+import { editIndexImages } from 'shared/lib/editIndex/editIndexImages';
 
 const initialState: CreateProductSchema = {
   isLoading: false,
@@ -28,24 +29,7 @@ const initialState: CreateProductSchema = {
     weightDelivery: null,
   },
 };
-const editIndexImages = (
-  state: ImageType[],
-  payload: { src: string; index: number },
-) => {
-  const targetImage = state.find((el) => el.src === payload.src);
-  const existingIndex = state.find((el) => el.index === payload.index);
-  return state.map((el) => {
-    if (existingIndex && targetImage) {
-      if (existingIndex.src === el.src) {
-        return { ...el, index: targetImage.index };
-      }
-    }
-    if (el.src === payload.src) {
-      return { ...el, index: payload.index };
-    }
-    return el;
-  });
-};
+
 const productFormSlice = createSlice({
   name: 'productFormSlice',
   initialState,

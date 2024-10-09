@@ -1,5 +1,5 @@
-import ImagesEditItem from './ui/ImagesEditItem';
+import ImageEditItem from './ui/ImageEditItem';
 
-export { ImagesEditItem };
+export { ImageEditItem };
 
 export type { ImageType, EditIndexImages } from './model/type/ImageType';

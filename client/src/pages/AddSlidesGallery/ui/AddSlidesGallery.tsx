@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useEffect } from 'react';
 import cls from './AddSlidesGallery.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import InputFile from 'shared/ui/inputFile/InputFile';
@@ -15,11 +15,17 @@ import { useSelector } from 'react-redux';
 import { getSwiperGalleryImages } from 'widgets/SwiperGallery/model/selectors/SwiperGallerySelector';
 import { useFilesBase64 } from 'shared/lib/hooks/useFilesBase64/useFilesBase64';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { SwiperGallerySlide } from 'widgets/SwiperGallery/model/types/SwiperGallerySlide';
-import ButtonExit from 'shared/ui/ButtonExit/ButtonExit';
+
 import { fetchAddSligesSwiperGallery } from 'widgets/SwiperGallery/model/services/fetchAddSligesSwiperGallery';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
+import {
+  ImageType,
+  ImageEditItem,
+  EditIndexImages,
+} from 'widgets/ImagesEditItem';
+
+import { useGetSwiperGallery } from 'widgets/SwiperGallery/model/api/SwiperGalleryApi';
 
 interface Props {
   className?: string;
@@ -32,10 +38,13 @@ const AddSlidesGallery: FC<Props> = (props: Props) => {
   const dispatch = useAppDispatch();
   const images = useSelector(getSwiperGalleryImages);
   const navigete = useNavigate();
+  const { data: slides } = useGetSwiperGallery();
+  const startIndexImage: number | undefined = slides?.length;
+
   const onSubmite = async () => {
     if (images?.length) {
       const result = await dispatch(fetchAddSligesSwiperGallery());
-      if (result.meta.requestStatus === "fulfilled") {
+      if (result.meta.requestStatus === 'fulfilled') {
         navigete(RoutePath.main);
         window.location.reload();
       }
@@ -44,23 +53,36 @@ const AddSlidesGallery: FC<Props> = (props: Props) => {
   const onChangeImages = useCallback(
     async (files: FileList | null) => {
       if (files?.length) {
-        const fileList: SwiperGallerySlide[] = (
-          await useFilesBase64(files)
-        ).map((el, index) => {
-          return { src: el, index };
-        });
+        const fileList: ImageType[] = (await useFilesBase64(files)).map(
+          (el, index) => {
+            console.log(startIndexImage);
+            return {
+              src: el,
+              index: startIndexImage ? startIndexImage + index + 1 : index + 1,
+            };
+          },
+        );
         if (fileList.length) {
           dispatch(SwiperGalleryAction.setSlides(fileList));
         }
       }
     },
-    [dispatch, images],
+    [dispatch, images, startIndexImage],
   );
   const onButtonDeleted = useCallback(
     (src: string) => {
       dispatch(SwiperGalleryAction.deleteSlides(src));
     },
     [dispatch],
+  );
+  const onChangeEditIndexImages = useCallback(
+    (value: EditIndexImages) => {
+      if (value.index <= Number(startIndexImage)) {
+        return;
+      }
+      dispatch(SwiperGalleryAction.editIndexImages(value));
+    },
+    [dispatch, startIndexImage],
   );
   return (
     <DynamicModuleLoader reducers={reducers}>
@@ -88,14 +110,10 @@ const AddSlidesGallery: FC<Props> = (props: Props) => {
               ? images.map((image) => {
                   return (
                     <div className={cls.wrapperImage} key={image.index}>
-                      <img
-                        src={image.src}
-                        className={cls.image}
-                        alt="add image gallery"
-                      />
-                      <ButtonExit
-                        className={cls.buttonDelete}
-                        onClick={() => onButtonDeleted(image.src)}
+                      <ImageEditItem
+                        image={image}
+                        onDelete={onButtonDeleted}
+                        onChange={onChangeEditIndexImages}
                       />
                     </div>
                   );

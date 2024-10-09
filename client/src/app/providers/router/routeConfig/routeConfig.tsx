@@ -4,6 +4,7 @@ import { AddSlidesGallery } from 'pages/AddSlidesGallery';
 import { BasketPage } from 'pages/BasketPage';
 import { ContactPage } from 'pages/ContactPage';
 import { EditProductPage } from 'pages/EditProductPage';
+import { EditSlidesGallery } from 'pages/EditSlidesGallery';
 import { FAQPage } from 'pages/FAQPage';
 import { GuaranteesPage } from 'pages/GuaranteesPage';
 import { LoginPage } from 'pages/LoginPage';
@@ -46,7 +47,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.BASKET]: '/basket',
   [AppRoutes.GUARANTEES]: '/guarantees',
   [AppRoutes.CERTIFICATES]: '/certificates',
-  [AppRoutes.PRODUCT_DETAILS]: '/products/', // +:id
+  [AppRoutes.PRODUCT_DETAILS]: '/catalog/', // +:id
   [AppRoutes.FAQ]: '/faq',
   [AppRoutes.OFERTA]: '/oferta',
   [AppRoutes.AUTH]: '/auth',
@@ -122,7 +123,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.EDIT_SLIDES_GALLERY]: {
     path: RoutePath.edit_slides_gallery,
-    element: <div>edit slides gallery</div>,
+    element: <EditSlidesGallery />,
     authOnly: true,
   },
 };

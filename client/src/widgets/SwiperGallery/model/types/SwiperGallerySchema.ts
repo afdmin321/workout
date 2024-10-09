@@ -1,7 +1,7 @@
-import { SwiperGallerySlide } from './SwiperGallerySlide';
+import { ImageType } from 'widgets/ImagesEditItem';
 
 export interface SwiperGallerySchema {
-  data: SwiperGallerySlide[];
-  isLoading: false;
+  data: ImageType[];
+  isLoading: boolean;
   error?: string;
 }

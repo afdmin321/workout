@@ -4,7 +4,7 @@
   "description": "Web store",
   "main": "index.ts",
   "scripts": {
-    "start": "webpack serve --env port=7000 ",
+    "start": "webpack serve --env port=7000",
     "build:prod": "webpack --env mode=production apiUrl=https://xn----7sbkfabgm0avc8afvk0e9cj2d.xn--p1ai/api && react-snap",
     "build:dev": "webpack --env mode=development",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",

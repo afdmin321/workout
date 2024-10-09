@@ -7,25 +7,8 @@ import { ErrorBoundary } from 'app/providers/ErrorBoudary';
 import { StoreProvider } from 'app/providers/StoreProvider';
 
 const rootElement = document.getElementById('root') as HTMLElement;
-const root = hydrateRoot(
-  rootElement!,
-  <App />,
-);
+const root = hydrateRoot(rootElement!, <App />);
 
-// if (rootElement?.hasChildNodes()) {
-//   hydrate(
-//     <StrictMode>
-//       <BrowserRouter>
-//         <StoreProvider>
-//           <ErrorBoundary>
-//             <App />
-//           </ErrorBoundary>
-//         </StoreProvider>
-//       </BrowserRouter>
-//     </StrictMode>,
-//     rootElement,
-//   );
-// } else {
 root.render(
   <StrictMode>
     <BrowserRouter>
