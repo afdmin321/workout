@@ -11,7 +11,7 @@ import { ImagesService } from 'images/images.service';
 import { CreateImagesDto } from 'images/dto/create-images.dto';
 import { JwtAuthGuard } from 'guards/jwt-auth.guard';
 
-@Controller('images')
+@Controller('api/images')
 export class ImagesController {
   constructor(private readonly imageService: ImagesService) {}
   @Get()

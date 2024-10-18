@@ -29,6 +29,8 @@ export const fetchCreateProduct = createAsyncThunk<
       '/products',
       {
         ...data,
+        images: data.newImages,
+        newImages: undefined,
       },
       {
         headers: {

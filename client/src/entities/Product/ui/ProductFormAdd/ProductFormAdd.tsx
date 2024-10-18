@@ -147,6 +147,12 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
     },
     [dispatch, data?.ageGroup],
   );
+  const onChangeMaterial = useCallback(
+    (value: string) => {
+      dispatch(ProductFormAction.setMaterial(value));
+    },
+    [dispatch, data?.material],
+  );
   const onChangeLength = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
@@ -352,6 +358,14 @@ const ProductFormAdd: FC<Props> = (props: Props) => {
           text="Возростная категория"
           value={data?.ageGroup || ''}
           onChange={onChangeAgeGroup}
+        />
+        <Input
+          name="material"
+          classNameText={cls.text}
+          classNameLabel={cls.wrapperInput}
+          text="Материал"
+          value={data?.material || ''}
+          onChange={onChangeMaterial}
         />
         <Input
           name="length"

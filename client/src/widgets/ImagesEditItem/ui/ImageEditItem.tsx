@@ -22,7 +22,11 @@ const ImageEditItem: FC<Props> = (props: Props) => {
       <img
         id={image.id || ''}
         className={cls.image}
-        src={image.src}
+        src={
+          image.src.length > 100
+            ? image.src
+            : `https://xn----7sbkfabgm0avc8afvk0e9cj2d.xn--p1ai/${image.src}`
+        }
         alt="image"
       />
       <Input

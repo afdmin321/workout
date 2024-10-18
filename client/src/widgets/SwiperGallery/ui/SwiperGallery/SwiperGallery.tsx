@@ -22,7 +22,11 @@ const SwiperGallery: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   const dispatch = useAppDispatch();
   const resize = useResize();
-  const { isLoading, data: slides, error } = useGetSwiperGallery();
+  const {
+    isLoading,
+    data: slides,
+    error,
+  } = useGetSwiperGallery();
   const slidesPerView = resize < 470 ? 1 : 3;
   let content;
 

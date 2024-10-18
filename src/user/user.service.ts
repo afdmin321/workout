@@ -12,9 +12,11 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    console.log('hueta');
     const existUser = await this.userRepository.find({
       where: { username: createUserDto.username },
     });
+    console.log(existUser);
     if (existUser.length) {
       throw new BadRequestException('this username already exist!');
     }
@@ -22,6 +24,7 @@ export class UserService {
       username: createUserDto.username,
       password: await hash(createUserDto.password),
     });
+    console.log(user);
 
     return user;
   }

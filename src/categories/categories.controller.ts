@@ -15,7 +15,7 @@ import { CreateCategoriesDto } from './dto/create-categories.dto';
 import { UpdateCategoriesDto } from './dto/update-categories.dto';
 import { JwtAuthGuard } from 'guards/jwt-auth.guard';
 
-@Controller('categories')
+@Controller('api/categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 

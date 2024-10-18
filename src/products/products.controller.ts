@@ -16,7 +16,7 @@ import { CreateProductsDto } from 'products/dto/create-products.dto';
 import { UpdateProductsDto } from 'products/dto/update-products.dto';
 import { JwtAuthGuard } from 'guards/jwt-auth.guard';
 
-@Controller('products')
+@Controller('api/products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
@@ -43,16 +43,24 @@ export class ProductsController {
   findRandom(@Query('limit') limit: number) {
     return this.productsService.findRandom(limit);
   }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
   }
+
 
   @Post()
   @UsePipes(new ValidationPipe())
   @UseGuards(JwtAuthGuard)
   create(@Body() createProductsDto: CreateProductsDto) {
     return this.productsService.create(createProductsDto);
+  }
+
+  @Post('update/price')
+  @UseGuards(JwtAuthGuard)
+  updatePrice(@Body() data: { multiply: number }) {
+    return this.productsService.updatePriceCatalog(data.multiply);
   }
 
   @Patch(':id')

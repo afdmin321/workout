@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SwiperGallerySchema } from '../types/SwiperGallerySchema';
 import { ImageType } from 'widgets/ImagesEditItem';
 import { editIndexImages } from 'shared/lib/editIndex/editIndexImages';
-
+import { fetchGetSlidesSwiperGallery } from '../services/fetchGetSlidesSwiperGallery';
 
 const initialState: SwiperGallerySchema = {
   isLoading: false,
@@ -13,7 +13,7 @@ const swiperGallerySlice = createSlice({
   initialState,
   reducers: {
     setSlides: (state, { payload }: PayloadAction<ImageType[]>) => {
-      state.data = payload;
+      state.data = [...payload];
     },
     deleteSlides: (state, { payload }: PayloadAction<string>) => {
       state.data = state.data.filter((el) => el.src !== payload);
@@ -27,6 +27,24 @@ const swiperGallerySlice = createSlice({
     clearState: () => {
       return initialState;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchGetSlidesSwiperGallery.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(
+        fetchGetSlidesSwiperGallery.fulfilled,
+        (state, action: PayloadAction<ImageType[]>) => {
+          state.isLoading = false;
+          state.data = action.payload;
+        },
+      )
+      .addCase(fetchGetSlidesSwiperGallery.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 export const { reducer: SwiperGalleryReducer, actions: SwiperGalleryAction } =

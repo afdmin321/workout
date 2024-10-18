@@ -26,8 +26,29 @@ export class ProductsService {
 
     if (isExist.length)
       throw new BadRequestException('This product already exist');
+    let i: number = 1;
+    let id = createProductsDto.name
+      .trim()
+      .replaceAll(',', '')
+      .replaceAll('.', '')
+      .toLowerCase()
+      .replaceAll(' ', '-');
+    while (i) {
+      if (id.includes(' ') || id.includes(',') || id.includes('.')) {
+        id = createProductsDto.name
+          .replaceAll(',', '')
+          .replaceAll('.', '')
+          .replaceAll(' ', '-');
+      }
+      if (id.includes(' ') || id.includes(',') || id.includes('.')) {
+        i++;
+      } else {
+        i = 0;
+      }
+    }
 
     const newProduct = {
+      id,
       name: createProductsDto.name,
       description: createProductsDto.description,
       disabled: createProductsDto.disabled,
@@ -47,15 +68,18 @@ export class ProductsService {
     if (!newProduct) throw new BadRequestException('Somethins went wrong...');
 
     return this.productsRepository.save(newProduct).then((res) => {
-      const images = {
-        data: createProductsDto.images.map((image) => {
-          return { ...image, product: res };
-        }),
-      };
-      this.imagesService.create(images).then((res) => res);
+      if (createProductsDto.images?.length) {
+        const images = {
+          data: createProductsDto.images.map((image) => {
+            return { ...image, product: res };
+          }),
+        };
+        this.imagesService.create(images).then((res) => res);
+      }
       return res;
     });
   }
+ 
 
   async findAll() {
     return this.productsRepository
@@ -153,11 +177,12 @@ export class ProductsService {
 
   async updatePriceCatalog(multiply: number) {
     const catalog = await this.productsRepository.find();
-    return catalog.forEach((product) =>
+    return catalog.forEach((product) => {
+      const price = Math.round(product.price * multiply);
       this.update(product.id, {
         id: product.id,
-        price: product.price * Number(multiply),
-      }),
-    );
+        price: price,
+      });
+    });
   }
 }

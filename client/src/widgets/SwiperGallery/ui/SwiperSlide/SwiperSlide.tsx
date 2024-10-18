@@ -5,6 +5,7 @@ import ButtonDeleted from 'shared/ui/ButtonDeleted/ButtonDeleted';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchDeleteSlideSwiperGallery } from 'widgets/SwiperGallery/model/services/fetchDeleteSlideSwiperGallery';
 import { ImageType } from 'widgets/ImagesEditItem';
+import { useGetSwiperGallery } from 'widgets/SwiperGallery/model/api/SwiperGalleryApi';
 
 interface Props {
   slide: ImageType;
@@ -15,12 +16,13 @@ interface Props {
 const SwiperSlide: FC<Props> = (props: Props) => {
   const { className, onHandler, isActive, slide, ...otherProps } = props;
   const dispatch = useAppDispatch();
+  const { refetch } = useGetSwiperGallery();
   const onHandlerButtonDelete = useCallback(
     (evt: React.MouseEvent<HTMLButtonElement>, id?: string) => {
       evt.stopPropagation();
       if (id) {
         dispatch(fetchDeleteSlideSwiperGallery(id));
-        window.location.reload();
+        refetch();
       } else {
         console.log('eerrorr not id');
       }

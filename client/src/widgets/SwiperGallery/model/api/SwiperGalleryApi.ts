@@ -7,8 +7,10 @@ export const swiperGalleryApi = rtkApi.injectEndpoints({
       query: () => ({
         url: '/gallery',
         method: 'GET',
+        
       }),
     }),
+    
   }),
 });
 

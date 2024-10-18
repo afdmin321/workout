@@ -6,8 +6,8 @@ export interface ProductCategory {
   disabled: boolean;
 }
 export enum CategoryId {
-  WORKOUT = '43abe61a-0a60-4ec8-b2f7-095b30022bba',
-  TRAINER = 'ea932f25-e407-4598-a288-adb991d631a6',
+  WORKOUT = 'f9a5a94a-d47d-4a1a-aad7-b0287e2d5bde',
+  TRAINER = 'd7bcde33-5586-42d6-b940-58129a6a33ee',
 }
 
 export type ProductFilter = CategoryId.WORKOUT | CategoryId.TRAINER | null;

@@ -23,11 +23,15 @@ export const fetchUpdateProduct = createAsyncThunk<
       images: data.newImages,
       newImages: undefined,
     };
-    const response = await extra.api.patch(`/products/${data.id}`, migrateData, {
-      headers: {
-        Authorization: 'Bearer ' + user?.token,
+    const response = await extra.api.patch(
+      `/products/${data.id}`,
+      migrateData,
+      {
+        headers: {
+          Authorization: 'Bearer ' + user?.token,
+        },
       },
-    });
+    );
     if (!response.data) {
       throw new Error();
     }

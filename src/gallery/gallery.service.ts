@@ -18,7 +18,10 @@ export class GalleryService {
     const data = createGalleryDto.images.map((el) => {
       return { ...el, src: imageDecode(el.src) };
     });
-    return this.galleryRepository.insert(data).then((res) => res);
+    return this.galleryRepository
+      .insert(data)
+      .then((res) => res)
+      .catch((err) => console.log(err));
   }
 
   async findAll() {

@@ -25,7 +25,10 @@ import {
   EditIndexImages,
 } from 'widgets/ImagesEditItem';
 
-import { useGetSwiperGallery } from 'widgets/SwiperGallery/model/api/SwiperGalleryApi';
+import {
+  
+  useGetSwiperGallery,
+} from 'widgets/SwiperGallery/model/api/SwiperGalleryApi';
 
 interface Props {
   className?: string;
@@ -40,13 +43,13 @@ const AddSlidesGallery: FC<Props> = (props: Props) => {
   const navigete = useNavigate();
   const { data: slides } = useGetSwiperGallery();
   const startIndexImage: number | undefined = slides?.length;
-
+  const { refetch } = useGetSwiperGallery();
   const onSubmite = async () => {
     if (images?.length) {
       const result = await dispatch(fetchAddSligesSwiperGallery());
       if (result.meta.requestStatus === 'fulfilled') {
         navigete(RoutePath.main);
-        window.location.reload();
+        refetch()
       }
     }
   };

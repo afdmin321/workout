@@ -11,6 +11,7 @@ import ButtonAdd from 'shared/ui/ButtonAdd/ButtonAdd';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 
+
 interface Props {
   className?: string;
   onHandlerSort: (sort: ProductSort) => void;
@@ -45,6 +46,7 @@ const ProductSortSelector: FC<Props> = (props: Props) => {
         <Icon Src={SortIcon} className={cls.iconSort}></Icon>
       </DropDownList>
       <ButtonAdd onClick={onHandlerButtonAdd} />
+    
     </div>
   );
 };

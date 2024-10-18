@@ -20,6 +20,7 @@ export class ImagesService {
         src: imageDecode(image.src),
       };
     });
+    console.log(data);
     return this.imagesRepository
       .insert(data)
       .then((res) => res)

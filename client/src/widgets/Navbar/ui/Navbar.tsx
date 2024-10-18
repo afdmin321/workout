@@ -10,6 +10,7 @@ import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
 import IconLogo from 'shared/assets/icons/logo.png';
 import ButtonLogout from 'shared/ui/ButtonLogout/ButtonLogout';
+import EditAllPrice from 'features/EditAllPrice/ui/EditAllPrice';
 
 const Navbar = () => {
   return (
@@ -26,6 +27,7 @@ const Navbar = () => {
           <SecondaryItems
             className={classNames(cls.list, {}, [cls.listSecondary])}
           />
+          <EditAllPrice />
           <ButtonLogout />
         </div>
       </div>

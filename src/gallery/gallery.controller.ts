@@ -15,7 +15,7 @@ import { CreateGalleryDto } from 'gallery/dto/create-gallery.dto';
 import { JwtAuthGuard } from 'guards/jwt-auth.guard';
 import { UpdateGalleryDto } from './dto/update-gallery.dto';
 
-@Controller('gallery')
+@Controller('api/gallery')
 export class GalleryController {
   constructor(private readonly galleryService: GalleryService) {}
 
