@@ -49,7 +49,6 @@ export class ProductsController {
     return this.productsService.findOne(id);
   }
 
-
   @Post()
   @UsePipes(new ValidationPipe())
   @UseGuards(JwtAuthGuard)
