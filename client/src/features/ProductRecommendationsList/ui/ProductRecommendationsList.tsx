@@ -17,7 +17,6 @@ const ProductRecommendationsList: FC<Props> = (props: Props) => {
     data: products,
     error,
   } = useProductRecommendationsList(idProductStop);
-  console.log(products);
   const productsFilter = products?.filter(
     (product) => product.id !== idProductStop,
   );

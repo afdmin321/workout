@@ -12,20 +12,36 @@ interface Props {
 const LinkPhone: FC<Props> = (props: Props) => {
   const { className, classNameIcon, classNameText, ...otherProps } = props;
   return (
-    <Link
-      aria-label="наш номер телефона: 88002017773"
-      href="tel:88002017773"
-      className={classNames(cls.link, {}, [className])}
-    >
-      <Icon
-        Src={PhoneCall}
-        className={classNames(cls.icon, {}, [classNameIcon])}
-        {...otherProps}
-      />
-      <div className={classNames(cls.text, {}, [classNameText])}>
-        8-800-201-77-73
-      </div>
-    </Link>
+    <div className={cls.linkWrapper}>
+      <Link
+        aria-label="наш номер телефона: 88002017773"
+        href="tel:88002017773"
+        className={classNames(cls.link, {}, [className])}
+      >
+        <Icon
+          Src={PhoneCall}
+          className={classNames(cls.icon, {}, [classNameIcon])}
+          {...otherProps}
+        />
+        <div className={classNames(cls.text, {}, [classNameText])}>
+          8-800-201-77-73
+        </div>
+      </Link>
+      <Link
+        aria-label="наш номер телефона: 88634456061"
+        href="tel:88634456061"
+        className={classNames(cls.link, {}, [className])}
+      >
+        <Icon
+          Src={PhoneCall}
+          className={classNames(cls.icon, {}, [classNameIcon])}
+          {...otherProps}
+        />
+        <div className={classNames(cls.text, {}, [classNameText])}>
+          8-8634-45-60-61
+        </div>
+      </Link>
+    </div>
   );
 };
 

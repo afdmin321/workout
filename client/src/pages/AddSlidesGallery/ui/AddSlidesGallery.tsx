@@ -58,7 +58,6 @@ const AddSlidesGallery: FC<Props> = (props: Props) => {
       if (files?.length) {
         const fileList: ImageType[] = (await useFilesBase64(files)).map(
           (el, index) => {
-            console.log(startIndexImage);
             return {
               src: el,
               index: startIndexImage ? startIndexImage + index + 1 : index + 1,

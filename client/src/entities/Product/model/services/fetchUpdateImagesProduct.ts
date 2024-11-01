@@ -36,7 +36,6 @@ export const fetchUpdateImagesProduct = createAsyncThunk<
     dispatch(fetchProducts({ replace: true }));
     return response.data;
   } catch (err) {
-    console.log(err);
     rejectWithValue('error');
   }
 });

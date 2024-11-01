@@ -18,6 +18,7 @@ import { fetchNextProductsPage } from '../../model/services/fetchNextProductsPag
 import { initProductsPage } from '../../model/services/initProductPage/initProductsPage';
 import ProductsPageFilter from '../ProductsPageFilter/ProductsPageFilter';
 import { useSearchParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 interface Props {
   className?: string;
@@ -42,6 +43,31 @@ const ProductsPage: FC<Props> = (props: Props) => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <section className={cls.ProductsPage}>
+        <Helmet>
+          <title>{`Каталог продукции - ВОРКАУТ.РФ производитель спортивного уличного оборудования.`}</title>
+          <meta
+            property="og:title"
+            content="Каталог продукции - ВОРКАУТ.РФ производитель спортивного уличного оборудования."
+          />
+          <meta
+            property="og:description"
+            content="Каталог продукции - ВОРКАУТ.РФ, сертифицированное спортивное оборудование и тренажеры для воркаут площадок. Звоните: 8-800-201-77-73;"
+          />
+          <meta property="og:type" content="article" />
+          <meta
+            name="description"
+            content="Каталог продукции - ВОРКАУТ.РФ, сертифицированное спортивное оборудование и тренажеры для воркаут площадок. Звоните: 8-800-201-77-73;"
+          />
+          <meta
+            name="keywords"
+            content="воркаут,воркауты,воркаут рф,купить воркауты,заказать воркауты,спотривеое оборудование,уличные спортивные площадки,спорт комплекс,перекладины,турники,брусья,скамья для пресса,уличные тренажеры"
+          />
+
+          <title>
+            Воркаут.рф производитель спортивного уличного оборудования. Доставка
+            по РФ!
+          </title>
+        </Helmet>
         <ProductsPageFilter />
         <ProductList />
         {hasMore && (

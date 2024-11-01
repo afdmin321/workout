@@ -80,7 +80,11 @@ const FeedBack: FC<Props> = (props: Props) => {
           className={classNames(cls.wrapperCall, { [cls.active]: call }, [])}
         >
           <div className={cls.text}>Мы перезвоним в буднии дни с 8-17</div>
-          <FormCall className={cls.form} theme={ThemeForm.CALL} />
+          <FormCall
+            className={cls.form}
+            theme={ThemeForm.CALL}
+            id="call-form-sg"
+          />
         </div>
 
         <div

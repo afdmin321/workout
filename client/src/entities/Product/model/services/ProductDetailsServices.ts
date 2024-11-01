@@ -15,7 +15,6 @@ export const fetchProductById = createAsyncThunk<
     }
     return respons.data;
   } catch (err) {
-    console.log(err);
     return rejectWithValue('error response get product by id');
   }
 });

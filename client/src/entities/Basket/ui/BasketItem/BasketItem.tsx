@@ -21,23 +21,23 @@ const BasketItem: FC<Props> = (props: Props) => {
       : null;
   const dispatch = useAppDispatch();
   const onHandlerButtonDelet = useCallback(() => {
-    dispatch(basketListActions.deleteItem(product.id));
+    dispatch(basketListActions.deleteItem(product?.id));
   }, [dispatch]);
   return (
     <div
-      id={product.id}
+      id={product?.id}
       className={classNames(cls.BasketItem, {}, [className])}
       {...otherProps}
     >
       <img
-        src={'https://xn--80adypkog.xn--p1ai/' + product.images[0].src}
-        alt={product.name}
+        src={'https://xn--80adypkog.xn--p1ai/' + product?.images[0].src}
+        alt={product?.name}
         className={cls.img}
       />
 
       <div className={cls.wrapperInfo}>
         <div className={cls.wrapperText}>
-          <h3 className={cls.name}>{product.name}</h3>
+          <h3 className={cls.name}>{product?.name}</h3>
           <div className={cls.priceWrapper}>
             <span>Цена: </span>
             <Price price={price} />
@@ -51,7 +51,7 @@ const BasketItem: FC<Props> = (props: Props) => {
           )}
         </div>
         <div className={cls.quantityWrapper}>
-          <Quantity product={product} quantity={product.quantity} />
+          <Quantity product={product} quantity={product?.quantity} />
           <Button
             className={cls.button}
             theme={ThemeButton.PRIMARY}

@@ -1,7 +1,7 @@
 import { FC, memo, useCallback } from 'react';
 import cls from './ProductListItem.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
-import {  Product } from 'entities/Product/model/types/Product';
+import { Product } from 'entities/Product/model/types/Product';
 import Price from 'shared/ui/Price/Price';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
@@ -20,16 +20,19 @@ const ProductListItem: FC<Props> = (props: Props) => {
   const { className, product, ...otherProps } = props;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const onOpenProduct = useCallback(() => {
-    navigate(RoutePath.product_details + product.id);
-  }, [navigate, product.id]);
+  const onOpenProduct = useCallback(
+    (evt: React.MouseEvent<HTMLAnchorElement>) => {
+      evt.preventDefault();
+      navigate(RoutePath.product_details + product.id);
+    },
+    [navigate, product.id],
+  );
 
   const onHandlerButtonEdit = useCallback(
     (evt: React.MouseEvent<HTMLButtonElement>) => {
       evt.stopPropagation();
 
       navigate(RoutePath.edit_product + product.id);
-
     },
     [dispatch, navigate, product.id],
   );
@@ -47,7 +50,7 @@ const ProductListItem: FC<Props> = (props: Props) => {
       : null;
 
   return (
-    <div
+    <a
       className={classNames(cls.ProductListItem, {}, [className])}
       {...otherProps}
       id={product.id}
@@ -80,7 +83,7 @@ const ProductListItem: FC<Props> = (props: Props) => {
         onHandler={onHandlerButtonDelete}
         className={classNames(cls.buttonDelet)}
       />
-    </div>
+    </a>
   );
 };
 

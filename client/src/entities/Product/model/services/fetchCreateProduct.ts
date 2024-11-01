@@ -24,7 +24,6 @@ export const fetchCreateProduct = createAsyncThunk<
     ) {
       throw new Error();
     }
-    console.log(data);
     const response = await extra.api.post(
       '/products',
       {
@@ -46,7 +45,6 @@ export const fetchCreateProduct = createAsyncThunk<
     dispatch(fetchProducts({ replace: true }));
     dispatch(ProductFormAction.clearState());
   } catch (err) {
-    console.log(err);
     rejectWithValue('err.message');
   }
 });

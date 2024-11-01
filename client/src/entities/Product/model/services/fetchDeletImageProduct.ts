@@ -27,7 +27,6 @@ export const fetchDeletImageProduct = createAsyncThunk<
     dispatch(ProductFormAction.deleteUpdateImage(id));
     setTimeout(() => dispatch(SuccessApplicationAction.setInvisible()), 3000);
   } catch (err) {
-    console.log(err);
     rejectWithValue('error');
   }
 });

@@ -5,6 +5,7 @@ import { ProductDetails } from 'entities/Product';
 import { useParams } from 'react-router-dom';
 import ProductRecommendationsList from 'features/ProductRecommendationsList/ui/ProductRecommendationsList';
 
+
 interface Props {
   className?: string;
 }

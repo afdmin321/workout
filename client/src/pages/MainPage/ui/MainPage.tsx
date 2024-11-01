@@ -7,6 +7,7 @@ import ButtonEdit from 'shared/ui/ButtonEdit/ButtonEdit';
 import ButtonAdd from 'shared/ui/ButtonAdd/ButtonAdd';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
+import { Helmet } from 'react-helmet';
 
 interface Props {
   className?: string;
@@ -26,6 +27,26 @@ const MainPage: FC<Props> = (props: Props) => {
       className={classNames(cls.MainPage, {}, [className])}
       {...otherProps}
     >
+      <Helmet>
+        <title>{`Воркаут.рф производитель спортивного уличного оборудования для воркаут площадок. Доставка по РФ!`}</title>
+        <meta
+          property="og:title"
+          content="Воркаут.рф производитель спортивного уличного оборудования для воркаут площадок. Доставка по РФ!"
+        />
+        <meta
+          property="og:description"
+          content="Мы сертифицированный изготовитель уличного и спортивного оборудования более 12 лет. Изготовим уличное спортивное оборудование и тренажеры для воркаут площадок."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+          name="description"
+          content="Мы сертифицированный изготовитель уличного и спортивного оборудования более 12 лет. Изготовим уличное спортивное оборудование и тренажеры для воркаут площадок."
+        />
+        <meta
+          name="keywords"
+          content="воркаут,воркауты,воркаут рф,купить воркауты,заказать воркауты,спотривеое оборудование,уличные спортивные площадки,спорт комплекс,перекладины,турники,брусья,скамья для пресса,уличные тренажеры"
+        />
+      </Helmet>
       <div className={cls.wrapperSwiperPrimary}>
         <SwiperPrimary />
       </div>

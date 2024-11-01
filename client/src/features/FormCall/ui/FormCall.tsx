@@ -24,6 +24,7 @@ interface Props {
   textSubmite?: string;
   className?: string;
   children?: ReactNode;
+  id?: string;
 }
 export enum ThemeForm {
   CONTACT = 'contact',
@@ -32,7 +33,7 @@ export enum ThemeForm {
   CHAT = 'chat',
 }
 const FormCall: FC<Props> = (props: Props) => {
-  const { className, children, textSubmite, theme, ...otherProps } = props;
+  const { className, children, textSubmite, theme, id, ...otherProps } = props;
   const name = useSelector(getFormCallName);
   const phone = useSelector(getFormCallPhone);
   const errorName = useSelector(getFormCallErrorName);
@@ -67,6 +68,7 @@ const FormCall: FC<Props> = (props: Props) => {
         dispatch(fetchOrder(theme));
         dispatch(FormCallAction.resetState());
       }}
+      id={id}
       className={classNames(cls.Form, {}, [className, cls[theme]])}
       {...otherProps}
     >

@@ -16,7 +16,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchProductById } from 'entities/Product/model/services/ProductDetailsServices';
 
 import { PageLoader } from 'widgets/PageLoader';
-
+import { Helmet } from 'react-helmet';
 import Price from 'shared/ui/Price/Price';
 
 import IncreasingBasket from 'widgets/IncreasingBasket/IncreasingBasket';
@@ -34,7 +34,6 @@ const ProductDetails: FC<Props> = (props: Props) => {
   const product = useSelector(getProductDetailsData);
   const error = useSelector(getProductDetailsError);
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     dispatch(fetchProductById(id));
   }, [dispatch, id]);
@@ -101,6 +100,19 @@ const ProductDetails: FC<Props> = (props: Props) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={true}>
+      <Helmet>
+        <title>{product?.name.slice(0, 110)}</title>
+        <meta property="og:title" content={product?.name.slice(0, 110)} />
+        <meta
+          property="og:description"
+          content={`${product?.description.slice(0, 160)}`}
+        />
+        <meta
+          name="description"
+          content={`${product?.description.slice(0, 160)}`}
+        />
+        <meta name="keywords" content={`${product?.name}`} />
+      </Helmet>
       <div
         className={classNames(cls.ProductDetails, {}, [className])}
         {...otherProps}

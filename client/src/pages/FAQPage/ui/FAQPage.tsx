@@ -4,6 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { DropDown } from 'shared/ui/DropDown';
 import { AppLink, ThemeLink } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'app/providers/router/routeConfig/routeConfig';
+import { Helmet } from 'react-helmet';
 
 interface Props {
   className?: string;
@@ -11,7 +12,29 @@ interface Props {
 const FAQPage: FC<Props> = (props: Props) => {
   const { className, ...otherProps } = props;
   return (
-    <section className={classNames(cls.FAQPage, {}, [className])} {...otherProps}>
+    <section
+      className={classNames(cls.FAQPage, {}, [className])}
+      {...otherProps}
+    >
+      <Helmet>
+        <title>{`Воркаут.рф, производитель спортивного оборудования. Ответы на вопросы FAQ!`}</title>
+        <meta
+          property="og:title"
+          content={`Воркаут.рф, производитель спортивного оборудования. Ответы на вопросы FAQ!`}
+        />
+        <meta
+          property="og:description"
+          content={`Воркаут.рф Ответы на вопросы FAQ! телефон: 8-800-201-77-73; Доставка по России транспортными компаниями!`}
+        />
+        <meta
+          name="description"
+          content={`Воркаут.рф Ответы на вопросы FAQ! телефон: 8-800-201-77-73; Доставка по России транспортными компаниями!`}
+        />
+        <meta
+          name="keywords"
+          content={`воркаут,воркауты,воркаут рф,купить воркауты,заказать воркауты,спотривеое оборудование,уличные спортивные площадки,спорт комплекс, +телефон`}
+        />
+      </Helmet>
       <DropDown question="Сертифицирована ли Ваша продукция, где можно посмотреть сертификаты?">
         <div>
           Да, вся наша продукция сертифицирована. Сертификаты можно посмотреть

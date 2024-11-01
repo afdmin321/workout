@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
 import cls from './GuaranteesPage.module.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { Helmet } from 'react-helmet';
 
 interface Props {
   className?: string;
@@ -12,6 +13,25 @@ const GuaranteesPage: FC<Props> = (props: Props) => {
       className={classNames(cls.GuaranteesPage, {}, [className])}
       {...otherProps}
     >
+      <Helmet>
+        <title>{`Воркаут.рф, производитель спортивного оборудования. Гарантии от производителя!`}</title>
+        <meta
+          property="og:title"
+          content={`Воркаут.рф, производитель спортивного оборудования. Гарантии от производителя!`}
+        />
+        <meta
+          property="og:description"
+          content={`Воркаут.рф Гарантии от производителя! телефон: 8-800-201-77-73; Доставка по России транспортными компаниями!`}
+        />
+        <meta
+          name="description"
+          content={`Воркаут.рф Гарантии от производителя! телефон: 8-800-201-77-73; Доставка по России транспортными компаниями!`}
+        />
+        <meta
+          name="keywords"
+          content={`воркаут,воркауты,воркаут рф,купить воркауты,заказать воркауты,спотривеое оборудование,уличные спортивные площадки,спорт комплекс, +телефон`}
+        />
+      </Helmet>
       <h2 className={cls.title}>
         Основные положения предоставления гарантии на игровые и спортивные
         площадки
@@ -111,9 +131,9 @@ const GuaranteesPage: FC<Props> = (props: Props) => {
       </ul>
       <p className={cls.description}>
         Гарантия не распространяется на случаи нарушения инструкций по сборке
-        или внесения изменений в конструкцию изделия. Гарантийный срок на изделие
-        составляет 1 год, при соблюдении условий транспортировки, хранения,
-        монтажа и эксплуатации.
+        или внесения изменений в конструкцию изделия. Гарантийный срок на
+        изделие составляет 1 год, при соблюдении условий транспортировки,
+        хранения, монтажа и эксплуатации.
       </p>
       <h3 className={cls.subtitle}>Рекомендации:</h3>
       <ul className={cls.list}>

@@ -28,7 +28,6 @@ export const fetchEditAllPrice = createAsyncThunk<
     setTimeout(() => dispatch(SuccessApplicationAction.setInvisible()), 3000);
     return response.data;
   } catch (err) {
-    console.log(err);
     rejectWithValue('eerroro');
   }
 });

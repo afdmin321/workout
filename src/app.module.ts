@@ -42,7 +42,6 @@ import { SsrModule } from 'ssr/ssr.module';
     ImagesModule,
     OrdersModule,
     GalleryModule,
-
   ],
   controllers: [],
   providers: [],
