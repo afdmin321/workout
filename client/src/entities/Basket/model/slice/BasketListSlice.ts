@@ -36,11 +36,11 @@ const basketListSlice = createSlice({
     deleteItem: (state, action: PayloadAction<string>) => {
       const data = state.data.filter((item) => item.id !== action.payload);
       state.data = data
-      localStorage.removeItemItem(products_LOCALSTORAGE_KEY);
+      localStorage.removeItem(products_LOCALSTORAGE_KEY);
       localStorage.setItem(products_LOCALSTORAGE_KEY, JSON.stringify(data));
     },
     clearState: () => {
-      localStorage.removeItemItem(products_LOCALSTORAGE_KEY);
+      localStorage.removeItem(products_LOCALSTORAGE_KEY);
       return initialState;
     },
   },

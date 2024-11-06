@@ -14,10 +14,10 @@ interface Props {
 }
 const BasketItem: FC<Props> = (props: Props) => {
   const { className, data: product, ...otherProps } = props;
-  const price = product.price ? product.price * product.quantity : null;
+  const price = product?.price ? product?.price * product?.quantity : null;
   const productSize =
-    product.length && product.width && product.height
-      ? `${product.length}x${product.width}мм, H=${product.height}`
+    product?.length && product?.width && product?.height
+      ? `${product?.length}x${product?.width}мм, H=${product?.height}`
       : null;
   const dispatch = useAppDispatch();
   const onHandlerButtonDelet = useCallback(() => {
@@ -30,7 +30,7 @@ const BasketItem: FC<Props> = (props: Props) => {
       {...otherProps}
     >
       <img
-        src={'https://xn--80adypkog.xn--p1ai/' + product?.images[0].src}
+        src={'https://xn--80adypkog.xn--p1ai/' + product?.images[0]?.src}
         alt={product?.name}
         className={cls.img}
       />
@@ -44,7 +44,7 @@ const BasketItem: FC<Props> = (props: Props) => {
           </div>
 
           <div className={cls.articlNumber}>
-            Артикул: {product.articleNumber}
+            Артикул: {product?.articleNumber}
           </div>
           {productSize && (
             <div className={cls.size}>Габариты: {productSize}</div>
