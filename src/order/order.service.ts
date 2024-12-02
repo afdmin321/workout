@@ -75,7 +75,7 @@ export class OrderService {
           const products = createOrderDto.products.map((product) => {
             return {
               order: res,
-              link: `https://воркаут.рф/products/${product.id}`,
+              link: `https://воркаут.рф/catalog/${product.id}`,
             };
           });
 

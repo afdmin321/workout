@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class SsrService {
+export class checkAuthService {
   create() {
     return 'This action adds a new product';
   }

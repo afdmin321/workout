@@ -11,7 +11,6 @@ import { OrdersModule } from 'order/orders.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { GalleryModule } from 'gallery/gallery.module';
-import { SsrModule } from 'ssr/ssr.module';
 
 @Module({
   imports: [

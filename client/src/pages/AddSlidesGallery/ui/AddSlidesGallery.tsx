@@ -25,10 +25,7 @@ import {
   EditIndexImages,
 } from 'widgets/ImagesEditItem';
 
-import {
-  
-  useGetSwiperGallery,
-} from 'widgets/SwiperGallery/model/api/SwiperGalleryApi';
+import { useGetSwiperGallery } from 'widgets/SwiperGallery/model/api/SwiperGalleryApi';
 
 interface Props {
   className?: string;
@@ -49,7 +46,7 @@ const AddSlidesGallery: FC<Props> = (props: Props) => {
       const result = await dispatch(fetchAddSligesSwiperGallery());
       if (result.meta.requestStatus === 'fulfilled') {
         navigete(RoutePath.main);
-        refetch()
+        refetch();
       }
     }
   };
@@ -101,7 +98,7 @@ const AddSlidesGallery: FC<Props> = (props: Props) => {
         >
           <InputFile
             placeholder="Выбрать изображение"
-            files={images?.map((image) => image.src)}
+            files={images}
             onChange={onChangeImages}
             type="file"
             accept=".jpeg,.jpg,.png"
